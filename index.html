@@ -226,6 +226,250 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h2 class="index-header">
         
+        <a href="/2022/01/19/%E4%B8%80%E6%9D%A1%E6%9F%A5%E8%AF%A2SQL%E7%9A%84%E6%89%A7%E8%A1%8C%E8%BF%87%E7%A8%8B/" target="_self">
+          一条查询SQL的执行过程
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2022/01/19/%E4%B8%80%E6%9D%A1%E6%9F%A5%E8%AF%A2SQL%E7%9A%84%E6%89%A7%E8%A1%8C%E8%BF%87%E7%A8%8B/" target="_self">
+        <div>
+          一条查询SQL的执行过程 为了理解这个问题，先从Mysql的架构说起，对于Mysql来说，大致可以分为3层架构。  第一层作为客户端和服务端的连接，连接器负责处理和客户端的连接，还有一些权限认证之类。比如客户端通用用户名密码连接到Mysql服务器，还有对于数据库表的执行权限。 第二层是核心层，基本上Mysql大部分的核心功能都在这一层，包括查询缓存、解析器、优化器之类，比如SQL解析、优化、索引选
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-01-19 22:59" pubdate>
+              2022-01-19
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" class="category-chain-item">数据库</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/MySQL/">#MySQL</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2021/12/19/%E4%B8%80%E6%9D%A1%E6%9B%B4%E6%96%B0SQL%E7%9A%84%E6%89%A7%E8%A1%8C%E8%BF%87%E7%A8%8B/" target="_self">
+          一条更新SQL的执行过程
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2021/12/19/%E4%B8%80%E6%9D%A1%E6%9B%B4%E6%96%B0SQL%E7%9A%84%E6%89%A7%E8%A1%8C%E8%BF%87%E7%A8%8B/" target="_self">
+        <div>
+          一条更新SQL的执行过程 对于一个SQL语句的更新来说，前面的流程都可以说类似的，通过解析器进行语法分析，优化器优化，执行引擎去执行，这个都没有什么问题，重点在于多了一点东西，那就是redo_log、undo_log和binlog。 执行流程大致如下：  首先客户端发送请求到服务端，建立连接。 服务端先看下查询缓存，对于更新某张表的SQL，该表的所有查询缓存都失效。 接着来到解析器，进行语法分析，
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-12-19 23:05" pubdate>
+              2021-12-19
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" class="category-chain-item">数据库</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/MySQL/">#MySQL</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2021/11/19/MySQL%E5%9F%BA%E7%A1%80/" target="_self">
+          MySQL基础
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2021/11/19/MySQL%E5%9F%BA%E7%A1%80/" target="_self">
+        <div>
+          本单元目标一、为什么要学习数据库 二、数据库的相关概念           DBMS、DB、SQL 三、数据库存储数据的特点 四、初始MySQL     MySQL产品的介绍             MySQL产品的安装          ★             MySQL服务的启动和停止     ★     MySQL服务的登录和退出     ★           MySQL的常见命令和语
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-11-19 22:49" pubdate>
+              2021-11-19
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" class="category-chain-item">数据库</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/MySQL/">#MySQL</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2021/10/19/Redis%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/" target="_self">
+          Redis安装与配置
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2021/10/19/Redis%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/" target="_self">
+        <div>
+          RedisRedis 简介 Redis是简介Redis 是完全开源免费的，遵守BSD协议，是一个高性能(NOSQL)的key-value数据库,Redis是一个开源的使用ANSI C语言编写、支持网络、可基于内存亦可持久化的日志型、Key-Value数据库，并提供多种语言的API。从2010年3月15日起，Redis的开发工作由VMware主持。从2013年5月开始，Redis的开发由Pivota
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-10-19 15:13" pubdate>
+              2021-10-19
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" class="category-chain-item">数据库</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/redis/">#redis</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
         <a href="/2021/08/19/%E6%90%AD%E5%BB%BAblog/" target="_self">
           搭建blog
         </a>
