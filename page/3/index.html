@@ -7,8 +7,10 @@
 
 <head>
   <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="/cqc-blog/img/fluid.png">
-  <link rel="icon" href="/cqc-blog/img/fluid.png">
+  <!-- 通过 CDN 引入霞鹜文楷字体 -->
+  <link rel="stylesheet" href="https://npm.elemecdn.com/lxgw-wenkai-screen-webfont/style.css" media="print" onload="this.media='all'">
+  <link rel="apple-touch-icon" sizes="76x76" href="/cqc-blog/img/me.png">
+  <link rel="icon" href="/cqc-blog/img/me.png">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
@@ -17,9 +19,9 @@
   <meta name="keywords" content="">
   
     <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
+<meta property="og:title" content="caiqichang&#39;s Blog">
 <meta property="og:url" content="http://cactuscode.gitee.io/cqc-blog/page/3/index.html">
-<meta property="og:site_name" content="Hexo">
+<meta property="og:site_name" content="caiqichang&#39;s Blog">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:author" content="caiqichang">
 <meta name="twitter:card" content="summary_large_image">
@@ -28,7 +30,7 @@
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>Hexo</title>
+  <title>caiqichang&#39;s Blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -182,7 +184,7 @@
   
 
 <div id="banner" class="banner" parallax=true
-     style="background: url('/cqc-blog/img/default.png') no-repeat center center; background-size: cover;">
+     style="background: url('/cqc-blog/img/yueqiu.png') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
       <div class="banner-text text-center fade-in-up">
@@ -219,6 +221,67 @@
               <div class="col-12 col-md-10 m-auto">
                 
 
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/cqc-blog/2022/10/22/Java%E5%B9%B6%E5%8F%91-%E8%99%9A%E6%8B%9F%E6%9C%BA/" target="_self">
+          Java并发(虚拟机)
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/cqc-blog/2022/10/22/Java%E5%B9%B6%E5%8F%91-%E8%99%9A%E6%8B%9F%E6%9C%BA/" target="_self">
+        <div>
+          java并发基本概念 并发编程可以抽象成三个核心问题: 分工、同步&#x2F;协作、互斥  分工将当前 Sprint 的 Story 拆分成「合适」大小的 Task，并且安排给「合适」的 Team Member 去完成  拆分的粒度太粗，导致这个任务完成难度变高，耗时长，不易与其他人配合；拆分的粒度太细，又导致任务太多，不好管理与追踪，浪费精力和资源。  关于分工，常见的 Executor，生产者
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-10-22 19:51" pubdate>
+              2022-10-22
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/cqc-blog/categories/Java%E5%B9%B6%E5%8F%91%E7%9B%B8%E5%85%B3/" class="category-chain-item">Java并发相关</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/cqc-blog/tags/Java%E5%B9%B6%E5%8F%91/">#Java并发</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
 
   <div class="row mx-auto index-card">
     
@@ -762,67 +825,6 @@
             <i class="iconfont icon-tags"></i>
             
               <a href="/cqc-blog/tags/Oracle/">#Oracle</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/cqc-blog/2022/02/21/Springboot%E6%95%B4%E5%90%88rocketmq/" target="_self">
-          Springboot整合rocketmq
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/cqc-blog/2022/02/21/Springboot%E6%95%B4%E5%90%88rocketmq/" target="_self">
-        <div>
-          安装介绍MQ，Message Queue，是一种提供消息队列服务的中间件，也称为消息中间件，是一套提供了消息生产、存储、消费全过程API的软件系统。消息即数据。RocketMQ是⼀款阿⾥巴巴开源的消息中间件，主要用于限流，异步解耦操作,如付款之后短信通知，订单发货通知等等，都是异步进行执行。 rocketmq搭建查找rockermq镜像1docker search rocketmq   拉取镜像1
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2022-02-21 20:16" pubdate>
-              2022-02-21
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3 d-flex align-items-center">
-            <i class="iconfont icon-category"></i>
-            
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/cqc-blog/categories/%E6%95%B4%E5%90%88%E7%B3%BB%E5%88%97/" class="category-chain-item">整合系列</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/cqc-blog/tags/rocketmq/">#rocketmq</a>
             
           </div>
         

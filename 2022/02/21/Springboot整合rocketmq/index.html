@@ -7,8 +7,10 @@
 
 <head>
   <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="/cqc-blog/img/fluid.png">
-  <link rel="icon" href="/cqc-blog/img/fluid.png">
+  <!-- 通过 CDN 引入霞鹜文楷字体 -->
+  <link rel="stylesheet" href="https://npm.elemecdn.com/lxgw-wenkai-screen-webfont/style.css" media="print" onload="this.media='all'">
+  <link rel="apple-touch-icon" sizes="76x76" href="/cqc-blog/img/me.png">
+  <link rel="icon" href="/cqc-blog/img/me.png">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
@@ -20,7 +22,7 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="Springboot整合rocketmq">
 <meta property="og:url" content="http://cactuscode.gitee.io/cqc-blog/2022/02/21/Springboot%E6%95%B4%E5%90%88rocketmq/index.html">
-<meta property="og:site_name" content="Hexo">
+<meta property="og:site_name" content="caiqichang&#39;s Blog">
 <meta property="og:description" content="安装介绍MQ，Message Queue，是一种提供消息队列服务的中间件，也称为消息中间件，是一套提供了消息生产、存储、消费全过程API的软件系统。消息即数据。RocketMQ是⼀款阿⾥巴巴开源的消息中间件，主要用于限流，异步解耦操作,如付款之后短信通知，订单发货通知等等，都是异步进行执行。 rocketmq搭建查找rockermq镜像1docker search rocketmq   拉取镜像1">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://images.caiqichang.cn/2023img/image-20230821201808657.png">
@@ -37,7 +39,7 @@
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>Springboot整合rocketmq - Hexo</title>
+  <title>Springboot整合rocketmq - caiqichang&#39;s Blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -197,7 +199,7 @@
   
 
 <div id="banner" class="banner" parallax=true
-     style="background: url('/cqc-blog/img/default.png') no-repeat center center; background-size: cover;">
+     style="background: url('/cqc-blog/img/yueqiu.png') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
       <div class="banner-text text-center fade-in-up">

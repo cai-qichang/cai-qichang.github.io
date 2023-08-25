@@ -7,8 +7,10 @@
 
 <head>
   <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="/cqc-blog/img/fluid.png">
-  <link rel="icon" href="/cqc-blog/img/fluid.png">
+  <!-- 通过 CDN 引入霞鹜文楷字体 -->
+  <link rel="stylesheet" href="https://npm.elemecdn.com/lxgw-wenkai-screen-webfont/style.css" media="print" onload="this.media='all'">
+  <link rel="apple-touch-icon" sizes="76x76" href="/cqc-blog/img/me.png">
+  <link rel="icon" href="/cqc-blog/img/me.png">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
@@ -20,7 +22,7 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="Java并发(虚拟机)">
 <meta property="og:url" content="http://cactuscode.gitee.io/cqc-blog/2022/10/22/Java%E5%B9%B6%E5%8F%91-%E8%99%9A%E6%8B%9F%E6%9C%BA/index.html">
-<meta property="og:site_name" content="Hexo">
+<meta property="og:site_name" content="caiqichang&#39;s Blog">
 <meta property="og:description" content="java并发基本概念 并发编程可以抽象成三个核心问题: 分工、同步&#x2F;协作、互斥  分工将当前 Sprint 的 Story 拆分成「合适」大小的 Task，并且安排给「合适」的 Team Member 去完成  拆分的粒度太粗，导致这个任务完成难度变高，耗时长，不易与其他人配合；拆分的粒度太细，又导致任务太多，不好管理与追踪，浪费精力和资源。  关于分工，常见的 Executor，生产者">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://images.caiqichang.cn/2023img/workingmemory.jpg">
@@ -40,7 +42,7 @@
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>Java并发(虚拟机) - Hexo</title>
+  <title>Java并发(虚拟机) - caiqichang&#39;s Blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -200,7 +202,7 @@
   
 
 <div id="banner" class="banner" parallax=true
-     style="background: url('/cqc-blog/img/default.png') no-repeat center center; background-size: cover;">
+     style="background: url('/cqc-blog/img/yueqiu.png') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
       <div class="banner-text text-center fade-in-up">

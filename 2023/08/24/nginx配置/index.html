@@ -7,8 +7,10 @@
 
 <head>
   <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="/cqc-blog/img/fluid.png">
-  <link rel="icon" href="/cqc-blog/img/fluid.png">
+  <!-- 通过 CDN 引入霞鹜文楷字体 -->
+  <link rel="stylesheet" href="https://npm.elemecdn.com/lxgw-wenkai-screen-webfont/style.css" media="print" onload="this.media='all'">
+  <link rel="apple-touch-icon" sizes="76x76" href="/cqc-blog/img/me.png">
+  <link rel="icon" href="/cqc-blog/img/me.png">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
@@ -20,11 +22,11 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="nginx配置">
 <meta property="og:url" content="http://cactuscode.gitee.io/cqc-blog/2023/08/24/nginx%E9%85%8D%E7%BD%AE/index.html">
-<meta property="og:site_name" content="Hexo">
+<meta property="og:site_name" content="caiqichang&#39;s Blog">
 <meta property="og:description" content="nginx基础指令及初始配置解析nginx 常用命令 .&#x2F;nginx -s stop ：强制停止nginx .&#x2F;nginx -s quit： 优雅停止nginx，即处理完所有请求后再停止服务 .&#x2F;nginx -t ：检测配置文件是否有语法错误 .&#x2F;nginx -v： 查看nginx的版本号 .&#x2F;nginx -V ：查看版本号和配置选项信息 .&#x2F;nginx -c：设置配置文件（默认是：&#x2F;etc&#x2F;ng">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2023-08-24T07:18:46.000Z">
-<meta property="article:modified_time" content="2023-08-24T11:59:54.751Z">
+<meta property="article:modified_time" content="2023-08-25T13:52:34.504Z">
 <meta property="article:author" content="caiqichang">
 <meta property="article:tag" content="nginx">
 <meta name="twitter:card" content="summary_large_image">
@@ -33,7 +35,7 @@
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>nginx配置 - Hexo</title>
+  <title>nginx配置 - caiqichang&#39;s Blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -193,7 +195,7 @@
   
 
 <div id="banner" class="banner" parallax=true
-     style="background: url('/cqc-blog/img/default.png') no-repeat center center; background-size: cover;">
+     style="background: url('/cqc-blog/img/yueqiu.png') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
       <div class="banner-text text-center fade-in-up">
@@ -517,7 +519,7 @@
     
       <span class="category-chain">
         
-  <a href="/cqc-blog/categories/%E9%83%A8%E7%BD%B2%E7%9B%B8%E5%85%B3/" class="category-chain-item">部署相关</a>
+  <a href="/cqc-blog/categories/%E8%BF%90%E7%BB%B4%E7%9B%B8%E5%85%B3/" class="category-chain-item">运维相关</a>
   
   
 
@@ -581,6 +583,12 @@
                 <div class="post-prevnext my-3">
                   <article class="post-prev col-6">
                     
+                    
+                      <a href="/cqc-blog/2023/08/25/Linux-top%E5%91%BD%E4%BB%A4/" title="Linux top命令">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Linux top命令</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
                     
                   </article>
                   <article class="post-next col-6">

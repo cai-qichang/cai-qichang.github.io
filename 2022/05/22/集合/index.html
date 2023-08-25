@@ -7,8 +7,10 @@
 
 <head>
   <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="/cqc-blog/img/fluid.png">
-  <link rel="icon" href="/cqc-blog/img/fluid.png">
+  <!-- 通过 CDN 引入霞鹜文楷字体 -->
+  <link rel="stylesheet" href="https://npm.elemecdn.com/lxgw-wenkai-screen-webfont/style.css" media="print" onload="this.media='all'">
+  <link rel="apple-touch-icon" sizes="76x76" href="/cqc-blog/img/me.png">
+  <link rel="icon" href="/cqc-blog/img/me.png">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
@@ -20,7 +22,7 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="集合">
 <meta property="og:url" content="http://cactuscode.gitee.io/cqc-blog/2022/05/22/%E9%9B%86%E5%90%88/index.html">
-<meta property="og:site_name" content="Hexo">
+<meta property="og:site_name" content="caiqichang&#39;s Blog">
 <meta property="og:description" content="集合  集合主要分为两大类，一个实现collection接口的，一个是实现了Map接口的。  List ArrayList： Object[]数组 Vector：Object[]数组 CopyOnWriteArrayList：使用了读写分离的思想，在写数据的时候上ReentrantLock锁并新建一个数组，读数据仍从旧数组中读取，而新数据在新增或删除完成之后直接替换旧数组。虽然线程安全，对于频繁写">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://images.caiqichang.cn/2023img/collectionfamily.jpg">
@@ -35,7 +37,7 @@
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>集合 - Hexo</title>
+  <title>集合 - caiqichang&#39;s Blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -195,7 +197,7 @@
   
 
 <div id="banner" class="banner" parallax=true
-     style="background: url('/cqc-blog/img/default.png') no-repeat center center; background-size: cover;">
+     style="background: url('/cqc-blog/img/yueqiu.png') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
       <div class="banner-text text-center fade-in-up">

@@ -7,8 +7,10 @@
 
 <head>
   <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="/cqc-blog/img/fluid.png">
-  <link rel="icon" href="/cqc-blog/img/fluid.png">
+  <!-- 通过 CDN 引入霞鹜文楷字体 -->
+  <link rel="stylesheet" href="https://npm.elemecdn.com/lxgw-wenkai-screen-webfont/style.css" media="print" onload="this.media='all'">
+  <link rel="apple-touch-icon" sizes="76x76" href="/cqc-blog/img/me.png">
+  <link rel="icon" href="/cqc-blog/img/me.png">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
@@ -17,9 +19,9 @@
   <meta name="keywords" content="">
   
     <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
+<meta property="og:title" content="caiqichang&#39;s Blog">
 <meta property="og:url" content="http://cactuscode.gitee.io/cqc-blog/index.html">
-<meta property="og:site_name" content="Hexo">
+<meta property="og:site_name" content="caiqichang&#39;s Blog">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:author" content="caiqichang">
 <meta name="twitter:card" content="summary_large_image">
@@ -28,7 +30,7 @@
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>Hexo</title>
+  <title>caiqichang&#39;s Blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -182,7 +184,7 @@
   
 
 <div id="banner" class="banner" parallax=true
-     style="background: url('/cqc-blog/img/default.png') no-repeat center center; background-size: cover;">
+     style="background: url('/cqc-blog/img/yueqiu.png') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
       <div class="banner-text text-center fade-in-up">
@@ -226,6 +228,67 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h2 class="index-header">
         
+        <a href="/cqc-blog/2023/08/25/Linux-top%E5%91%BD%E4%BB%A4/" target="_self">
+          Linux top命令
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/cqc-blog/2023/08/25/Linux-top%E5%91%BD%E4%BB%A4/" target="_self">
+        <div>
+          服务器上输入top指令查看的信息输入top指令 1. 系统运行时间和平均负载： 当前时间系统已运行的时间当前登录用户的数量相应最近5、10和15分钟内的平均负载。可以使用’l’命令切换uptime的显示。    显示 信息    21:45:11 当前系统时间   4:54 系统已经运行了4小时54分钟（在这期间没有重启过）   3 users 当前有3个用户登录系统   load average
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2023-08-25 08:45" pubdate>
+              2023-08-25
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/cqc-blog/categories/%E8%BF%90%E7%BB%B4%E7%9B%B8%E5%85%B3/" class="category-chain-item">运维相关</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/cqc-blog/tags/Linux/">#Linux</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
         <a href="/cqc-blog/2023/08/24/nginx%E9%85%8D%E7%BD%AE/" target="_self">
           nginx配置
         </a>
@@ -258,7 +321,7 @@
     
       <span class="category-chain">
         
-  <a href="/cqc-blog/categories/%E9%83%A8%E7%BD%B2%E7%9B%B8%E5%85%B3/" class="category-chain-item">部署相关</a>
+  <a href="/cqc-blog/categories/%E8%BF%90%E7%BB%B4%E7%9B%B8%E5%85%B3/" class="category-chain-item">运维相关</a>
   
   
 
@@ -762,67 +825,6 @@
             <i class="iconfont icon-tags"></i>
             
               <a href="/cqc-blog/tags/MySQL/">#MySQL</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/cqc-blog/2023/04/15/Redis/" target="_self">
-          Redis
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/cqc-blog/2023/04/15/Redis/" target="_self">
-        <div>
-          Redis 基础缓存基本思想：CPU Cache 缓存的是内存数据用于解决 CPU 处理速度和内存不匹配的问题，内存缓存的是硬盘数据用于解决硬盘访问速度过慢的问题。为了避免用户在请求数据的时候获取速度过于缓慢，所以我们在数据库之上增加了缓存这一层来弥补。 推荐一下一篇很顶的文章：Redis 面霸篇：从高频问题透视核心原理  本文也参考了很多该文章资料   redis设计与实现压缩列表-压缩列表
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2023-04-15 19:51" pubdate>
-              2023-04-15
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3 d-flex align-items-center">
-            <i class="iconfont icon-category"></i>
-            
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/cqc-blog/categories/%E4%B8%AD%E9%97%B4%E4%BB%B6/" class="category-chain-item">中间件</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/cqc-blog/tags/Redis/">#Redis</a>
             
           </div>
         
