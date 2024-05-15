@@ -9,8 +9,8 @@
   <meta charset="UTF-8">
   <!-- 通过 CDN 引入霞鹜文楷字体 -->
   <link rel="stylesheet" href="https://npm.elemecdn.com/lxgw-wenkai-screen-webfont/style.css" media="print" onload="this.media='all'">
-  <link rel="apple-touch-icon" sizes="76x76" href="/cai-qichang/cai-qichang.github.io.git/img/me.png">
-  <link rel="icon" href="/cai-qichang/cai-qichang.github.io.git/img/me.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/me.png">
+  <link rel="icon" href="/img/me.png">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
@@ -21,7 +21,7 @@
     <meta name="description" content="java并发基本概念 并发编程可以抽象成三个核心问题: 分工、同步&#x2F;协作、互斥  分工将当前 Sprint 的 Story 拆分成「合适」大小的 Task，并且安排给「合适」的 Team Member 去完成  拆分的粒度太粗，导致这个任务完成难度变高，耗时长，不易与其他人配合；拆分的粒度太细，又导致任务太多，不好管理与追踪，浪费精力和资源。  关于分工，常见的 Executor，生产者">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Java并发(虚拟机)">
-<meta property="og:url" content="https://github.com/cai-qichang/cai-qichang.github.io.git/2022/10/22/Java%E5%B9%B6%E5%8F%91-%E8%99%9A%E6%8B%9F%E6%9C%BA/index.html">
+<meta property="og:url" content="https://cai-qichang.github.io/2022/10/22/Java%E5%B9%B6%E5%8F%91-%E8%99%9A%E6%8B%9F%E6%9C%BA/index.html">
 <meta property="og:site_name" content="caiqichang&#39;s Blog">
 <meta property="og:description" content="java并发基本概念 并发编程可以抽象成三个核心问题: 分工、同步&#x2F;协作、互斥  分工将当前 Sprint 的 Story 拆分成「合适」大小的 Task，并且安排给「合适」的 Team Member 去完成  拆分的粒度太粗，导致这个任务完成难度变高，耗时长，不易与其他人配合；拆分的粒度太细，又导致任务太多，不好管理与追踪，浪费精力和资源。  关于分工，常见的 Executor，生产者">
 <meta property="og:locale" content="zh_CN">
@@ -66,12 +66,12 @@
 <link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
 
 
-<link  rel="stylesheet" href="/cai-qichang/cai-qichang.github.io.git/css/main.css" />
+<link  rel="stylesheet" href="/css/main.css" />
 
 
-  <link id="highlight-css" rel="stylesheet" href="/cai-qichang/cai-qichang.github.io.git/css/highlight.css" />
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
   
-    <link id="highlight-css-dark" rel="stylesheet" href="/cai-qichang/cai-qichang.github.io.git/css/highlight-dark.css" />
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
   
 
 
@@ -80,15 +80,15 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"github.com","root":"/cai-qichang/cai-qichang.github.io.git/","version":"1.9.5","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/cai-qichang/cai-qichang.github.io.git/local-search.xml","include_content_in_search":true};
+    var CONFIG = {"hostname":"cai-qichang.github.io","root":"/","version":"1.9.5","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
       Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
     }
   </script>
-  <script  src="/cai-qichang/cai-qichang.github.io.git/js/utils.js" ></script>
-  <script  src="/cai-qichang/cai-qichang.github.io.git/js/color-schema.js" ></script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
   
 
 
@@ -105,7 +105,7 @@
 <div class="header-inner" style="height: 70vh;">
   <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
-    <a class="navbar-brand" href="/cai-qichang/cai-qichang.github.io.git/">
+    <a class="navbar-brand" href="/">
       <strong>caiqichang</strong>
     </a>
 
@@ -124,7 +124,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/cai-qichang/cai-qichang.github.io.git/">
+              <a class="nav-link" href="/">
                 <i class="iconfont icon-home-fill"></i>
                 <span>首页</span>
               </a>
@@ -136,7 +136,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/cai-qichang/cai-qichang.github.io.git/archives/">
+              <a class="nav-link" href="/archives/">
                 <i class="iconfont icon-archive-fill"></i>
                 <span>归档</span>
               </a>
@@ -148,7 +148,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/cai-qichang/cai-qichang.github.io.git/categories/">
+              <a class="nav-link" href="/categories/">
                 <i class="iconfont icon-category-fill"></i>
                 <span>分类</span>
               </a>
@@ -160,7 +160,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/cai-qichang/cai-qichang.github.io.git/tags/">
+              <a class="nav-link" href="/tags/">
                 <i class="iconfont icon-tags-fill"></i>
                 <span>标签</span>
               </a>
@@ -172,7 +172,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/cai-qichang/cai-qichang.github.io.git/about/">
+              <a class="nav-link" href="/about/">
                 <i class="iconfont icon-user-fill"></i>
                 <span>关于</span>
               </a>
@@ -202,7 +202,7 @@
   
 
 <div id="banner" class="banner" parallax=true
-     style="background: url('/cai-qichang/cai-qichang.github.io.git/img/yueqiu.jpg') no-repeat center center; background-size: cover;">
+     style="background: url('/img/yueqiu.jpg') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
       <div class="banner-text text-center fade-in-up">
@@ -301,7 +301,7 @@
 <p>当多个线程同时访问一个共享变量&#x2F;成员变量时，就可能发生不确定性，造成不确定性主要是有可见性、原子性、有序性这三大问题，而解决这些问题的核心就是互斥</p>
 </blockquote>
 <h2 id="三大问题"><a href="#三大问题" class="headerlink" title="三大问题"></a>三大问题</h2><h3 id="可见性"><a href="#可见性" class="headerlink" title="可见性"></a>可见性</h3><p>定义： 一个线程对共享变量的修改，另外一个线程能够立刻看到，我们称为可见性</p>
-<p>Java 内存模型规定，将所有的变量都存放在 主内存中，当线程使用变量时，会把主内存里面的变量 复制 到自己的工作空间或者叫作 私有内存<br><img src="http://images.caiqichang.cn/2023img/workingmemory.jpg" srcset="/cai-qichang/cai-qichang.github.io.git/img/loading.gif" lazyload alt="avatar"></p>
+<p>Java 内存模型规定，将所有的变量都存放在 主内存中，当线程使用变量时，会把主内存里面的变量 复制 到自己的工作空间或者叫作 私有内存<br><img src="http://images.caiqichang.cn/2023img/workingmemory.jpg" srcset="/img/loading.gif" lazyload alt="avatar"></p>
 <p>刷新的场景:</p>
 <blockquote>
 <ol>
@@ -347,7 +347,7 @@
 <li>CAS算法。使用CAS避免加锁，避免阻塞线程</li>
 <li>使用最少的线程。避免创建不需要的线程协程。在单线程里实现多任务的调度，并在单线程里维持多个任务间的切换</li>
 </ul>
-<h2 id="Java内存模型JMM"><a href="#Java内存模型JMM" class="headerlink" title="Java内存模型JMM"></a>Java内存模型JMM</h2><p><img src="http://images.caiqichang.cn/2023img/java-memory.jpg" srcset="/cai-qichang/cai-qichang.github.io.git/img/loading.gif" lazyload alt="avatar"></p>
+<h2 id="Java内存模型JMM"><a href="#Java内存模型JMM" class="headerlink" title="Java内存模型JMM"></a>Java内存模型JMM</h2><p><img src="http://images.caiqichang.cn/2023img/java-memory.jpg" srcset="/img/loading.gif" lazyload alt="avatar"></p>
 <p>java内存模型是关注在虚拟机中把变量值存储到内存和从内存取出变量这样的底层细节。</p>
 <blockquote>
 <p>此处的变量包括了实例字段、静态字段和构成数组对象的元素，但是不包括局部变量和方法参数。 <br>如果局部变量是一个reference类型，引用的对象在java堆中，但是reference本身在java栈的局部变量表中是线程私有。</p>
@@ -412,11 +412,11 @@
 </ol>
 <h3 id="synchronized关键字JVM底层原理解析"><a href="#synchronized关键字JVM底层原理解析" class="headerlink" title="synchronized关键字JVM底层原理解析"></a>synchronized关键字JVM底层原理解析</h3><h4 id="synchronized-同步语句块的情况"><a href="#synchronized-同步语句块的情况" class="headerlink" title="synchronized 同步语句块的情况"></a>synchronized 同步语句块的情况</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">SynchronizedDemo</span> &#123;<br>	<span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">method</span><span class="hljs-params">()</span> &#123;<br>		<span class="hljs-keyword">synchronized</span> (<span class="hljs-built_in">this</span>) &#123;<br>			System.out.println(<span class="hljs-string">&quot;synchronized 代码块&quot;</span>);<br>		&#125;<br>	&#125;<br>&#125;<br><br><span class="hljs-comment">//javap -c -s -v -l SynchronizedDemo.class 反编译</span><br></code></pre></td></tr></table></figure>
 
-<p><img src="http://images.caiqichang.cn/2023img/synchronizeCode.jpg" srcset="/cai-qichang/cai-qichang.github.io.git/img/loading.gif" lazyload alt="avatar"><br>synchronized 同步语句块的实现使用的是 <code>monitorenter</code> 和 <code>monitorexit</code> 指令，其中 <code>monitorenter</code> 指令指向同步代码块的开始位置，<code>monitorexit</code> 指令则指明同步代码块的结束位置。<br>当计数器为0则可以成功获取，获取后将锁计数器设为1也就是加1。相应的在执行 <code>monitorexit</code> 指令后，将锁计数器设为0，表明锁被释放。</p>
+<p><img src="http://images.caiqichang.cn/2023img/synchronizeCode.jpg" srcset="/img/loading.gif" lazyload alt="avatar"><br>synchronized 同步语句块的实现使用的是 <code>monitorenter</code> 和 <code>monitorexit</code> 指令，其中 <code>monitorenter</code> 指令指向同步代码块的开始位置，<code>monitorexit</code> 指令则指明同步代码块的结束位置。<br>当计数器为0则可以成功获取，获取后将锁计数器设为1也就是加1。相应的在执行 <code>monitorexit</code> 指令后，将锁计数器设为0，表明锁被释放。</p>
 <h4 id="synchronized-修饰方法的的情况"><a href="#synchronized-修饰方法的的情况" class="headerlink" title="synchronized 修饰方法的的情况"></a>synchronized 修饰方法的的情况</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">SynchronizedDemo2</span> &#123;<br>	<span class="hljs-keyword">public</span> <span class="hljs-keyword">synchronized</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">method</span><span class="hljs-params">()</span> &#123;<br>		System.out.println(<span class="hljs-string">&quot;synchronized 方法&quot;</span>);<br>	&#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
-<p><img src="http://images.caiqichang.cn/2023img/synchronizeMethod2.jpg" srcset="/cai-qichang/cai-qichang.github.io.git/img/loading.gif" lazyload alt="avatar"><br>方法体出现<code>ACC_SYNCHRONIZED</code> 标识，该标识指明了该方法是一个同步方法，JVM 通过该 ACC_SYNCHRONIZED 访问标志来辨别一个方法是否声明为同步方法，从而执行相应的同步调用。</p>
-<h3 id="对象创建与加锁"><a href="#对象创建与加锁" class="headerlink" title="对象创建与加锁"></a>对象创建与加锁</h3><p><img src="http://images.caiqichang.cn/2023img/objectCreate.png" srcset="/cai-qichang/cai-qichang.github.io.git/img/loading.gif" lazyload alt="avatar"></p>
+<p><img src="http://images.caiqichang.cn/2023img/synchronizeMethod2.jpg" srcset="/img/loading.gif" lazyload alt="avatar"><br>方法体出现<code>ACC_SYNCHRONIZED</code> 标识，该标识指明了该方法是一个同步方法，JVM 通过该 ACC_SYNCHRONIZED 访问标志来辨别一个方法是否声明为同步方法，从而执行相应的同步调用。</p>
+<h3 id="对象创建与加锁"><a href="#对象创建与加锁" class="headerlink" title="对象创建与加锁"></a>对象创建与加锁</h3><p><img src="http://images.caiqichang.cn/2023img/objectCreate.png" srcset="/img/loading.gif" lazyload alt="avatar"></p>
 <p>一个对象在new出来之后在内存中主要分为4个部分：</p>
 <ol>
 <li><code>MarkWord</code>这部分其实就是加锁的核心，同时还包含的对象的一些生命信息，例如是否GC、经过了几次<code>Young GC</code>还存活。</li>
@@ -486,7 +486,7 @@
 </ol>
 <h4 id="重量级锁"><a href="#重量级锁" class="headerlink" title="重量级锁"></a>重量级锁</h4><p>情况：当多个线程同时在竞争锁对象时，那么此时引入重量级锁。</p>
 <p>重量级锁：阻塞所有等待竞争的线程，防止CPU空转，阻塞等待线程1释放锁后进入无锁状态重新竞争。</p>
-<h5 id="工作原理"><a href="#工作原理" class="headerlink" title="工作原理"></a>工作原理</h5><p><img src="http://images.caiqichang.cn/2023img/synchronizeHeavyLock.jpg" srcset="/cai-qichang/cai-qichang.github.io.git/img/loading.gif" lazyload alt="avatar"></p>
+<h5 id="工作原理"><a href="#工作原理" class="headerlink" title="工作原理"></a>工作原理</h5><p><img src="http://images.caiqichang.cn/2023img/synchronizeHeavyLock.jpg" srcset="/img/loading.gif" lazyload alt="avatar"></p>
 <figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs scss">ContentionList：所有请求锁的线程将被首先放在该竞争队列。<br><br>EntryList：ContentList中有资格成为候选人的线程被移到EntryList中。主要是为了减少对Contention List的并发访问，因为既会添加新线程到队尾，也会从队尾取线程。<br><br>WaitSet：存放那些调用wait()方法被阻塞的线程<br><br>OnDeck：任何时刻最多只能有一个线程竞争锁，该线程成为OnDeck<br><br>Owner：获得锁的线程<br></code></pre></td></tr></table></figure>
 
 <ol>
@@ -658,7 +658,7 @@
     
       <span class="category-chain">
         
-  <a href="/cai-qichang/cai-qichang.github.io.git/categories/Java%E5%B9%B6%E5%8F%91%E7%9B%B8%E5%85%B3/" class="category-chain-item">Java并发相关</a>
+  <a href="/categories/Java%E5%B9%B6%E5%8F%91%E7%9B%B8%E5%85%B3/" class="category-chain-item">Java并发相关</a>
   
   
 
@@ -673,7 +673,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/cai-qichang/cai-qichang.github.io.git/tags/Java%E5%B9%B6%E5%8F%91/" class="print-no-link">#Java并发</a>
+        <a href="/tags/Java%E5%B9%B6%E5%8F%91/" class="print-no-link">#Java并发</a>
       
     </div>
   
@@ -686,7 +686,7 @@
   <div class="license-box my-3">
     <div class="license-title">
       <div>Java并发(虚拟机)</div>
-      <div>https://github.com/cai-qichang/cai-qichang.github.io.git/2022/10/22/Java并发-虚拟机/</div>
+      <div>https://cai-qichang.github.io/2022/10/22/Java并发-虚拟机/</div>
     </div>
     <div class="license-meta">
       
@@ -723,7 +723,7 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/cai-qichang/cai-qichang.github.io.git/2022/11/22/Java%E5%B9%B6%E5%8F%91-AQS/" title="Java并发(AQS)">
+                      <a href="/2022/11/22/Java%E5%B9%B6%E5%8F%91-AQS/" title="Java并发(AQS)">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">Java并发(AQS)</span>
                         <span class="visible-mobile">上一篇</span>
@@ -733,7 +733,7 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/cai-qichang/cai-qichang.github.io.git/2022/09/22/Java%E7%BA%BF%E7%A8%8B/" title="Java线程">
+                      <a href="/2022/09/22/Java%E7%BA%BF%E7%A8%8B/" title="Java线程">
                         <span class="hidden-mobile">Java线程</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
@@ -898,8 +898,8 @@
 
 <script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
 <script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
-<script  src="/cai-qichang/cai-qichang.github.io.git/js/events.js" ></script>
-<script  src="/cai-qichang/cai-qichang.github.io.git/js/plugins.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
 
 
   <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
@@ -921,7 +921,7 @@
 
 
   
-    <script  src="/cai-qichang/cai-qichang.github.io.git/js/img-lazyload.js" ></script>
+    <script  src="/js/img-lazyload.js" ></script>
   
 
 
@@ -1020,7 +1020,7 @@
 
   <script>Fluid.plugins.imageCaption();</script>
 
-  <script  src="/cai-qichang/cai-qichang.github.io.git/js/local-search.js" ></script>
+  <script  src="/js/local-search.js" ></script>
 
   <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
 
@@ -1030,7 +1030,7 @@
 
 <!-- 主题的启动项，将它保持在最底部 -->
 <!-- the boot of the theme, keep it at the bottom -->
-<script  src="/cai-qichang/cai-qichang.github.io.git/js/boot.js" ></script>
+<script  src="/js/boot.js" ></script>
 
 
   

@@ -9,8 +9,8 @@
   <meta charset="UTF-8">
   <!-- 通过 CDN 引入霞鹜文楷字体 -->
   <link rel="stylesheet" href="https://npm.elemecdn.com/lxgw-wenkai-screen-webfont/style.css" media="print" onload="this.media='all'">
-  <link rel="apple-touch-icon" sizes="76x76" href="/cai-qichang/cai-qichang.github.io.git/img/me.png">
-  <link rel="icon" href="/cai-qichang/cai-qichang.github.io.git/img/me.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/me.png">
+  <link rel="icon" href="/img/me.png">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
@@ -21,7 +21,7 @@
     <meta name="description" content="Redis 基础缓存基本思想：CPU Cache 缓存的是内存数据用于解决 CPU 处理速度和内存不匹配的问题，内存缓存的是硬盘数据用于解决硬盘访问速度过慢的问题。为了避免用户在请求数据的时候获取速度过于缓慢，所以我们在数据库之上增加了缓存这一层来弥补。 推荐一下一篇很顶的文章：Redis 面霸篇：从高频问题透视核心原理  本文也参考了很多该文章资料   redis设计与实现压缩列表-压缩列表">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Redis">
-<meta property="og:url" content="https://github.com/cai-qichang/cai-qichang.github.io.git/2023/04/15/Redis/index.html">
+<meta property="og:url" content="https://cai-qichang.github.io/2023/04/15/Redis/index.html">
 <meta property="og:site_name" content="caiqichang&#39;s Blog">
 <meta property="og:description" content="Redis 基础缓存基本思想：CPU Cache 缓存的是内存数据用于解决 CPU 处理速度和内存不匹配的问题，内存缓存的是硬盘数据用于解决硬盘访问速度过慢的问题。为了避免用户在请求数据的时候获取速度过于缓慢，所以我们在数据库之上增加了缓存这一层来弥补。 推荐一下一篇很顶的文章：Redis 面霸篇：从高频问题透视核心原理  本文也参考了很多该文章资料   redis设计与实现压缩列表-压缩列表">
 <meta property="og:locale" content="zh_CN">
@@ -85,12 +85,12 @@
 <link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
 
 
-<link  rel="stylesheet" href="/cai-qichang/cai-qichang.github.io.git/css/main.css" />
+<link  rel="stylesheet" href="/css/main.css" />
 
 
-  <link id="highlight-css" rel="stylesheet" href="/cai-qichang/cai-qichang.github.io.git/css/highlight.css" />
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
   
-    <link id="highlight-css-dark" rel="stylesheet" href="/cai-qichang/cai-qichang.github.io.git/css/highlight-dark.css" />
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
   
 
 
@@ -99,15 +99,15 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"github.com","root":"/cai-qichang/cai-qichang.github.io.git/","version":"1.9.5","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/cai-qichang/cai-qichang.github.io.git/local-search.xml","include_content_in_search":true};
+    var CONFIG = {"hostname":"cai-qichang.github.io","root":"/","version":"1.9.5","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
       Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
     }
   </script>
-  <script  src="/cai-qichang/cai-qichang.github.io.git/js/utils.js" ></script>
-  <script  src="/cai-qichang/cai-qichang.github.io.git/js/color-schema.js" ></script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
   
 
 
@@ -124,7 +124,7 @@
 <div class="header-inner" style="height: 70vh;">
   <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
-    <a class="navbar-brand" href="/cai-qichang/cai-qichang.github.io.git/">
+    <a class="navbar-brand" href="/">
       <strong>caiqichang</strong>
     </a>
 
@@ -143,7 +143,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/cai-qichang/cai-qichang.github.io.git/">
+              <a class="nav-link" href="/">
                 <i class="iconfont icon-home-fill"></i>
                 <span>首页</span>
               </a>
@@ -155,7 +155,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/cai-qichang/cai-qichang.github.io.git/archives/">
+              <a class="nav-link" href="/archives/">
                 <i class="iconfont icon-archive-fill"></i>
                 <span>归档</span>
               </a>
@@ -167,7 +167,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/cai-qichang/cai-qichang.github.io.git/categories/">
+              <a class="nav-link" href="/categories/">
                 <i class="iconfont icon-category-fill"></i>
                 <span>分类</span>
               </a>
@@ -179,7 +179,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/cai-qichang/cai-qichang.github.io.git/tags/">
+              <a class="nav-link" href="/tags/">
                 <i class="iconfont icon-tags-fill"></i>
                 <span>标签</span>
               </a>
@@ -191,7 +191,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/cai-qichang/cai-qichang.github.io.git/about/">
+              <a class="nav-link" href="/about/">
                 <i class="iconfont icon-user-fill"></i>
                 <span>关于</span>
               </a>
@@ -221,7 +221,7 @@
   
 
 <div id="banner" class="banner" parallax=true
-     style="background: url('/cai-qichang/cai-qichang.github.io.git/img/yueqiu.jpg') no-repeat center center; background-size: cover;">
+     style="background: url('/img/yueqiu.jpg') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
       <div class="banner-text text-center fade-in-up">
@@ -311,7 +311,7 @@
 <ul>
 <li><a target="_blank" rel="noopener" href="https://redisbook.readthedocs.io/en/latest/compress-datastruct/ziplist.html">redis设计与实现压缩列表-压缩列表</a></li>
 </ul>
-<h2 id="基本数据结构"><a href="#基本数据结构" class="headerlink" title="基本数据结构"></a>基本数据结构</h2><p><img src="http://images.caiqichang.cn/2023img/data-structure.jpg" srcset="/cai-qichang/cai-qichang.github.io.git/img/loading.gif" lazyload alt="image"></p>
+<h2 id="基本数据结构"><a href="#基本数据结构" class="headerlink" title="基本数据结构"></a>基本数据结构</h2><p><img src="http://images.caiqichang.cn/2023img/data-structure.jpg" srcset="/img/loading.gif" lazyload alt="image"></p>
 <h3 id="String-字符串"><a href="#String-字符串" class="headerlink" title="String 字符串"></a>String 字符串</h3><p>使用场景：如博客的文章数量，粉丝数量。</p>
 <h4 id="底层结构"><a href="#底层结构" class="headerlink" title="底层结构"></a>底层结构</h4><p>底层结构为简单动态字符串SDS(simple dynamic String)。SDS的使用<code>char buf[]</code>的数组保存字符串数据，另外还有定义了<code>free</code>未使用的字节数量和<code>len</code>当前字节长度的属性</p>
 <ol>
@@ -353,7 +353,7 @@
 <blockquote>
 <p><code>quicklist</code>是一种既保留<code>ziplist</code>的空间高效性，又能不让其更新复杂度过高的实现。把<code>ziplist</code>和普通的双向链表结合起来。每个双链表节点中保存一个<code>ziplist</code>，然后每个<code>ziplist</code>中存一批list中的数据(具体<code>ziplist</code>大小可配置)，这样既可以避免大量链表指针带来的内存消耗，也可以避免<code>ziplist</code>更新导致的大量性能损耗，将大的<code>ziplist</code>化整为零。</p>
 </blockquote>
-<p><img src="http://images.caiqichang.cn/2023img/quicklist.png" srcset="/cai-qichang/cai-qichang.github.io.git/img/loading.gif" lazyload alt="image"></p>
+<p><img src="http://images.caiqichang.cn/2023img/quicklist.png" srcset="/img/loading.gif" lazyload alt="image"></p>
 <p><code>ziplist</code>是Redis节省内存而开发的数据结构。在list底层的<code>ziplist</code>是一个特殊的双向链表,特殊之处在于没有维护双向指针:<code>prev</code> <code>next</code>。而是存储<strong>上一个entry的长度</strong>和<strong>当前entry的长度</strong>，通过长度推算下一个元素在什么地方。<code>ziplist</code>使用<strong>连续的内存块</strong>，以 O(1) 的时间复杂度在列表的两端进行 push 和 pop 操作。查找需要O(n)，是一种时间换空间的方案。</p>
 <blockquote>
 <p><code>ziplist</code>每次变更的时间复杂度都非常高，因为必须要重新生成一个新的<code>ziplist</code>来作为更新后的list，如果一个list非常大且更新频繁，那就会给redis带来非常大的负担。<br>当一个列表只有少量数据的时候，并且每个列表项要么就是小整数值，要么就是长度比较短的字符串，那么 Redis 就会使用压缩列表来做列表键的底层实现。</p>
@@ -372,7 +372,7 @@
 </blockquote>
 <figure class="highlight gauss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs gauss">typedef <span class="hljs-keyword">struct</span> <span class="hljs-type">listNode</span> &#123;<br>    <span class="hljs-keyword">struct</span> <span class="hljs-type">listNode</span> *prev; <span class="hljs-comment">// 前置节点</span><br>    <span class="hljs-keyword">struct</span> <span class="hljs-type">listNode</span> *next; <span class="hljs-comment">// 后置节点</span><br>    void *value; <span class="hljs-comment">// 节点的值</span><br>&#125; listNode;<br><span class="hljs-comment">// listNode:24字节</span><br>typedef <span class="hljs-keyword">struct</span> <span class="hljs-type">entry</span>&#123;<br>    previous_entry_length:<span class="hljs-number">1</span>,<span class="hljs-number">5</span>字节(前⼀个entrylen,常为<span class="hljs-number">1</span>字节)<br>    encoding：<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">5</span>(编码格式,常为<span class="hljs-number">1</span>字节)<br>    content：保存实际数据。<br>&#125;<br><span class="hljs-comment">// entry⼤概10字节</span><br></code></pre></td></tr></table></figure>
 
-<p><code>ziplist</code> <strong>结构及遍历过程</strong><br><img src="http://images.caiqichang.cn/2023img/ziplist.jpg" srcset="/cai-qichang/cai-qichang.github.io.git/img/loading.gif" lazyload alt="image"></p>
+<p><code>ziplist</code> <strong>结构及遍历过程</strong><br><img src="http://images.caiqichang.cn/2023img/ziplist.jpg" srcset="/img/loading.gif" lazyload alt="image"></p>
 <p>当进行<strong>从前向后</strong>的遍历时，程序从指向节点 e1 的指针p开始，计算节点 e1 的长度（e1-size）， 然后将 p 加上 e1-size ，就将指针后移到了下一个节点 e2 …如此反覆，直到 p 遇到 <code>ZIPLIST_ENTRY_END</code> 为止</p>
 <figure class="highlight gherkin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs gherkin">                              p + e1-size + e2-size<br>                 p + e1-size     |<span class="hljs-string"></span><br><span class="hljs-string">           p          </span>|<span class="hljs-string">          </span>|<br>           |<span class="hljs-string">          </span>|<span class="hljs-string">          </span>|<br>           V          V          V<br>+----------+----------+----------+----------+----------+----------+----------+<br>|<span class="hljs-string"> ZIPLIST  </span>|<span class="hljs-string">          </span>|<span class="hljs-string">          </span>|<span class="hljs-string">          </span>|<span class="hljs-string">          </span>|<span class="hljs-string">          </span>|<span class="hljs-string"> ZIPLIST  </span>|<br>|<span class="hljs-string"> ENTRY    </span>|<span class="hljs-string">    e1    </span>|<span class="hljs-string">    e2    </span>|<span class="hljs-string">    e3    </span>|<span class="hljs-string">    e4    </span>|<span class="hljs-string">   ...    </span>|<span class="hljs-string"> ENTRY    </span>|<br>|<span class="hljs-string"> HEAD     </span>|<span class="hljs-string">          </span>|<span class="hljs-string">          </span>|<span class="hljs-string">          </span>|<span class="hljs-string">          </span>|<span class="hljs-string">          </span>|<span class="hljs-string"> END      </span>|<br>+----------+----------+----------+----------+----------+----------+----------+<br><br>           |<span class="hljs-string">&lt;--------&gt;</span>|<span class="hljs-string">&lt;--------&gt;</span>|<br>             e1-size    e2-size<br>             <br></code></pre></td></tr></table></figure>
 
@@ -487,7 +487,7 @@
 <blockquote>
 <p>跳跃表支持<strong>平均O(logN)，最坏O(N)复杂度</strong>的节点查找。</p>
 </blockquote>
-<p><img src="http://images.caiqichang.cn/2023img/skiplist.png" srcset="/cai-qichang/cai-qichang.github.io.git/img/loading.gif" lazyload alt="image"></p>
+<p><img src="http://images.caiqichang.cn/2023img/skiplist.png" srcset="/img/loading.gif" lazyload alt="image"></p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">typedef</span> <span class="hljs-keyword">struct</span> <span class="hljs-title class_">zskiplist</span> &#123;<br><br>    <span class="hljs-comment">// 表头节点和表尾节点</span><br>    <span class="hljs-keyword">struct</span> <span class="hljs-title class_">zskiplistNode</span> *header, *tail;<br><br>    <span class="hljs-comment">// 表中节点的数量</span><br>    <span class="hljs-type">unsigned</span> <span class="hljs-type">long</span> length;<br><br>    <span class="hljs-comment">// 表中层数最大的节点的层数</span><br>    <span class="hljs-type">int</span> level;<br><br>&#125; zskiplist;<br></code></pre></td></tr></table></figure>
 
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">typedef</span> <span class="hljs-keyword">struct</span> <span class="hljs-title class_">zskiplistNode</span> &#123;<br><br>    <span class="hljs-comment">// 后退指针</span><br>    <span class="hljs-keyword">struct</span> <span class="hljs-title class_">zskiplistNode</span> *backward;<br><br>    <span class="hljs-comment">// 分值</span><br>    <span class="hljs-type">double</span> score;<br><br>    <span class="hljs-comment">// 成员对象</span><br>    robj *obj;<br><br>    <span class="hljs-comment">// 层</span><br>    <span class="hljs-keyword">struct</span> <span class="hljs-title class_">zskiplistLevel</span> &#123;<br><br>        <span class="hljs-comment">// 前进指针</span><br>        <span class="hljs-keyword">struct</span> <span class="hljs-title class_">zskiplistNode</span> *forward;<br><br>        <span class="hljs-comment">// 跨度</span><br>        <span class="hljs-type">unsigned</span> <span class="hljs-type">int</span> span;<br><br>    &#125; level[];<br><br>&#125; zskiplistNode;<br></code></pre></td></tr></table></figure>
@@ -505,7 +505,7 @@
 <h4 id="保存固定行数的lua"><a href="#保存固定行数的lua" class="headerlink" title="保存固定行数的lua"></a>保存固定行数的lua</h4><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/cainiao1412/article/details/107483286">Redis + Lua 实现 sorted set 集合保证固定数量的数据，并保留新数据剔除旧数据</a></p>
 <h3 id="Bitmap"><a href="#Bitmap" class="headerlink" title="Bitmap"></a>Bitmap</h3><p>Bitmap 通过一个 bit 数组来存储特定数据的一种数据结构，每一个 bit 位都能独立包含信息，bit 是数据的最小存储单位，因此能大量节省空间。</p>
 <p>Bitmap 的底层数据结构用的是 String 类型的 SDS 数据结构来保存位数组，Redis 把每个字节数组的 8 个 bit 位利用起来，每个 bit 位 表示一个元素的二值状态(不是 0 就是 1)。</p>
-<p><img src="http://images.caiqichang.cn/2023img/bitmap.png" srcset="/cai-qichang/cai-qichang.github.io.git/img/loading.gif" lazyload alt="avatar"></p>
+<p><img src="http://images.caiqichang.cn/2023img/bitmap.png" srcset="/img/loading.gif" lazyload alt="avatar"></p>
 <h4 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h4><p>参考资料：<a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/js_H86SNjY5lPSN1_6v00w">Redis 实战篇：巧用 Bitmap 实现亿级海量数据统计</a></p>
 <p><strong>用 Bitmap 来判断海量用户中某个用户是否在线</strong></p>
 <p>key &#x3D; login_status 表示存储用户登陆状态集合数据， <strong>将用户 ID 作为 offset</strong>，在线就设置为 1，下线设置 0。</p>
@@ -578,7 +578,7 @@
 <ul>
 <li>向布隆过滤器中添加数据时，会使用多个 hash 函数对 key 进行运算，然后对位数组长度进行取模运算得到一个位置，每个 hash 函数都会算得一个不同的位置。再把位数组的这几个位置都置为 1 就完成了 add 操作。</li>
 <li>判断数据是否存在时，同样使用多个hash函数计算key，只要有一个位为 0，说明key不存在。但是都是1，并不能说明key必定存在，可能位置都是其他元素添加导致的，因此说存在一定的误判率。</li>
-<li>布隆过滤器有两关键的参数，一个是元素大小，一个是误差率。当误差率设置越小，布隆过滤器需要的空间越大。<br><img src="http://images.caiqichang.cn/2023img/bloomFilter.png" srcset="/cai-qichang/cai-qichang.github.io.git/img/loading.gif" lazyload alt="avatar"></li>
+<li>布隆过滤器有两关键的参数，一个是元素大小，一个是误差率。当误差率设置越小，布隆过滤器需要的空间越大。<br><img src="http://images.caiqichang.cn/2023img/bloomFilter.png" srcset="/img/loading.gif" lazyload alt="avatar"></li>
 </ul>
 <p>数据结构：<strong>bitmap比特位的集合</strong>。bitmap是一个以比特为基本单位的数组，如一个int类型32个比特，那我们使用比特来应用就可以节省很大的空间。</p>
 <p>假阳性与假阴性：即给定一个元素 X ，如果布隆过滤器说它存在于集合中，那么它有<strong>可能真的存在</strong>，而如果布隆过滤器说它不存在，那么就<strong>一定不存在</strong>。</p>
@@ -598,7 +598,7 @@
 <blockquote>
 <p>布隆过滤器有一个可以预判误判率的公式，查询缓存可能误判的名单存在，进行正常的查询。</p>
 </blockquote>
-<p>应用介绍：在查询缓存的前面加一层布隆过滤器的过滤判断，布隆过滤器添加所有查询的key， 判断缓存是否存在。<br><img src="http://images.caiqichang.cn/2023img/cacheQueryBloomFilter.jpg" srcset="/cai-qichang/cai-qichang.github.io.git/img/loading.gif" lazyload alt="avatar"></p>
+<p>应用介绍：在查询缓存的前面加一层布隆过滤器的过滤判断，布隆过滤器添加所有查询的key， 判断缓存是否存在。<br><img src="http://images.caiqichang.cn/2023img/cacheQueryBloomFilter.jpg" srcset="/img/loading.gif" lazyload alt="avatar"></p>
 <h4 id="相关指令-7"><a href="#相关指令-7" class="headerlink" title="相关指令"></a>相关指令</h4><ul>
 <li><code>BF.RESERVE &#39;bfName&#39; 0.0001 600000</code>  &#x2F;&#x2F;自定义参数创建布隆过滤器 <code>BF.RESERVE &#123;key&#125; &#123;error_rate&#125; &#123;capacity&#125; [EXPANSION &#123;expansion&#125;] [NONSCALING]</code></li>
 <li><code>bf.add  &#39;bfName&#39;  &#39;value&#39;</code>  &#x2F;&#x2F;添加元素</li>
@@ -609,14 +609,14 @@
 <figure class="highlight accesslog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs accesslog"><span class="hljs-number">127.0.0.1:6379</span>&gt; bf.add codehole user1<br>(integer) <span class="hljs-number">1</span><br><span class="hljs-number">127.0.0.1:6379</span>&gt; bf.add codehole user2<br>(integer) <span class="hljs-number">1</span><br><span class="hljs-number">127.0.0.1:6379</span>&gt; bf.add codehole user3<br>(integer) <span class="hljs-number">1</span><br><span class="hljs-number">127.0.0.1:6379</span>&gt; bf.exists codehole user1<br>(integer) <span class="hljs-number">1</span><br><span class="hljs-number">127.0.0.1:6379</span>&gt; bf.exists codehole user2<br>(integer) <span class="hljs-number">1</span><br><span class="hljs-number">127.0.0.1:6379</span>&gt; bf.exists codehole user3<br>(integer) <span class="hljs-number">1</span><br><span class="hljs-number">127.0.0.1:6379</span>&gt; bf.exists codehole user4<br>(integer) <span class="hljs-number">0</span><br><span class="hljs-number">127.0.0.1:6379</span>&gt; bf.madd codehole user4 user5 user6<br><span class="hljs-number">1</span>) (integer) <span class="hljs-number">1</span><br><span class="hljs-number">2</span>) (integer) <span class="hljs-number">1</span><br><span class="hljs-number">3</span>) (integer) <span class="hljs-number">1</span><br><span class="hljs-number">127.0.0.1:6379</span>&gt; bf.mexists codehole user4 user5 user6 user7<br><span class="hljs-number">1</span>) (integer) <span class="hljs-number">1</span><br><span class="hljs-number">2</span>) (integer) <span class="hljs-number">1</span><br><span class="hljs-number">3</span>) (integer) <span class="hljs-number">1</span><br><span class="hljs-number">4</span>) (integer) <span class="hljs-number">0</span><br></code></pre></td></tr></table></figure>
 
 <h4 id="相关资料"><a href="#相关资料" class="headerlink" title="相关资料"></a>相关资料</h4><ul>
-<li><a href="https://github.com/Snailclimb/JavaGuide/blob/master/docs/dataStructures-algorithms/data-structure/bloom-filter.md">JavaGuide-bloom-filter</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/Snailclimb/JavaGuide/blob/master/docs/dataStructures-algorithms/data-structure/bloom-filter.md">JavaGuide-bloom-filter</a></li>
 <li><a target="_blank" rel="noopener" href="https://oss.redis.com/redisbloom/Quick_Start/">Quick Start Guide for RedisBloom </a></li>
 </ul>
 <h3 id="布谷鸟过滤器-cuckooFilter"><a href="#布谷鸟过滤器-cuckooFilter" class="headerlink" title="布谷鸟过滤器 cuckooFilter"></a>布谷鸟过滤器 cuckooFilter</h3><p>Bloom Filter 可能存在误报，并且无法删除元素，而Cuckoo哈希就是解决这两个问题的。</p>
 <p>Cuckoo的哈希函数是成对的（具体的实现可以根据需求设计），每一个元素都是两个，分别映射到两个位置，一个是记录的位置，另一个是备用位置，这个备用位置是处理碰撞时用的。<br>如图，使用hashA 和hashB 计算对应key x的位置a和b ：</p>
 <ol>
 <li>当两个哈希位置有一个为空时，则插入该空位置；</li>
-<li>当两个哈希位置均不为空时，随机选择两者之一的位置上key y 踢出，并计算踢出的key y在另一个哈希值对应的位置，若为空直接插入，不为空踢出原元素插入，再对被踢出的元素重新计算，重复该过程，直到有空位置为止。<br><img src="http://images.caiqichang.cn/2023img/cuckooFilter.png" srcset="/cai-qichang/cai-qichang.github.io.git/img/loading.gif" lazyload alt="image"></li>
+<li>当两个哈希位置均不为空时，随机选择两者之一的位置上key y 踢出，并计算踢出的key y在另一个哈希值对应的位置，若为空直接插入，不为空踢出原元素插入，再对被踢出的元素重新计算，重复该过程，直到有空位置为止。<br><img src="http://images.caiqichang.cn/2023img/cuckooFilter.png" srcset="/img/loading.gif" lazyload alt="image"></li>
 </ol>
 <blockquote>
 <p>挤兑循环问题：一般会对踢出操作设一个阈值，超过阈值则认为过滤器容量不足，需要对其进行扩容，解决同一元素不断添加问题。</p>
@@ -649,7 +649,7 @@
 <h2 id="事务"><a href="#事务" class="headerlink" title="事务"></a>事务</h2><h3 id="事务实现"><a href="#事务实现" class="headerlink" title="事务实现"></a>事务实现</h3><p>Redis通过<code>MULTI</code>(开启事务)、<code>EXEC</code>（执行指令）、<code>WATCH</code>（乐观锁监控Key）、<code>DISCARD</code>（取消事务）命令来实现事务。</p>
 <figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs routeros">&gt;MULTI<br>QUEUED<br><br>&gt;<span class="hljs-built_in">SET</span> <span class="hljs-string">&quot;name&quot;</span> <span class="hljs-string">&quot;werwer&quot;</span><br>QUEUED<br><br>&gt;<span class="hljs-built_in">GET</span> <span class="hljs-string">&quot;name&quot;</span><br>QUEUED<br><br>&gt;<span class="hljs-built_in">SET</span> <span class="hljs-string">&quot;author&quot;</span> <span class="hljs-string">&quot;Peter&quot;</span><br>QUEUED<br><br>&gt;<span class="hljs-built_in">GET</span> <span class="hljs-string">&quot;AUTHOR</span><br><span class="hljs-string">QUEUED</span><br><span class="hljs-string"></span><br><span class="hljs-string">&gt;EXEC</span><br><span class="hljs-string"></span><br><span class="hljs-string">1)OK</span><br><span class="hljs-string">2)&quot;</span>werwer<span class="hljs-string">&quot;</span><br><span class="hljs-string">3)OK</span><br><span class="hljs-string">4)&quot;</span>Peter<span class="hljs-string">&quot;</span><br></code></pre></td></tr></table></figure>
 
-<p>事务命令优先执行：事务开始后，若客户端发送的命令为EXEC、DISCARD、WATCH、MULTI四个命令其中一个，服务器会立即执行，否则执行命令入队操作。<br><img src="http://images.caiqichang.cn/2023img/transaction.png" srcset="/cai-qichang/cai-qichang.github.io.git/img/loading.gif" lazyload alt="image"></p>
+<p>事务命令优先执行：事务开始后，若客户端发送的命令为EXEC、DISCARD、WATCH、MULTI四个命令其中一个，服务器会立即执行，否则执行命令入队操作。<br><img src="http://images.caiqichang.cn/2023img/transaction.png" srcset="/img/loading.gif" lazyload alt="image"></p>
 <ul>
 <li><code>MULTI</code>命令标志着事务的开始</li>
 <li><code>EXEC</code>命令会让服务器立即执行事务队列语句。</li>
@@ -658,7 +658,7 @@
 <p>一个执行失败的例子</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_">&gt;</span><span class="language-bash">WATCH <span class="hljs-string">&quot;name&quot;</span></span><br><span class="hljs-meta prompt_"></span><br><span class="hljs-meta prompt_">&gt;</span><span class="language-bash">MULTI</span> <br><span class="hljs-meta prompt_">&gt;</span><span class="language-bash">SET <span class="hljs-string">&quot;name&quot;</span> <span class="hljs-string">&quot;peter&quot;</span></span><br><span class="hljs-meta prompt_">&gt;</span><span class="language-bash">EXEC</span><br>(nil)<br></code></pre></td></tr></table></figure>
 
-<p><img src="http://images.caiqichang.cn/2023img/optiLock.jpg" srcset="/cai-qichang/cai-qichang.github.io.git/img/loading.gif" lazyload alt="image"></p>
+<p><img src="http://images.caiqichang.cn/2023img/optiLock.jpg" srcset="/img/loading.gif" lazyload alt="image"></p>
 <h3 id="redis-事务的ACID"><a href="#redis-事务的ACID" class="headerlink" title="redis 事务的ACID"></a>redis 事务的ACID</h3><ul>
 <li>A（Atomicity): 原子性。原子性是指事务是一个不可分割的工作单位，事务中操作要么都发生，要么都不发生。</li>
 <li>C（Consistency): 一致性。数据库总是从一个一致性的状态转移到另一个一致性的状态。<strong>事务执行结束后，数据库的完整性约束没有被破坏，事务执行的前后顺序都是合法数据状态。</strong></li>
@@ -742,7 +742,7 @@
 
 <p>相关文章：</p>
 <ul>
-<li><a href="https://github.com/redis/redis/issues/1855">Keyspace subscription event name for EXPIRE does not match documentation</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/redis/redis/issues/1855">Keyspace subscription event name for EXPIRE does not match documentation</a></li>
 <li><a target="_blank" rel="noopener" href="https://redis.io/commands/subscribe">SUBSCRIBE channel</a></li>
 </ul>
 <h2 id="redis实现队列"><a href="#redis实现队列" class="headerlink" title="redis实现队列"></a>redis实现队列</h2><h3 id="异步队列"><a href="#异步队列" class="headerlink" title="异步队列"></a>异步队列</h3><p>list结构做队列，<code>rpush</code>生产消息，<code>lpop</code>消费消息。当<code>lpop</code>无消息的时候，程序sleep一会重试。</p>
@@ -766,7 +766,7 @@
 <li>主库同步数据给从库：master 执行 <code>BGSAVE</code>命令生成 RDB 文件，并将文件发送给从库，<strong>同时主库为每一个 slave 开辟一块 replication buffer 缓冲区记录从生成 RDB 文件开始收到的所有写命令</strong>。从库保存 RDB 并清空数据库再加载 RDB 数据到内存中。</li>
 <li>发送 RDB 之后接收到的新写命令到从库：在生成 RDB 文件之后的写操作并没有记录到刚刚的 RDB 文件中，为了保证主从库数据的一致性，所以主库会在内存中使用一个叫 replication buffer 记录 RDB 文件生成后的所有写操作。并将里面的数据发送到 slave。</li>
 </ol>
-<p><img src="http://images.caiqichang.cn/2023img/master-salve.png" srcset="/cai-qichang/cai-qichang.github.io.git/img/loading.gif" lazyload alt="avatar"></p>
+<p><img src="http://images.caiqichang.cn/2023img/master-salve.png" srcset="/img/loading.gif" lazyload alt="avatar"></p>
 <h2 id="Sentinel-哨兵"><a href="#Sentinel-哨兵" class="headerlink" title="Sentinel 哨兵"></a>Sentinel 哨兵</h2><p>Sentinel是Redis的一个高可用的解决方案：由一个或者多个Sentinel实例组成Sentinel系统。</p>
 <blockquote>
 <p>哨兵是 Redis 的一种运行模式，它<strong>专注于对 Redis 实例（主节点、从节点）运行状态的监控，并能够在主节点发生故障时通过一系列的机制实现选主及主从切换，实现故障转移，确保整个Redis系统的可用性</strong>。</p>
@@ -796,7 +796,7 @@
 </ol>
 </li>
 <li>Sentinel系统向Server1属下的从服务器发送新的复制指令，让其成为新主服务器的从服务。当复制完成，故障转移完毕。</li>
-<li>Sentinel系统继续监视下线的server1，当其重新上线时设置成主服务器的从服务。<br><img src="http://images.caiqichang.cn/2023img/sentinel.jpg" srcset="/cai-qichang/cai-qichang.github.io.git/img/loading.gif" lazyload alt="image"></li>
+<li>Sentinel系统继续监视下线的server1，当其重新上线时设置成主服务器的从服务。<br><img src="http://images.caiqichang.cn/2023img/sentinel.jpg" srcset="/img/loading.gif" lazyload alt="image"></li>
 </ol>
 <h2 id="Cluster-集群"><a href="#Cluster-集群" class="headerlink" title="Cluster 集群"></a>Cluster 集群</h2><p>Redis集群是Redis提供的分布式数据库方案，集群通过分片实现数据共享，并提供复制和故障转移功能。主要解决了大数据量存储导致的各种慢问题，同时也便于横向拓展。</p>
 <p>在 Redis cluster 架构下，每个 Redis 要放开两个端口号，比如一个是 6379，另外一个就是加1w的端口号，比如 16379</p>
@@ -806,7 +806,7 @@
 <p>集群建立</p>
 <figure class="highlight accesslog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs accesslog">// 向节点<span class="hljs-number">7001</span>发送命令，将节点<span class="hljs-number">7001</span>添加到<span class="hljs-number">7000</span>集群<br><span class="hljs-number">127.0.0.1:7000</span>&gt;CLUSTER MEET <span class="hljs-number">127</span>.<span class="hljs-number">0</span>.<span class="hljs-number">0</span>.<span class="hljs-number">1</span> <span class="hljs-number">7001</span><br><br><span class="hljs-number">127.0.0.1:7000</span>&gt;CLUSTER NODES<br><br><span class="hljs-number">127.0.0.1:7000</span>&gt;CLUSTER MEET <span class="hljs-number">127</span>.<span class="hljs-number">0</span>.<span class="hljs-number">0</span>.<span class="hljs-number">1</span> <span class="hljs-number">7002</span><br></code></pre></td></tr></table></figure>
 
-<p><img src="http://images.caiqichang.cn/2023img/cluster.jpg" srcset="/cai-qichang/cai-qichang.github.io.git/img/loading.gif" lazyload alt="image"></p>
+<p><img src="http://images.caiqichang.cn/2023img/cluster.jpg" srcset="/img/loading.gif" lazyload alt="image"></p>
 <h3 id="哈希槽与槽指派"><a href="#哈希槽与槽指派" class="headerlink" title="哈希槽与槽指派"></a>哈希槽与槽指派</h3><p><strong>哈希槽</strong>：Redis 集群并没有直接使用一致性哈希，而是使用了<strong>哈希槽</strong>(slot)的概念。没有使用Hash算法，而是使用了crc16校验算法。槽位其实就是一个个的空间的单位。</p>
 <blockquote>
 <p>每个key经过crc16校验算法计算，会落在对应的哈希槽上，便可以定位到节点的redis<br>Cluster 还允许用户强制某个 key 挂在特定槽位上，通过在 key 字符串里面嵌入 <code>tag</code> 标记，这就可以强制 key 所挂在的槽位等于 <code>tag</code> 所在的槽位。手动指定<code>tag</code>保证了大数据量的缓存不会落到同一个集群节点上。</p>
@@ -825,9 +825,9 @@
 <blockquote>
 <p>迁移过程中获取键可能会出现ASK错误（重新分片的一种临时措施）</p>
 </blockquote>
-<p><img src="http://images.caiqichang.cn/2023img/askError.jpg" srcset="/cai-qichang/cai-qichang.github.io.git/img/loading.gif" lazyload alt="image"><br><img src="http://images.caiqichang.cn/2023img/slotReadd.jpg" srcset="/cai-qichang/cai-qichang.github.io.git/img/loading.gif" lazyload alt="image"></p>
+<p><img src="http://images.caiqichang.cn/2023img/askError.jpg" srcset="/img/loading.gif" lazyload alt="image"><br><img src="http://images.caiqichang.cn/2023img/slotReadd.jpg" srcset="/img/loading.gif" lazyload alt="image"></p>
 <h4 id="一致性哈希概念"><a href="#一致性哈希概念" class="headerlink" title="一致性哈希概念"></a>一致性哈希概念</h4><p>一致性哈希解决问题：定位节点用传统的<code>key%节点数</code>取模，会导致每次在新增和删除节点的时候，都要根据key的定位做大量的数据迁移。</p>
-<p><img src="http://images.caiqichang.cn/2023img/constant-hash.png" srcset="/cai-qichang/cai-qichang.github.io.git/img/loading.gif" lazyload alt="image"></p>
+<p><img src="http://images.caiqichang.cn/2023img/constant-hash.png" srcset="/img/loading.gif" lazyload alt="image"></p>
 <p>查询如何定位到对应的服务器位置？</p>
 <blockquote>
 <p>使用hash算法定位。正常哈希算法算出来的值都是int值，而int的最小值是-2^31，最大值是2^31-1。意味着任何通过哈希取模之后的无符号值都会在 0 ~ 2^31-1范围之间，共2^32个数</p>
@@ -875,13 +875,13 @@
 </ol>
 <p>MOVED重定向（<strong>负载均衡，数据已经迁移到其他实例上</strong>）: 在集群模式下，Redis接收任何键相关命令时首先计算键对应的槽，再根据槽找出所对应的节点，如果节点是自身，则处理键命令；否则回复MOVED重定向错误，通知客户端请求正确的节点。</p>
 <blockquote>
-<p><strong>客户端还会更新本地缓存，将该 slot 与 Redis 实例对应关系更新正确。</strong><br><img src="http://images.caiqichang.cn/2023img/redis-move.jpg" srcset="/cai-qichang/cai-qichang.github.io.git/img/loading.gif" lazyload alt="image"></p>
+<p><strong>客户端还会更新本地缓存，将该 slot 与 Redis 实例对应关系更新正确。</strong><br><img src="http://images.caiqichang.cn/2023img/redis-move.jpg" srcset="/img/loading.gif" lazyload alt="image"></p>
 </blockquote>
-<p><img src="http://images.caiqichang.cn/2023img/cluster-move.png" srcset="/cai-qichang/cai-qichang.github.io.git/img/loading.gif" lazyload alt="image"></p>
+<p><img src="http://images.caiqichang.cn/2023img/cluster-move.png" srcset="/img/loading.gif" lazyload alt="image"></p>
 <figure class="highlight accesslog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs accesslog">// 连接redis集群 计算集群定位的值<br><span class="hljs-number">127.0.0.1:6379</span>&gt; cluster keyslot key:test:<span class="hljs-number">1</span><br>(integer) <span class="hljs-number">5191</span><br><span class="hljs-number">127.0.0.1:6379</span>&gt; cluster nodes<br>cfb28ef1deee4e0fa78da86abe5d24566744411e <span class="hljs-number">127</span>.<span class="hljs-number">0</span>.<span class="hljs-number">0</span>.<span class="hljs-number">1</span>:<span class="hljs-number">6379</span> myself,master - <span class="hljs-number">0</span> <span class="hljs-number">0</span> <span class="hljs-number">10</span> connected<br><span class="hljs-number">1366</span>-<span class="hljs-number">4095</span> <span class="hljs-number">4097</span>-<span class="hljs-number">5461</span> <span class="hljs-number">12288</span>-<span class="hljs-number">13652</span><br>...<br><br>// 由于键对应槽是<span class="hljs-number">9252</span>，不属于<span class="hljs-number">6379</span>节点，则回复MOVED &#123;slot&#125; &#123;ip&#125; &#123;port&#125;格式重定向信息：<br><span class="hljs-number">127.0.0.1:6379</span>&gt; set key:test:<span class="hljs-number">2</span> value-<span class="hljs-number">2</span><br>(error) MOVED <span class="hljs-number">9252</span> <span class="hljs-number">127</span>.<span class="hljs-number">0</span>.<span class="hljs-number">0</span>.<span class="hljs-number">1</span>:<span class="hljs-number">6380</span><br>// 计算槽应该落在哪个区域<br><span class="hljs-number">127.0.0.1:6379</span>&gt; cluster keyslot key:test:<span class="hljs-number">2</span><br>(integer) <span class="hljs-number">9252</span><br></code></pre></td></tr></table></figure>
 
 <blockquote>
-<p>使用redis-cli命令时，可以加入-c参数支持自动重定向，简化手动发起重定向操作，如下所示：<br>redis-cli自动帮我们连接到正确的节点执行命令，这个过程是在redis-cli内部维护，实质上是client端接到MOVED信息之后再次发起请 求，并不在Redis节点中完成请求转发，如下图所示<br><img src="http://images.caiqichang.cn/2023img/redisClient-move.jpg" srcset="/cai-qichang/cai-qichang.github.io.git/img/loading.gif" lazyload alt="image"></p>
+<p>使用redis-cli命令时，可以加入-c参数支持自动重定向，简化手动发起重定向操作，如下所示：<br>redis-cli自动帮我们连接到正确的节点执行命令，这个过程是在redis-cli内部维护，实质上是client端接到MOVED信息之后再次发起请 求，并不在Redis节点中完成请求转发，如下图所示<br><img src="http://images.caiqichang.cn/2023img/redisClient-move.jpg" srcset="/img/loading.gif" lazyload alt="image"></p>
 </blockquote>
 <figure class="highlight accesslog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs accesslog">#redis-cli -p <span class="hljs-number">6379</span> -c<br><span class="hljs-number">127.0.0.1:6379</span>&gt; set key:test:<span class="hljs-number">2</span> value-<span class="hljs-number">2</span><br>-&gt; Redirected to slot <span class="hljs-string">[9252]</span> located at <span class="hljs-number">127</span>.<span class="hljs-number">0</span>.<span class="hljs-number">0</span>.<span class="hljs-number">1</span>:<span class="hljs-number">6380</span><br>OK<br></code></pre></td></tr></table></figure>
 
@@ -889,7 +889,7 @@
 <blockquote>
 <p>客户端从ASK重定向异常提取出目标节点信息，发送asking命令到目标节点打开客户端连接标识，再执行键命令。如果存在则执行，不存在则返 回不存在信息<br><strong>ASK 错误指令并不会更新客户端缓存的哈希槽分配信息。</strong></p>
 </blockquote>
-<p><img src="http://images.caiqichang.cn/2023img/redis-ask.png" srcset="/cai-qichang/cai-qichang.github.io.git/img/loading.gif" lazyload alt="image"></p>
+<p><img src="http://images.caiqichang.cn/2023img/redis-ask.png" srcset="/img/loading.gif" lazyload alt="image"></p>
 <h4 id="mget批量调用"><a href="#mget批量调用" class="headerlink" title="mget批量调用"></a>mget批量调用</h4><p>hash_tag: 提供不同的键可以具备相同slot的功能，常用于Redis IO优化</p>
 <blockquote>
 <p>例如在集群模式下使用<code>mget</code>等命令优化批量调用时，键列表必须具有相同的slot，否则会报错。这时可以利用hash_tag让不同的键具有相同的slot达到优化的目的。命令如下：</p>
@@ -1049,7 +1049,7 @@
 <li><a target="_blank" rel="noopener" href="https://juejin.cn/post/6927204732704391175">Redisson 实现RedLock详解</a></li>
 </ul>
 <h2 id="Redis集合类型数据的统计模式"><a href="#Redis集合类型数据的统计模式" class="headerlink" title="Redis集合类型数据的统计模式"></a>Redis集合类型数据的统计模式</h2><p>参考资料：<a target="_blank" rel="noopener" href="https://blog.csdn.net/ggh0314/article/details/116941724">Redis集合类型数据的统计模式</a></p>
-<p><img src="http://images.caiqichang.cn/2023img/counting-summary.png" srcset="/cai-qichang/cai-qichang.github.io.git/img/loading.gif" lazyload alt="image"></p>
+<p><img src="http://images.caiqichang.cn/2023img/counting-summary.png" srcset="/img/loading.gif" lazyload alt="image"></p>
 <h3 id="聚合统计"><a href="#聚合统计" class="headerlink" title="聚合统计"></a>聚合统计</h3><p>聚合统计指统计多个集合元素的聚合结果，包括：交集统计、差集统计、并集统计。做聚合统计主要使用 Set 类型</p>
 <blockquote>
 <p>统计手机App每天的新增用户数和第二天的留存用户数，可以用一个集合记录所有登录过 App 的用户 ID，用另一个集合记录每一天登录过 App 的用户 ID。再对这两个集合做聚合统计。<br>在统计每天的新增用户时，只用计算每日用户 Set 和累计用户 Set 的差集就行。</p>
@@ -1111,11 +1111,11 @@
 </li>
 <li><p>Redis 全局 <code>hash</code> 字典，Redis 整体就是一个哈希表来保存所有的键值对。当我们在 Redis 中创建一个键值对时，至少创建两个对象，一个对象是用做键值对的键对象，另一个是键值对的值对象。而哈希表的时间复杂度是 O(1)，只需要计算每个键的哈希值，便知道对应的Value。</p>
 <blockquote>
-<p>Hash 冲突: Redis 通过链式哈希解决冲突：也就是同一个hashtable的index里面的元素使用链表保存。<br> 渐进式 rehash: Redis 为了追求快，使用了两个全局哈希表。开始默认使用 「hash 表 1 」保存键值对数据，「hash 表 2」 此刻没有分配空间。<br><img src="http://images.caiqichang.cn/2023img/readwrite.png" srcset="/cai-qichang/cai-qichang.github.io.git/img/loading.gif" lazyload alt="image"></p>
+<p>Hash 冲突: Redis 通过链式哈希解决冲突：也就是同一个hashtable的index里面的元素使用链表保存。<br> 渐进式 rehash: Redis 为了追求快，使用了两个全局哈希表。开始默认使用 「hash 表 1 」保存键值对数据，「hash 表 2」 此刻没有分配空间。<br><img src="http://images.caiqichang.cn/2023img/readwrite.png" srcset="/img/loading.gif" lazyload alt="image"></p>
 </blockquote>
 </li>
 </ol>
-<p><img src="http://images.caiqichang.cn/2023img/globalHash.jpg" srcset="/cai-qichang/cai-qichang.github.io.git/img/loading.gif" lazyload alt="image"></p>
+<p><img src="http://images.caiqichang.cn/2023img/globalHash.jpg" srcset="/img/loading.gif" lazyload alt="image"></p>
 <h3 id="Redis-如何实现持久化？宕机后如何恢复数据？"><a href="#Redis-如何实现持久化？宕机后如何恢复数据？" class="headerlink" title="Redis 如何实现持久化？宕机后如何恢复数据？"></a>Redis 如何实现持久化？宕机后如何恢复数据？</h3><p>RDB是对 Redis 中的数据执行周期性的持久化，非常适合做冷备。有两个严重性能开销：</p>
 <ol>
 <li>频繁生成 RDB 文件写入磁盘，磁盘压力过大。会出现上一个 RDB 还未执行完，下一个又开始生成，陷入死循环。</li>
@@ -1143,7 +1143,7 @@
 <p><strong><code>repl_backlog_buffer</code></strong>: 为了解决从库断连后找不到主从差异数据而设立的环形缓冲区，从而避免全量同步带来的性能开销。在redis.conf配置文件中可以设置大小，如果从库断开时间过长，repl_backlog_buffer环形缓冲区会被主库的写命令覆盖，那么从库重连后只能全量同步，所以repl_backlog_size配置尽量大一点可以降低从库连接后全量同步的频率。</p>
 <p>master 使用 <code>master_repl_offset</code>记录自己写到的位置偏移量，slave 则使用 <code>slave_repl_offset</code>记录已经读取到的偏移量</p>
 <p>当主从断开重连后，slave 会先发送 <code>psync</code> 命令给 master，同时将自己的 runID，<code>slave_repl_offset</code>发送给 master。</p>
-<p>master 只需要把 master_repl_offset与 slave_repl_offset之间的命令同步给从库即可。<br><img src="http://images.caiqichang.cn/2023img/master-salve-offline.png" srcset="/cai-qichang/cai-qichang.github.io.git/img/loading.gif" lazyload alt="avatar"><br><img src="http://images.caiqichang.cn/2023img/master-salve-offline-copy.png" srcset="/cai-qichang/cai-qichang.github.io.git/img/loading.gif" lazyload alt="avatar"></p>
+<p>master 只需要把 master_repl_offset与 slave_repl_offset之间的命令同步给从库即可。<br><img src="http://images.caiqichang.cn/2023img/master-salve-offline.png" srcset="/img/loading.gif" lazyload alt="avatar"><br><img src="http://images.caiqichang.cn/2023img/master-salve-offline-copy.png" srcset="/img/loading.gif" lazyload alt="avatar"></p>
 <h3 id="大Key与热Key"><a href="#大Key与热Key" class="headerlink" title="大Key与热Key"></a>大Key与热Key</h3><h4 id="大Key"><a href="#大Key" class="headerlink" title="大Key"></a>大Key</h4><p>大Key：通常以Key的大小和Key中成员的数量来综合判定，例如：</p>
 <ul>
 <li>Key本身的<strong>数据量过大</strong>：一个String类型的Key，它的值为5 MB。</li>
@@ -1247,7 +1247,7 @@
     
       <span class="category-chain">
         
-  <a href="/cai-qichang/cai-qichang.github.io.git/categories/%E4%B8%AD%E9%97%B4%E4%BB%B6/" class="category-chain-item">中间件</a>
+  <a href="/categories/%E4%B8%AD%E9%97%B4%E4%BB%B6/" class="category-chain-item">中间件</a>
   
   
 
@@ -1262,7 +1262,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/cai-qichang/cai-qichang.github.io.git/tags/Redis/" class="print-no-link">#Redis</a>
+        <a href="/tags/Redis/" class="print-no-link">#Redis</a>
       
     </div>
   
@@ -1275,7 +1275,7 @@
   <div class="license-box my-3">
     <div class="license-title">
       <div>Redis</div>
-      <div>https://github.com/cai-qichang/cai-qichang.github.io.git/2023/04/15/Redis/</div>
+      <div>https://cai-qichang.github.io/2023/04/15/Redis/</div>
     </div>
     <div class="license-meta">
       
@@ -1312,7 +1312,7 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/cai-qichang/cai-qichang.github.io.git/2023/04/20/MySQL/" title="MySQL">
+                      <a href="/2023/04/20/MySQL/" title="MySQL">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">MySQL</span>
                         <span class="visible-mobile">上一篇</span>
@@ -1322,7 +1322,7 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/cai-qichang/cai-qichang.github.io.git/2023/04/05/Spring-Sharding-JDBC/" title="Spring Sharding-JDBC">
+                      <a href="/2023/04/05/Spring-Sharding-JDBC/" title="Spring Sharding-JDBC">
                         <span class="hidden-mobile">Spring Sharding-JDBC</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
@@ -1487,8 +1487,8 @@
 
 <script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
 <script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
-<script  src="/cai-qichang/cai-qichang.github.io.git/js/events.js" ></script>
-<script  src="/cai-qichang/cai-qichang.github.io.git/js/plugins.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
 
 
   <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
@@ -1510,7 +1510,7 @@
 
 
   
-    <script  src="/cai-qichang/cai-qichang.github.io.git/js/img-lazyload.js" ></script>
+    <script  src="/js/img-lazyload.js" ></script>
   
 
 
@@ -1609,7 +1609,7 @@
 
   <script>Fluid.plugins.imageCaption();</script>
 
-  <script  src="/cai-qichang/cai-qichang.github.io.git/js/local-search.js" ></script>
+  <script  src="/js/local-search.js" ></script>
 
   <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
 
@@ -1619,7 +1619,7 @@
 
 <!-- 主题的启动项，将它保持在最底部 -->
 <!-- the boot of the theme, keep it at the bottom -->
-<script  src="/cai-qichang/cai-qichang.github.io.git/js/boot.js" ></script>
+<script  src="/js/boot.js" ></script>
 
 
   
