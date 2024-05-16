@@ -25,15 +25,15 @@
 <meta property="og:site_name" content="caiqichang&#39;s Blog">
 <meta property="og:description" content="安装介绍MQ，Message Queue，是一种提供消息队列服务的中间件，也称为消息中间件，是一套提供了消息生产、存储、消费全过程API的软件系统。消息即数据。RocketMQ是⼀款阿⾥巴巴开源的消息中间件，主要用于限流，异步解耦操作,如付款之后短信通知，订单发货通知等等，都是异步进行执行。 rocketmq搭建查找rockermq镜像1docker search rocketmq   拉取镜像1">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://images.caiqichang.cn/2023img/image-20230821201808657.png">
-<meta property="og:image" content="http://images.caiqichang.cn/2023img/image-20230821201856751.png">
-<meta property="og:image" content="http://images.caiqichang.cn/2023img/image-20230821202101437.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cai-qichang/cqc-photo/master/img/image-20230821201808657.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cai-qichang/cqc-photo/master/img/image-20230821201856751.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cai-qichang/cqc-photo/master/img/image-20230821202101437.png">
 <meta property="article:published_time" content="2022-02-21T12:16:24.000Z">
-<meta property="article:modified_time" content="2024-05-15T14:16:20.541Z">
+<meta property="article:modified_time" content="2024-05-16T13:57:55.214Z">
 <meta property="article:author" content="caiqichang">
 <meta property="article:tag" content="rocketmq">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://images.caiqichang.cn/2023img/image-20230821201808657.png">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/cai-qichang/cqc-photo/master/img/image-20230821201808657.png">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
@@ -284,10 +284,10 @@
                 <h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>MQ，Message Queue，是一种提供<a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97&spm=1001.2101.3001.7020">消息队列</a>服务的中间件，也称为消息中间件，是一套提供了消息生产、存储、消费全过程API的软件系统。消息即数据。RocketMQ是⼀款阿⾥巴巴开源的消息中间件，主要用于限流，异步解耦操作,如付款之后短信通知，订单发货通知等等，都是异步进行执行。</p>
 <h3 id="rocketmq搭建"><a href="#rocketmq搭建" class="headerlink" title="rocketmq搭建"></a><a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=rocketmq&spm=1001.2101.3001.7020">rocketmq</a>搭建</h3><h4 id="查找rockermq镜像"><a href="#查找rockermq镜像" class="headerlink" title="查找rockermq镜像"></a>查找rockermq镜像</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">docker search rocketmq<br></code></pre></td></tr></table></figure>
 
-<p><img src="http://images.caiqichang.cn/2023img/image-20230821201808657.png" srcset="/img/loading.gif" lazyload alt="image-20230821201808657"></p>
+<p><img src="https://raw.githubusercontent.com/cai-qichang/cqc-photo/master/img/image-20230821201808657.png" srcset="/img/loading.gif" lazyload alt="image-20230821201808657"></p>
 <h4 id="拉取镜像"><a href="#拉取镜像" class="headerlink" title="拉取镜像"></a>拉取镜像</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">docker pull rocketmqinc/rocketmq<br></code></pre></td></tr></table></figure>
 
-<p><img src="http://images.caiqichang.cn/2023img/image-20230821201856751.png" srcset="/img/loading.gif" lazyload alt="image-20230821201856751"></p>
+<p><img src="https://raw.githubusercontent.com/cai-qichang/cqc-photo/master/img/image-20230821201856751.png" srcset="/img/loading.gif" lazyload alt="image-20230821201856751"></p>
 <h4 id="创建目录"><a href="#创建目录" class="headerlink" title="创建目录"></a>创建目录</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">mkdir -p  /docker/rocketmq/data/namesrv/logs   /docker/rocketmq/data/namesrv/store<br></code></pre></td></tr></table></figure>
 
 <h4 id="构建namesvr容器"><a href="#构建namesvr容器" class="headerlink" title="构建namesvr容器"></a>构建namesvr容器</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_">#</span><span class="language-bash">构建namesrv容器</span><br>docker run -d --restart=always --name rmqnamesrv --privileged=true -p 9876:9876  -v /docker/rocketmq/nameserver/logs:/root/logs -v /docker/rocketmq/nameserver/store:/root/store -e &quot;MAX_POSSIBLE_HEAP=100000000&quot; rocketmqinc/rocketmq sh mqnamesrv<br><br></code></pre></td></tr></table></figure>
@@ -327,7 +327,7 @@
 </ul>
 <p>消息消费者，负责消费消息。一个消息消费者会从Broker服务器中获取到消息，并对消息进行相关业务</p>
 <p>处理。</p>
-<h2 id="项目构建"><a href="#项目构建" class="headerlink" title="项目构建"></a>项目构建</h2><h3 id="目录结构"><a href="#目录结构" class="headerlink" title="目录结构"></a>目录结构</h3><p><img src="http://images.caiqichang.cn/2023img/image-20230821202101437.png" srcset="/img/loading.gif" lazyload alt="image-20230821202101437"></p>
+<h2 id="项目构建"><a href="#项目构建" class="headerlink" title="项目构建"></a>项目构建</h2><h3 id="目录结构"><a href="#目录结构" class="headerlink" title="目录结构"></a>目录结构</h3><p><img src="https://raw.githubusercontent.com/cai-qichang/cqc-photo/master/img/image-20230821202101437.png" srcset="/img/loading.gif" lazyload alt="image-20230821202101437"></p>
 <h3 id="依赖引入"><a href="#依赖引入" class="headerlink" title="依赖引入"></a>依赖引入</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-comment">&lt;!--rocketmq--&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>      <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.apache.rocketmq<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>      <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>rocketmq-spring-boot-starter<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>      <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>2.2.2<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br><br></code></pre></td></tr></table></figure>
 
 <h3 id="生产者"><a href="#生产者" class="headerlink" title="生产者"></a>生产者</h3><h4 id="yml配置"><a href="#yml配置" class="headerlink" title="yml配置"></a>yml配置</h4><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs yml"><span class="hljs-attr">server:</span><br>  <span class="hljs-attr">port:</span> <span class="hljs-number">8022</span><br><span class="hljs-comment">#应用名字</span><br><span class="hljs-attr">spring:</span><br>  <span class="hljs-attr">application:</span><br>    <span class="hljs-attr">name:</span> <span class="hljs-string">RocketMqOrderProvider</span><br><span class="hljs-comment">#rocketmq配置</span><br><span class="hljs-attr">rocketmq:</span><br>  <span class="hljs-attr">name-server:</span> <span class="hljs-number">192.168</span><span class="hljs-number">.55</span><span class="hljs-number">.180</span><span class="hljs-string">:9876</span><br>  <span class="hljs-attr">producer:</span><br>    <span class="hljs-attr">group:</span> <span class="hljs-string">order-producer-group</span><br><br></code></pre></td></tr></table></figure>

@@ -25,19 +25,19 @@
 <meta property="og:site_name" content="caiqichang&#39;s Blog">
 <meta property="og:description" content="Mongodb使用Docker安装MongoDB MongoDB用户角色配置 基本概念MongoDB是面向文档的数据库，不是关系型数据库。MongoDB的设计采用横向扩展的设计，能自动处理跨集群的数据和负载，自动中心分配文档，以及将用户的请求路由到正确的机器上。  基本的思路就是将原来”行”的概念换成更加灵活的”文档”模型。  独特功能：  索引：支持通用二级索引，切提供唯一索引、复合索引、地理空">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://images.caiqichang.cn/2023img/mongodbCompare.png">
-<meta property="og:image" content="http://images.caiqichang.cn/2023img/mongodbvs.png">
-<meta property="og:image" content="http://images.caiqichang.cn/2023img/mongodbSummary.png">
-<meta property="og:image" content="http://images.caiqichang.cn/2023img/mongodbFunction.png">
-<meta property="og:image" content="http://images.caiqichang.cn/2023img/mongodbApplication.png">
-<meta property="og:image" content="http://images.caiqichang.cn/2023img/mongodbPresure.png">
-<meta property="og:image" content="http://images.caiqichang.cn/2023img/mongodbdesign.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cai-qichang/cqc-photo/master/img/mongodbCompare.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cai-qichang/cqc-photo/master/img/mongodbvs.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cai-qichang/cqc-photo/master/img/mongodbSummary.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cai-qichang/cqc-photo/master/img/mongodbFunction.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cai-qichang/cqc-photo/master/img/mongodbApplication.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cai-qichang/cqc-photo/master/img/mongodbPresure.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cai-qichang/cqc-photo/master/img/mongodbdesign.png">
 <meta property="article:published_time" content="2023-04-25T11:51:00.000Z">
-<meta property="article:modified_time" content="2024-05-15T14:16:20.534Z">
+<meta property="article:modified_time" content="2024-05-16T13:34:27.279Z">
 <meta property="article:author" content="caiqichang">
 <meta property="article:tag" content="MongoDB">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://images.caiqichang.cn/2023img/mongodbCompare.png">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/cai-qichang/cqc-photo/master/img/mongodbCompare.png">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
@@ -372,22 +372,22 @@
 <li><p>问题：数据是否频繁更新？</p>
 </li>
 </ul>
-<p><img src="http://images.caiqichang.cn/2023img/mongodbCompare.png" srcset="/img/loading.gif" lazyload alt="avatar"></p>
+<p><img src="https://raw.githubusercontent.com/cai-qichang/cqc-photo/master/img/mongodbCompare.png" srcset="/img/loading.gif" lazyload alt="avatar"></p>
 <h3 id="MySQL-VS-MongoDB"><a href="#MySQL-VS-MongoDB" class="headerlink" title="MySQL VS MongoDB"></a>MySQL VS MongoDB</h3><ol>
 <li>Mysql是关系型数据库，而MongoDB是非关系型</li>
 <li>MongoDB文档自然地映射我们的Model，而Mysql通常需要多表关联进行数据映射。</li>
 <li>横向拓展能力MongoDB可以通过原生分片完善支持，而Mysql只能通过数据分区或者应用侵入式的访问实现分区</li>
-<li>Mongodb的文档字段可以是动态的，而Mysql新增字段则需要写sql进行添加<br><img src="http://images.caiqichang.cn/2023img/mongodbvs.png" srcset="/img/loading.gif" lazyload alt="avatar"></li>
+<li>Mongodb的文档字段可以是动态的，而Mysql新增字段则需要写sql进行添加<br><img src="https://raw.githubusercontent.com/cai-qichang/cqc-photo/master/img/mongodbvs.png" srcset="/img/loading.gif" lazyload alt="avatar"></li>
 </ol>
-<p><img src="http://images.caiqichang.cn/2023img/mongodbSummary.png" srcset="/img/loading.gif" lazyload alt="avatar"><br><img src="http://images.caiqichang.cn/2023img/mongodbFunction.png" srcset="/img/loading.gif" lazyload alt="avatar"></p>
-<h3 id="应用场景-1"><a href="#应用场景-1" class="headerlink" title="应用场景"></a>应用场景</h3><p><img src="http://images.caiqichang.cn/2023img/mongodbApplication.png" srcset="/img/loading.gif" lazyload alt="avatar"><br>除了上述场景，还有:</p>
+<p><img src="https://raw.githubusercontent.com/cai-qichang/cqc-photo/master/img/mongodbSummary.png" srcset="/img/loading.gif" lazyload alt="avatar"><br><img src="https://raw.githubusercontent.com/cai-qichang/cqc-photo/master/img/mongodbFunction.png" srcset="/img/loading.gif" lazyload alt="avatar"></p>
+<h3 id="应用场景-1"><a href="#应用场景-1" class="headerlink" title="应用场景"></a>应用场景</h3><p><img src="https://raw.githubusercontent.com/cai-qichang/cqc-photo/master/img/mongodbApplication.png" srcset="/img/loading.gif" lazyload alt="avatar"><br>除了上述场景，还有:</p>
 <ol>
 <li>元数据（配置）管理：比如常见的Java Spring中经常需要配置数据，而随着相同类型的数据越来越多，就适合转移到MongoDB中。该类型数据变化快，且经常以点查为主。</li>
 <li>内容管理：对于营销的邮件短信，通常为存在占位符的大文本。该类型的数据也适合存储在MongoDB中。</li>
 <li>草稿功能：对于用户认证过程，经常需要分几步填写用户的信息，应用通常会保存用户的草稿信息。该草稿信息在正式提交前除了记忆外没有任何意义，而且经常为一个JSON类型的数据。</li>
 </ol>
-<h3 id="压测结果"><a href="#压测结果" class="headerlink" title="压测结果"></a>压测结果</h3><p><img src="http://images.caiqichang.cn/2023img/mongodbPresure.png" srcset="/img/loading.gif" lazyload alt="avatar"></p>
-<h3 id="常见架构"><a href="#常见架构" class="headerlink" title="常见架构"></a>常见架构</h3><p><img src="http://images.caiqichang.cn/2023img/mongodbdesign.png" srcset="/img/loading.gif" lazyload alt="avatar"></p>
+<h3 id="压测结果"><a href="#压测结果" class="headerlink" title="压测结果"></a>压测结果</h3><p><img src="https://raw.githubusercontent.com/cai-qichang/cqc-photo/master/img/mongodbPresure.png" srcset="/img/loading.gif" lazyload alt="avatar"></p>
+<h3 id="常见架构"><a href="#常见架构" class="headerlink" title="常见架构"></a>常见架构</h3><p><img src="https://raw.githubusercontent.com/cai-qichang/cqc-photo/master/img/mongodbdesign.png" srcset="/img/loading.gif" lazyload alt="avatar"></p>
 <h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><p>发布订阅：MongoDB提供API接口用于订阅整个数据库中的修改操作</p>
 <blockquote>
 <p>如Java中MongoDBClient提供了Watch()方法用来接收修改的事件</p>

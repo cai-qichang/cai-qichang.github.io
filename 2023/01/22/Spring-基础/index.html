@@ -25,15 +25,15 @@
 <meta property="og:site_name" content="caiqichang&#39;s Blog">
 <meta property="og:description" content="SpringSpring IOC &amp; AOPSpring IOCIOC(Inversion of Control) 理解  控制反转：原来在程序中手动创建对象，现在需要什么对象由IOC提供，一个好处就是对象统一管理。 依赖注入：将对象之间的相互依赖关系交给 IoC 容器来管理，并由 IoC 容器完成对象的注入。简化开发及对象的创建。  AOPAOP(Aspect-Oriented Prog">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://images.caiqichang.cn/2023img/iocAutowire.png">
-<meta property="og:image" content="http://images.caiqichang.cn/2023img/iocAutowire.jpg">
-<meta property="og:image" content="http://images.caiqichang.cn/2023img/iocAutowire3.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/cai-qichang/cqc-photo/master/img/iocAutowire.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cai-qichang/cqc-photo/master/img/iocAutowire.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/cai-qichang/cqc-photo/master/img/iocAutowire3.jpg">
 <meta property="article:published_time" content="2023-01-22T11:51:00.000Z">
-<meta property="article:modified_time" content="2024-05-15T14:16:20.537Z">
+<meta property="article:modified_time" content="2024-05-16T13:46:07.334Z">
 <meta property="article:author" content="caiqichang">
 <meta property="article:tag" content="Spring 基础">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://images.caiqichang.cn/2023img/iocAutowire.png">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/cai-qichang/cqc-photo/master/img/iocAutowire.png">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
@@ -350,7 +350,7 @@
 <h2 id="Spring-中的-bean-生命周期"><a href="#Spring-中的-bean-生命周期" class="headerlink" title="Spring 中的 bean 生命周期"></a>Spring 中的 bean 生命周期</h2><ul>
 <li>见声明周期详解</li>
 </ul>
-<h2 id="Spring-循环依赖"><a href="#Spring-循环依赖" class="headerlink" title="Spring 循环依赖"></a>Spring 循环依赖</h2><p>对于普通的循环依赖如A 依赖B， B依赖A。在初始化A的时候，会实例化B，实例化B发现需要A的引用，这时候通过缓存返回A的引用。虽然A还未初始化完毕，但是由于是对象的引用，所以最终初始化完成的时候，两个对象均是初始化完整的。<br><img src="http://images.caiqichang.cn/2023img/iocAutowire.png" srcset="/img/loading.gif" lazyload alt="iocAutowire"></p>
+<h2 id="Spring-循环依赖"><a href="#Spring-循环依赖" class="headerlink" title="Spring 循环依赖"></a>Spring 循环依赖</h2><p>对于普通的循环依赖如A 依赖B， B依赖A。在初始化A的时候，会实例化B，实例化B发现需要A的引用，这时候通过缓存返回A的引用。虽然A还未初始化完毕，但是由于是对象的引用，所以最终初始化完成的时候，两个对象均是初始化完整的。<br><img src="https://raw.githubusercontent.com/cai-qichang/cqc-photo/master/img/iocAutowire.png" srcset="/img/loading.gif" lazyload alt="iocAutowire"></p>
 <p>getSingleton(beanName, true)这个方法实际上就是到缓存中尝试去获取Bean，整个缓存分为三级</p>
 <ul>
 <li>singletonObjects，一级缓存，存储的是所有创建好了的单例Bean</li>
@@ -380,8 +380,8 @@
 <blockquote>
 <p>这个工厂的目的在于<strong>延迟对实例化阶段生成对象的代理</strong>，只有真正发生循环依赖的时候，才去提前生成代理对象，否则只会创建一个工厂并将其放入到三级缓存中，但是不会去通过这个工厂去真正创建对象。</p>
 </blockquote>
-<p>三级缓存引入对于对象延迟实例化的体现。<br><img src="http://images.caiqichang.cn/2023img/iocAutowire.jpg" srcset="/img/loading.gif" lazyload alt="avatar"></p>
-<p>不同注入方式对于循环引用的影响<br><img src="http://images.caiqichang.cn/2023img/iocAutowire3.jpg" srcset="/img/loading.gif" lazyload alt="avatar"></p>
+<p>三级缓存引入对于对象延迟实例化的体现。<br><img src="https://raw.githubusercontent.com/cai-qichang/cqc-photo/master/img/iocAutowire.jpg" srcset="/img/loading.gif" lazyload alt="avatar"></p>
+<p>不同注入方式对于循环引用的影响<br><img src="https://raw.githubusercontent.com/cai-qichang/cqc-photo/master/img/iocAutowire3.jpg" srcset="/img/loading.gif" lazyload alt="avatar"></p>
 <h3 id="相关文章"><a href="#相关文章" class="headerlink" title="相关文章"></a>相关文章</h3><p><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/kS0K5P4FdF3v-fiIjGIvvQ">讲一讲Spring中的循环依赖</a></p>
 <h2 id="Spring-Transaction"><a href="#Spring-Transaction" class="headerlink" title="Spring Transaction"></a>Spring Transaction</h2><h3 id="基础知识"><a href="#基础知识" class="headerlink" title="基础知识"></a>基础知识</h3><p>Spring 框架中，事务管理相关最重要的 3 个接口如下：</p>
 <ul>

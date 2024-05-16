@@ -25,15 +25,15 @@
 <meta property="og:site_name" content="caiqichang&#39;s Blog">
 <meta property="og:description" content="Java并发相关工具类AQS 相关AbstractQueuedSynchronizer AQSAQS 是一个用来构建锁和同步器的框架，使用 AQS 能简单且高效地构造出应用广泛的大量的同步器。 核心工作流程：  使用volatile修饰的statue变量表示共享资源的状态。如果被请求的共享资源空闲，则将当前请求资源的线程设置为有效的工作线程(Thread exclusiveOwnerThread)">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://images.caiqichang.cn/2023img/aqsblocklock.jpg">
-<meta property="og:image" content="http://images.caiqichang.cn/2023img/conditionqueue.jpg">
-<meta property="og:image" content="http://images.caiqichang.cn/2023img/cyclicBarrier.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/cai-qichang/cqc-photo/master/img/aqsblocklock.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/cai-qichang/cqc-photo/master/img/conditionqueue.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/cai-qichang/cqc-photo/master/img/cyclicBarrier.jpg">
 <meta property="article:published_time" content="2022-11-22T11:51:00.000Z">
-<meta property="article:modified_time" content="2024-05-15T14:16:20.533Z">
+<meta property="article:modified_time" content="2024-05-16T13:27:44.204Z">
 <meta property="article:author" content="caiqichang">
 <meta property="article:tag" content="Java并发(AQS)">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://images.caiqichang.cn/2023img/aqsblocklock.jpg">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/cai-qichang/cqc-photo/master/img/aqsblocklock.jpg">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
@@ -298,7 +298,7 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">AbstractQueuedSynchronizer</span> &#123;<br>    <span class="hljs-comment">// 尝试获取锁</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">acquire</span><span class="hljs-params">(<span class="hljs-type">int</span> arg)</span> &#123;<br>        <span class="hljs-comment">// tryAcquire 需重写   acquireQueued、addWaiter为默认方法</span><br>        <span class="hljs-keyword">if</span> (!tryAcquire(arg) &amp;&amp;<br>                acquireQueued(addWaiter(Node.EXCLUSIVE), arg))<br>            selfInterrupt();<br>    &#125;<br><br>    <span class="hljs-comment">// 释放锁</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">final</span> <span class="hljs-type">boolean</span> <span class="hljs-title function_">release</span><span class="hljs-params">(<span class="hljs-type">int</span> arg)</span> &#123;<br>        <span class="hljs-comment">// tryRelease 需重写</span><br>        <span class="hljs-keyword">if</span> (tryRelease(arg)) &#123;<br>            <span class="hljs-type">Node</span> <span class="hljs-variable">h</span> <span class="hljs-operator">=</span> head;<br>            <span class="hljs-keyword">if</span> (h != <span class="hljs-literal">null</span> &amp;&amp; h.waitStatus != <span class="hljs-number">0</span>)<br>                unparkSuccessor(h);<br>            <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>        &#125;<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <p>比如ReentrantLock 实现了独占方式的锁及用到了condition</p>
-<h4 id="AQS-相关方法"><a href="#AQS-相关方法" class="headerlink" title="AQS 相关方法"></a>AQS 相关方法</h4><h5 id="获取锁的框架方法"><a href="#获取锁的框架方法" class="headerlink" title="获取锁的框架方法"></a>获取锁的框架方法</h5><p><img src="http://images.caiqichang.cn/2023img/aqsblocklock.jpg" srcset="/img/loading.gif" lazyload alt="avatar"></p>
+<h4 id="AQS-相关方法"><a href="#AQS-相关方法" class="headerlink" title="AQS 相关方法"></a>AQS 相关方法</h4><h5 id="获取锁的框架方法"><a href="#获取锁的框架方法" class="headerlink" title="获取锁的框架方法"></a>获取锁的框架方法</h5><p><img src="https://raw.githubusercontent.com/cai-qichang/cqc-photo/master/img/aqsblocklock.jpg" srcset="/img/loading.gif" lazyload alt="avatar"></p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">AbstractQueuedSynchronizer</span> &#123;<br>    <span class="hljs-comment">// 尝试获取锁</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">acquire</span><span class="hljs-params">(<span class="hljs-type">int</span> arg)</span> &#123;<br>        <span class="hljs-comment">// tryAcquire 需重写   acquireQueued、addWaiter为默认方法</span><br>        <span class="hljs-keyword">if</span> (!tryAcquire(arg) &amp;&amp;<br>                acquireQueued(addWaiter(Node.EXCLUSIVE), arg))<br>            selfInterrupt();<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <p>addWaiter：用于添加节点到队尾</p>
@@ -329,7 +329,7 @@
 <li>从尾到头寻找最早一个需要唤醒的线程节点，独占锁模式正常定位到头结点的下一个节点。</li>
 <li>执行唤醒逻辑，线程重新进入到acquireQueued</li>
 </ol>
-<h4 id="条件队列"><a href="#条件队列" class="headerlink" title="条件队列"></a>条件队列</h4><p><img src="http://images.caiqichang.cn/2023img/conditionqueue.jpg" srcset="/img/loading.gif" lazyload alt="avatar"><br>condition：条件队列的实现，常可以用在生产者-消费者的场景中。在所对象中内置一个newCondition方法，用于创建一个条件队列。<br>condition 的方法主要就两个<code>await</code><strong>等待</strong>、<code>signal</code><strong>唤醒</strong></p>
+<h4 id="条件队列"><a href="#条件队列" class="headerlink" title="条件队列"></a>条件队列</h4><p><img src="https://raw.githubusercontent.com/cai-qichang/cqc-photo/master/img/conditionqueue.jpg" srcset="/img/loading.gif" lazyload alt="avatar"><br>condition：条件队列的实现，常可以用在生产者-消费者的场景中。在所对象中内置一个newCondition方法，用于创建一个条件队列。<br>condition 的方法主要就两个<code>await</code><strong>等待</strong>、<code>signal</code><strong>唤醒</strong></p>
 <p>条件队列与阻塞队列</p>
 <ul>
 <li><strong>阻塞队列为Lock中获取共享资源的CLH阻塞双向链表队列</strong>，AQS中设置head和tail变量。</li>
@@ -410,7 +410,7 @@
 <blockquote>
 <p>数量扣减为0时，如果有定义栅栏开始的方法则执行，并调用condition的signAll，条件单链表逐个唤醒。 generation 代表栅栏重复使用的一代或者一个周期。</p>
 </blockquote>
-<p><img src="http://images.caiqichang.cn/2023img/cyclicBarrier.jpg" srcset="/img/loading.gif" lazyload alt="avatar"></p>
+<p><img src="https://raw.githubusercontent.com/cai-qichang/cqc-photo/master/img/cyclicBarrier.jpg" srcset="/img/loading.gif" lazyload alt="avatar"></p>
 <p>什么时候栅栏会被打破，总结如下：</p>
 <ul>
 <li>中断，如果某个等待的线程发生了中断，那么会打破栅栏，同时抛出 InterruptedException 异常；</li>

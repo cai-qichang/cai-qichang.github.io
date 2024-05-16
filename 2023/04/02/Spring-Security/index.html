@@ -25,17 +25,17 @@
 <meta property="og:site_name" content="caiqichang&#39;s Blog">
 <meta property="og:description" content="Spring securitySpring Security官网  认证 Authentication几个登陆认证重要的组件： SecurityContextHolder：Spring Security存储安全身份验证者详细信息的位置。  使用ThreadLocal实现  SecurityContext：从SecurityContextHolder获得，并包含当前经过身份验证的用户的身份验证。 A">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://images.caiqichang.cn/2023img/spring-security.jpg">
-<meta property="og:image" content="http://images.caiqichang.cn/2023img/abstractauthenticationprocessingfilter.png">
-<meta property="og:image" content="http://images.caiqichang.cn/2023img/Cookies-attack.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/cai-qichang/cqc-photo/master/img/spring-security.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/cai-qichang/cqc-photo/master/img/abstractauthenticationprocessingfilter.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cai-qichang/cqc-photo/master/img/Cookies-attack.jpg">
 <meta property="og:image" content="https://docs.spring.io/spring-security/site/docs/current/reference/html5/images/servlet/authorization/filtersecurityinterceptor.png">
-<meta property="og:image" content="http://images.caiqichang.cn/2023img/0a6b437fe2034d44a393998ef4bf173a.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cai-qichang/cqc-photo/master/img/0a6b437fe2034d44a393998ef4bf173a.png">
 <meta property="article:published_time" content="2023-04-02T11:51:00.000Z">
-<meta property="article:modified_time" content="2024-05-15T14:16:20.537Z">
+<meta property="article:modified_time" content="2024-05-16T13:49:11.614Z">
 <meta property="article:author" content="caiqichang">
 <meta property="article:tag" content="Spring Security">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://images.caiqichang.cn/2023img/spring-security.jpg">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/cai-qichang/cqc-photo/master/img/spring-security.jpg">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
@@ -284,7 +284,7 @@
               <div class="markdown-body">
                 
                 <h1 id="Spring-security"><a href="#Spring-security" class="headerlink" title="Spring security"></a>Spring security</h1><p><a target="_blank" rel="noopener" href="https://docs.spring.io/spring-security/site/docs/5.4.2/reference/html5/#servlet-architecture">Spring Security官网</a></p>
-<p><img src="http://images.caiqichang.cn/2023img/spring-security.jpg" srcset="/img/loading.gif" lazyload alt="avatar"></p>
+<p><img src="https://raw.githubusercontent.com/cai-qichang/cqc-photo/master/img/spring-security.jpg" srcset="/img/loading.gif" lazyload alt="avatar"></p>
 <h2 id="认证-Authentication"><a href="#认证-Authentication" class="headerlink" title="认证 Authentication"></a>认证 Authentication</h2><p>几个登陆认证重要的组件：</p>
 <p>SecurityContextHolder：Spring Security存储安全身份验证者详细信息的位置。</p>
 <blockquote>
@@ -299,7 +299,7 @@
 <p>AuthenticationEntryPoint：用于返回从客户端请求的 HTTP 响应（比如未认证的请求自动跳转、或者自己实现重定向到登录页面，发送WWW身份验证响应等）</p>
 <p>AbstractAuthenticationProcessingFilter：用作验证用户凭据的基本过滤器。 在验证前，Spring Security 通常使用 AuthenticationEntryPoint 请求凭据。</p>
 <p>UserDetailsService: spring security 默认提供的用户密码登陆接口。</p>
-<h3 id="整体流程"><a href="#整体流程" class="headerlink" title="整体流程"></a>整体流程</h3><p><img src="http://images.caiqichang.cn/2023img/abstractauthenticationprocessingfilter.png" srcset="/img/loading.gif" lazyload alt="image"><br>以下是流程解释的英文原文：</p>
+<h3 id="整体流程"><a href="#整体流程" class="headerlink" title="整体流程"></a>整体流程</h3><p><img src="https://raw.githubusercontent.com/cai-qichang/cqc-photo/master/img/abstractauthenticationprocessingfilter.png" srcset="/img/loading.gif" lazyload alt="image"><br>以下是流程解释的英文原文：</p>
 <ol>
 <li><p>When the user submits their credentials, the AbstractAuthenticationProcessingFilter creates an Authentication from the HttpServletRequest to be authenticated. The type of Authentication created depends on the subclass of AbstractAuthenticationProcessingFilter. For example, UsernamePasswordAuthenticationFilter creates a UsernamePasswordAuthenticationToken from a username and password that are submitted in the HttpServletRequest.</p>
 </li>
@@ -372,7 +372,7 @@
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">src</span>=<span class="hljs-string">http://www.mybank.com/Transfer?bankId</span>=<span class="hljs-string">11&amp;money</span>=<span class="hljs-string">10000</span>&gt;</span>科学理财，年盈利率过万<span class="hljs-tag">&lt;/&gt;</span><br></code></pre></td></tr></table></figure>
 
 <p>进行Session 认证的时候，我们一般使用 <strong>Cookie 来存储 SessionId</strong>,当我们登陆后后端生成一个SessionId放在Cookie中返回给客户端，服务端通过Redis或者其他存储工具记录保存着这个Sessionid，客户端登录以后每次请求都会带上这个SessionId，服务端通过这个SessionId来标示你这个人。如果别人通过 cookie拿到了 SessionId 后就可以代替你的身份访问系统了。</p>
-<p><img src="http://images.caiqichang.cn/2023img/Cookies-attack.jpg" srcset="/img/loading.gif" lazyload alt="avatar"></p>
+<p><img src="https://raw.githubusercontent.com/cai-qichang/cqc-photo/master/img/Cookies-attack.jpg" srcset="/img/loading.gif" lazyload alt="avatar"></p>
 <p>可以使用token认证的方式避免误点攻击链接导致的跨服务请求问题。</p>
 <blockquote>
 <p>基于token 认证经常将认证凭证存储在local storage中，在请求的时候前端再动态添加凭证到请求中。因此误点的外部链接无法添加token到转发的请求中。</p>
@@ -458,7 +458,7 @@
 <h3 id="登陆接口：验证用户名密码签发token"><a href="#登陆接口：验证用户名密码签发token" class="headerlink" title="登陆接口：验证用户名密码签发token"></a>登陆接口：验证用户名密码签发token</h3><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs typescript"><span class="hljs-meta">@GetMapping</span><br><span class="hljs-keyword">private</span> <span class="hljs-title class_">String</span> <span class="hljs-title function_">toLogin</span>(<span class="hljs-params">HttpServletRequest request, <span class="hljs-built_in">String</span> username, <span class="hljs-built_in">String</span> password</span>) &#123;<br>    <span class="hljs-comment">// 登录成功</span><br>    <span class="hljs-keyword">if</span> (password.<span class="hljs-title function_">equals</span>(<span class="hljs-string">&quot;112233&quot;</span>)) &#123;<br>        <span class="hljs-title class_">String</span> token = tokenHelper.<span class="hljs-title function_">generateToken</span>(username+<span class="hljs-string">&quot;~role&quot;</span>);<br>        <span class="hljs-comment">// 登陆成功</span><br>        <span class="hljs-keyword">return</span> token;<br>    &#125;<br>    <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;认证失败&quot;</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <h3 id="权限问题"><a href="#权限问题" class="headerlink" title="权限问题"></a>权限问题</h3><p>spring的权限体系结构：<br><img src="https://docs.spring.io/spring-security/site/docs/current/reference/html5/images/servlet/authorization/filtersecurityinterceptor.png" srcset="/img/loading.gif" lazyload alt="image"></p>
-<p><img src="http://images.caiqichang.cn/2023img/0a6b437fe2034d44a393998ef4bf173a.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<p><img src="https://raw.githubusercontent.com/cai-qichang/cqc-photo/master/img/0a6b437fe2034d44a393998ef4bf173a.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
 <p>一、使用默认的spring security 需要继承GrantedAuthority，返回用于认证的getAuthority()</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">PermissionGrantedAuthority</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">GrantedAuthority</span> &#123;<br><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> String permission;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-title function_">PermissionGrantedAuthority</span><span class="hljs-params">(String permission)</span> &#123;<br>        Assert.hasText(permission, <span class="hljs-string">&quot;A granted authority textual representation is required&quot;</span>);<br>        <span class="hljs-built_in">this</span>.permission = permission;<br>    &#125;<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> String <span class="hljs-title function_">getAuthority</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-keyword">return</span> permission;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 

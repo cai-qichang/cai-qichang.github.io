@@ -25,17 +25,17 @@
 <meta property="og:site_name" content="caiqichang&#39;s Blog">
 <meta property="og:description" content="zookeeper基本概念ZooKeeper 可以被用作注册中心、分布式锁；ZooKeeper 是 Hadoop 生态系统的一员；构建 ZooKeeper 集群的时候，使用的服务器最好是奇数台。 ZooKeeper概述 概念：ZooKeeper 是一个开源的分布式协调服务，它的设计目标是将那些复杂且容易出错的分布式一致性服务封装起来，构成一个高效可靠的原语集，并以一系列简单易用的接口提供给用户使用">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://images.caiqichang.cn/2023img/znode.png">
-<meta property="og:image" content="http://images.caiqichang.cn/2023img/zookeeperWatcher.png">
-<meta property="og:image" content="http://images.caiqichang.cn/2023img/zookeeperCluster.jpg">
-<meta property="og:image" content="http://images.caiqichang.cn/2023img/zabSend.jpg">
-<meta property="og:image" content="http://images.caiqichang.cn/2023img/ZooKeeperConfiguration.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cai-qichang/cqc-photo/master/img/znode.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cai-qichang/cqc-photo/master/img/zookeeperWatcher.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cai-qichang/cqc-photo/master/img/zookeeperCluster.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/cai-qichang/cqc-photo/master/img/zabSend.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/cai-qichang/cqc-photo/master/img/ZooKeeperConfiguration.png">
 <meta property="article:published_time" content="2023-05-15T11:51:00.000Z">
-<meta property="article:modified_time" content="2024-05-15T14:16:20.541Z">
+<meta property="article:modified_time" content="2024-05-16T14:01:01.863Z">
 <meta property="article:author" content="caiqichang">
 <meta property="article:tag" content="ZooKeeper">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://images.caiqichang.cn/2023img/znode.png">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/cai-qichang/cqc-photo/master/img/znode.png">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
@@ -312,7 +312,7 @@
 <h2 id="ZooKeeper-重要概念"><a href="#ZooKeeper-重要概念" class="headerlink" title="ZooKeeper 重要概念"></a>ZooKeeper 重要概念</h2><h3 id="Data-model（数据模型）"><a href="#Data-model（数据模型）" class="headerlink" title="Data model（数据模型）"></a>Data model（数据模型）</h3><ul>
 <li>ZooKeeper 数据模型采用层次化的多叉树形结构，每个节点上都可以存储数据（数字、字符串或者是二级制序列）。每个节点还可以拥有 N 个子节点，最上层是根节点以“&#x2F;”来代表。每个数据节点在 ZooKeeper 中被称为 znode，它是 ZooKeeper 中数据的最小单元。并且，每个 znode 都一个唯一的路径标识。</li>
 <li><strong>ZooKeeper 主要是用来协调服务的，而不是用来存储业务数据的，所以不要放比较大的数据在 znode 上，ZooKeeper 给出的上限是每个结点的数据大小最大是 1M。</strong></li>
-<li>zookeeper 节点表示：<br><img src="http://images.caiqichang.cn/2023img/znode.png" srcset="/img/loading.gif" lazyload alt="avatar"></li>
+<li>zookeeper 节点表示：<br><img src="https://raw.githubusercontent.com/cai-qichang/cqc-photo/master/img/znode.png" srcset="/img/loading.gif" lazyload alt="avatar"></li>
 </ul>
 <h3 id="znode（数据节点）"><a href="#znode（数据节点）" class="headerlink" title="znode（数据节点）"></a>znode（数据节点）</h3><ul>
 <li>每个数据节点在 ZooKeeper 中被称为 znode，它是 ZooKeeper 中数据的最小单元。</li>
@@ -351,7 +351,7 @@
 </ul>
 <h3 id="Watcher（事件监听器）"><a href="#Watcher（事件监听器）" class="headerlink" title="Watcher（事件监听器）"></a>Watcher（事件监听器）</h3><p>ZooKeeper 允许用户在指定节点上注册一些 Watcher，并且在一些特定事件触发的时候，ZooKeeper 服务端会将事件通知到感兴趣的客户端上去，该机制是 <strong>ZooKeeper 实现分布式协调服务的重要特性</strong>。</p>
 <blockquote>
-<p>特定事件如：监听Znode节点的数据变化、监听子节点的增减变化<br><img src="http://images.caiqichang.cn/2023img/zookeeperWatcher.png" srcset="/img/loading.gif" lazyload alt="avatar"></p>
+<p>特定事件如：监听Znode节点的数据变化、监听子节点的增减变化<br><img src="https://raw.githubusercontent.com/cai-qichang/cqc-photo/master/img/zookeeperWatcher.png" srcset="/img/loading.gif" lazyload alt="avatar"></p>
 </blockquote>
 <h3 id="会话"><a href="#会话" class="headerlink" title="会话"></a>会话</h3><p>Session 可以看作是 ZooKeeper 服务器与客户端的之间的一个 TCP 长连接。通过session</p>
 <ul>
@@ -367,7 +367,7 @@
 <h2 id="ZooKeeper集群"><a href="#ZooKeeper集群" class="headerlink" title="ZooKeeper集群"></a>ZooKeeper集群</h2><ul>
 <li>为了保证高可用，最好是以集群形态来部署 ZooKeeper，这样只要集群中大部分机器是可用的（能够容忍一定的机器故障）。通常 3 台服务器就可以构成一个 ZooKeeper 集群了</li>
 </ul>
-<p><img src="http://images.caiqichang.cn/2023img/zookeeperCluster.jpg" srcset="/img/loading.gif" lazyload alt="avatar"></p>
+<p><img src="https://raw.githubusercontent.com/cai-qichang/cqc-photo/master/img/zookeeperCluster.jpg" srcset="/img/loading.gif" lazyload alt="avatar"></p>
 <p>Server为ZooKeeper服务器，集群间通过 ZAB 协议（ZooKeeper Atomic Broadcast）来保持数据的一致性。</p>
 <ul>
 <li>最典型集群模式： Master&#x2F;Slave 模式（主备模式）。在这种模式中，通常 Master 服务器作为主服务器提供写服务，其他的 Slave 服务器从服务器通过异步复制的方式获取 Master 服务器最新的数据提供读服务。</li>
@@ -386,7 +386,7 @@
 <li>消息广播 ：当集群中已经有过半的Follower服务器完成了和Leader服务器的状态同步，那么整个服务框架就可以进入消息广播模式了。 </li>
 <li>崩溃恢复 ：当整个服务框架在运行过程中，当 Leader 服务器出现异常情况时，ZAB 协议就会进入恢复模式并选举产生新的Leader服务器。新Leader产生，集群其他机器就要与该服务器进行状态同步，保持数据一致。当过半服务器完成状态同步就退出恢复模式。</li>
 </ul>
-<h4 id="消息广播"><a href="#消息广播" class="headerlink" title="消息广播"></a>消息广播</h4><p><img src="http://images.caiqichang.cn/2023img/zabSend.jpg" srcset="/img/loading.gif" lazyload alt="avatar"></p>
+<h4 id="消息广播"><a href="#消息广播" class="headerlink" title="消息广播"></a>消息广播</h4><p><img src="https://raw.githubusercontent.com/cai-qichang/cqc-photo/master/img/zabSend.jpg" srcset="/img/loading.gif" lazyload alt="avatar"></p>
 <ul>
 <li>使用节点队列，保证follower和observer的顺序性。同时针对每个节点server也建立来了一个消息队列，使用TCP传输，保证消息的顺序性，避免消息因网络原因而导致处理顺序不一致，进而避免数据不一致问题。</li>
 <li>在 ZAB 中还定义了一个 全局单调递增的事务ID ZXID，同样也是为了保证顺序性。每个消息在leader中通过其 ZXID 来进行排序 ，才能得到处理。</li>
@@ -435,7 +435,7 @@
 <ul>
 <li>Eureka 注册中心会先试错，然后再更新</li>
 </ul>
-<p><img src="http://images.caiqichang.cn/2023img/ZooKeeperConfiguration.png" srcset="/img/loading.gif" lazyload alt="avatar"></p>
+<p><img src="https://raw.githubusercontent.com/cai-qichang/cqc-photo/master/img/ZooKeeperConfiguration.png" srcset="/img/loading.gif" lazyload alt="avatar"></p>
 <h3 id="配置中心"><a href="#配置中心" class="headerlink" title="配置中心"></a>配置中心</h3><ul>
 <li>现在有三个系统A、B、C，他们有三份配置，分别是ASystem.yml、BSystem.yml、CSystem.yml，抽取公共配置common.yml。</li>
 <li>将common.yml这份配置放在ZooKeeper的Znode节点中，系统A、B、C监听着这个Znode节点有无变更，如果变更了，及时响应。</li>
