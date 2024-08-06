@@ -9,8 +9,8 @@
   <meta charset="UTF-8">
   <!-- 通过 CDN 引入霞鹜文楷字体 -->
   <link rel="stylesheet" href="https://npm.elemecdn.com/lxgw-wenkai-screen-webfont/style.css" media="print" onload="this.media='all'">
-  <link rel="apple-touch-icon" sizes="76x76" href="/cqc-blog/img/me.png">
-  <link rel="icon" href="/cqc-blog/img/me.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/me.png">
+  <link rel="icon" href="/img/me.png">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
@@ -21,7 +21,7 @@
     <meta name="description" content="MySQLMySQL基本架构 MySQL可以分为Server层和存储引擎层两部分  Server层包括连接器、查询缓存、分析器、优化器、执行器等，涵盖MySQL的大多数核心服务功能，以及所有的内置函数（如日期、时间、数学和加密函数等），所有跨存储引擎的功能都在这一层实现，比如存储过程、触发器、视图等。 存储引擎层负责数据的存储和提取。其架构模式是插件式的，支持InnoDB、MyISAM、Memor">
 <meta property="og:type" content="article">
 <meta property="og:title" content="MySQL">
-<meta property="og:url" content="http://cactuscode.gitee.io/cqc-blog/2023/04/20/MySQL/index.html">
+<meta property="og:url" content="https://cai-qichang.github.io/2023/04/20/MySQL/index.html">
 <meta property="og:site_name" content="caiqichang&#39;s Blog">
 <meta property="og:description" content="MySQLMySQL基本架构 MySQL可以分为Server层和存储引擎层两部分  Server层包括连接器、查询缓存、分析器、优化器、执行器等，涵盖MySQL的大多数核心服务功能，以及所有的内置函数（如日期、时间、数学和加密函数等），所有跨存储引擎的功能都在这一层实现，比如存储过程、触发器、视图等。 存储引擎层负责数据的存储和提取。其架构模式是插件式的，支持InnoDB、MyISAM、Memor">
 <meta property="og:locale" content="zh_CN">
@@ -92,12 +92,12 @@
 <link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
 
 
-<link  rel="stylesheet" href="/cqc-blog/css/main.css" />
+<link  rel="stylesheet" href="/css/main.css" />
 
 
-  <link id="highlight-css" rel="stylesheet" href="/cqc-blog/css/highlight.css" />
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
   
-    <link id="highlight-css-dark" rel="stylesheet" href="/cqc-blog/css/highlight-dark.css" />
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
   
 
 
@@ -106,15 +106,15 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"cactuscode.gitee.io","root":"/cqc-blog/","version":"1.9.5","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/cqc-blog/local-search.xml","include_content_in_search":true};
+    var CONFIG = {"hostname":"cai-qichang.github.io","root":"/","version":"1.9.5","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
       Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
     }
   </script>
-  <script  src="/cqc-blog/js/utils.js" ></script>
-  <script  src="/cqc-blog/js/color-schema.js" ></script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
   
 
 
@@ -131,7 +131,7 @@
 <div class="header-inner" style="height: 70vh;">
   <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
-    <a class="navbar-brand" href="/cqc-blog/">
+    <a class="navbar-brand" href="/">
       <strong>caiqichang</strong>
     </a>
 
@@ -150,7 +150,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/cqc-blog/">
+              <a class="nav-link" href="/">
                 <i class="iconfont icon-home-fill"></i>
                 <span>首页</span>
               </a>
@@ -162,7 +162,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/cqc-blog/archives/">
+              <a class="nav-link" href="/archives/">
                 <i class="iconfont icon-archive-fill"></i>
                 <span>归档</span>
               </a>
@@ -174,7 +174,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/cqc-blog/categories/">
+              <a class="nav-link" href="/categories/">
                 <i class="iconfont icon-category-fill"></i>
                 <span>分类</span>
               </a>
@@ -186,7 +186,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/cqc-blog/tags/">
+              <a class="nav-link" href="/tags/">
                 <i class="iconfont icon-tags-fill"></i>
                 <span>标签</span>
               </a>
@@ -198,7 +198,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/cqc-blog/about/">
+              <a class="nav-link" href="/about/">
                 <i class="iconfont icon-user-fill"></i>
                 <span>关于</span>
               </a>
@@ -228,7 +228,7 @@
   
 
 <div id="banner" class="banner" parallax=true
-     style="background: url('/cqc-blog/img/yueqiu.jpg') no-repeat center center; background-size: cover;">
+     style="background: url('/img/yueqiu.jpg') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
       <div class="banner-text text-center fade-in-up">
@@ -310,7 +310,7 @@
             
               <div class="markdown-body">
                 
-                <h1 id="MySQL"><a href="#MySQL" class="headerlink" title="MySQL"></a>MySQL</h1><h2 id="MySQL基本架构"><a href="#MySQL基本架构" class="headerlink" title="MySQL基本架构"></a>MySQL基本架构</h2><p><img src="http://images.caiqichang.cn/2023img/mysqlprocess.jpg" srcset="/cqc-blog/img/loading.gif" lazyload alt="image"></p>
+                <h1 id="MySQL"><a href="#MySQL" class="headerlink" title="MySQL"></a>MySQL</h1><h2 id="MySQL基本架构"><a href="#MySQL基本架构" class="headerlink" title="MySQL基本架构"></a>MySQL基本架构</h2><p><img src="http://images.caiqichang.cn/2023img/mysqlprocess.jpg" srcset="/img/loading.gif" lazyload alt="image"></p>
 <p>MySQL可以分为Server层和存储引擎层两部分</p>
 <ul>
 <li>Server层包括连接器、查询缓存、分析器、优化器、执行器等，涵盖MySQL的大多数核心服务功能，以及所有的内置函数（如日期、时间、数学和加密函数等），所有跨存储引擎的功能都在这一层实现，比如存储过程、触发器、视图等。</li>
@@ -423,7 +423,7 @@
 </li>
 </ol>
 <p>回到主键索引树搜索的过程，我们称为<strong>回表</strong>。</p>
-<p>图解索引结构<br><img src="http://images.caiqichang.cn/2023img/indexquery.jpg" srcset="/cqc-blog/img/loading.gif" lazyload alt="image"><br>主键长度越小，普通索引的叶子节点就越小，普通索引占用的空间也就越小。所以，从<strong>性能和存储空间</strong>方面考量，自增主键往往是更合理的选择。</p>
+<p>图解索引结构<br><img src="http://images.caiqichang.cn/2023img/indexquery.jpg" srcset="/img/loading.gif" lazyload alt="image"><br>主键长度越小，普通索引的叶子节点就越小，普通索引占用的空间也就越小。所以，从<strong>性能和存储空间</strong>方面考量，自增主键往往是更合理的选择。</p>
 <h4 id="唯一索引与普通索引"><a href="#唯一索引与普通索引" class="headerlink" title="唯一索引与普通索引"></a>唯一索引与普通索引</h4><ol>
 <li>两者查询性能差不多。</li>
 <li>主要区别在于，更新的记录目标页不在内存中时。普通索引更新会使用change Buffer。唯一索引，由于需要校验数据的唯一性，因此每次更新操作都需要读磁盘把数据载进内存，涉及IO操作。</li>
@@ -458,7 +458,7 @@
 <li>排序方式：所有<strong>节点关键字是按递增次序排列</strong>，并遵循左小右大原则；</li>
 <li><strong>所有叶子节点均在同一层</strong>、叶子节点除了包含了关键字和关键字记录的指针外也有指向其子节点的指针只不过其指针地址都为null对应下图最后一层节点的空格子;</li>
 <li>子节点数：非叶节点的子节点数&gt;1，且&lt;&#x3D;M ，且M&gt;&#x3D;2，空树除外（注：M阶代表一个树节点最多有多少个查找路径，M&#x3D;M路,当M&#x3D;2则是2叉树,M&#x3D;3则是3叉）；</li>
-<li>关键字数：枝节点的关键字数量大于等于ceil(m&#x2F;2)-1个且小于等于M-1个（注：ceil()是个朝正无穷方向取整的函数 如ceil(1.1)结果为2);<br><img src="http://images.caiqichang.cn/2023img/Btree.jpg" srcset="/cqc-blog/img/loading.gif" lazyload alt="image"></li>
+<li>关键字数：枝节点的关键字数量大于等于ceil(m&#x2F;2)-1个且小于等于M-1个（注：ceil()是个朝正无穷方向取整的函数 如ceil(1.1)结果为2);<br><img src="http://images.caiqichang.cn/2023img/Btree.jpg" srcset="/img/loading.gif" lazyload alt="image"></li>
 </ol>
 <ul>
 <li>参考资料：<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/27700617">平衡二叉树、B树、B+树、B*树 理解其中一种你就都明白了</a></li>
@@ -897,12 +897,12 @@
 <blockquote>
 <p>select * from t lock in share mode;  &#x2F;&#x2F; lock in share mode是加共享锁的形式。</p>
 </blockquote>
-<h4 id="两阶段锁"><a href="#两阶段锁" class="headerlink" title="两阶段锁"></a>两阶段锁</h4><p>两阶段锁协议：在InnoDB事务中，行锁是在需要的时候才加上的，但并不是不需要了就立刻释放，而是要等到事务结束时才释放。<br><img src="http://images.caiqichang.cn/2023img/linelock.jpg" srcset="/cqc-blog/img/loading.gif" lazyload alt="image"></p>
+<h4 id="两阶段锁"><a href="#两阶段锁" class="headerlink" title="两阶段锁"></a>两阶段锁</h4><p>两阶段锁协议：在InnoDB事务中，行锁是在需要的时候才加上的，但并不是不需要了就立刻释放，而是要等到事务结束时才释放。<br><img src="http://images.caiqichang.cn/2023img/linelock.jpg" srcset="/img/loading.gif" lazyload alt="image"></p>
 <ul>
 <li>事务B的update语句会被阻塞，直到事务A执行commit之后，事务B才能继续执行</li>
 <li>如果你的事务中需要锁多个行，要把最可能造成锁冲突、 最可能影响并发度的锁尽量往后放。</li>
 </ul>
-<h3 id="死锁"><a href="#死锁" class="headerlink" title="死锁"></a>死锁</h3><p><img src="http://images.caiqichang.cn/2023img/deadlock.jpg" srcset="/cqc-blog/img/loading.gif" lazyload alt="image"><br>事务A在等待事务B释放id&#x3D;2的行锁，而事务B在等待事务A释放id&#x3D;1的行锁。 事务A和事务B在互相等待对方的资源释放，就是进入了死锁状态。 </p>
+<h3 id="死锁"><a href="#死锁" class="headerlink" title="死锁"></a>死锁</h3><p><img src="http://images.caiqichang.cn/2023img/deadlock.jpg" srcset="/img/loading.gif" lazyload alt="image"><br>事务A在等待事务B释放id&#x3D;2的行锁，而事务B在等待事务A释放id&#x3D;1的行锁。 事务A和事务B在互相等待对方的资源释放，就是进入了死锁状态。 </p>
 <h4 id="死锁策略"><a href="#死锁策略" class="headerlink" title="死锁策略"></a>死锁策略</h4><p>策略一：直接进入等待，直到超时。这个超时时间可以通过参数innodb_lock_wait_timeout来设置。在InnoDB中，innodb_lock_wait_timeout的默认值是50s</p>
 <p>策略二：发起死锁检测，发现死锁后，主动回滚死锁链条中的某一个事务，让其他事务得以继续执行。 将参数innodb_deadlock_detect设置为on，表示开启这个逻辑。</p>
 <ul>
@@ -914,14 +914,14 @@
 <li>在可重复读隔离级别下，普通的查询是快照读，是不会看到别的事务插入的数据的。因此，幻读在“当前读”下才会出现。</li>
 <li>session B的修改结果，被session A之后的select语句用“当前读”看到，不能称为幻读。 <strong>幻读仅专指“新插入的行</strong>”。</li>
 </ol>
-<p><img src="http://images.caiqichang.cn/2023img/phantomRead.jpg" srcset="/cqc-blog/img/loading.gif" lazyload alt="image"></p>
+<p><img src="http://images.caiqichang.cn/2023img/phantomRead.jpg" srcset="/img/loading.gif" lazyload alt="image"></p>
 <p>session A里执行了三次查询，分别是Q1、 Q2和Q3。 它们的SQL语句相同，都是select * from t where d&#x3D;5 for update。 表示查所有d&#x3D;5的行，而且使用的是当前读，并且加上写锁。 <br>其中，Q3读到id&#x3D;1这一行的现象，被称为“幻读”。 也就是说，幻读指的是一个事务在前后两次查询同一个范围的时候，后一次查询看到了前一次查询没有看到的行</p>
 <p>幻读会导致数据一致性的问题。 锁的设计是为了保证数据的一致性。 而这个一致性，不止是数据库内部数据状态在此刻的一致性，还包含了数据和日志在逻辑上的一致性。</p>
 <ol>
 <li>在可重复读隔离级别下，普通的查询是快照读，是不会看到别的事务插入的数据的。 因此，幻读在“当前读”下才会出现。</li>
 <li>上面session B的修改结果，被session A之后的select语句用“当前读”看到，不能称为幻读。幻读仅专指“新插入的行”</li>
 </ol>
-<p><img src="http://images.caiqichang.cn/2023img/phantomRead2.jpg" srcset="/cqc-blog/img/loading.gif" lazyload alt="image"></p>
+<p><img src="http://images.caiqichang.cn/2023img/phantomRead2.jpg" srcset="/img/loading.gif" lazyload alt="image"></p>
 <blockquote>
 <p>尝试解决幻读，把所有语句都上锁，查询语句改成<code>select * from t for update</code>。但是仍然无法解决插入新语句出现的幻读现象。</p>
 </blockquote>
@@ -1046,7 +1046,7 @@
 <p>实现机制：InnoDB在每行数据都增加三个隐藏字段，一个唯一行号，一个记录创建的版本号，一个记录删除的版本号。</p>
 <ul>
 <li>创建版本号：insert操作时事务的id。</li>
-<li>删除版本号：insert时为null，删除时为当前事务的id。<br>当读操作时，读取的是<strong>删除版本号为null</strong>，或者<strong>创建版本号最大的数据</strong>，保证我们读取的是最新的数据<br><img src="http://images.caiqichang.cn/2023img/mvcc-line.png" srcset="/cqc-blog/img/loading.gif" lazyload alt="image"></li>
+<li>删除版本号：insert时为null，删除时为当前事务的id。<br>当读操作时，读取的是<strong>删除版本号为null</strong>，或者<strong>创建版本号最大的数据</strong>，保证我们读取的是最新的数据<br><img src="http://images.caiqichang.cn/2023img/mvcc-line.png" srcset="/img/loading.gif" lazyload alt="image"></li>
 </ul>
 <h5 id="版本链"><a href="#版本链" class="headerlink" title="版本链"></a>版本链</h5><p>我们数据库中的每行数据，除了我们肉眼看见的数据，还有几个隐藏字段，分别是db_trx_id、db_roll_pointer、db_row_id。</p>
 <ul>
@@ -1057,7 +1057,7 @@
 <blockquote>
 <p>实际还有一个删除flag隐藏字段, 记录被更新或删除并不代表真的删除，而是删除flag变了</p>
 </blockquote>
-<p>例子：<br><img src="http://images.caiqichang.cn/2023img/versionChain.png" srcset="/cqc-blog/img/loading.gif" lazyload alt="image"></p>
+<p>例子：<br><img src="http://images.caiqichang.cn/2023img/versionChain.png" srcset="/img/loading.gif" lazyload alt="image"></p>
 <ol>
 <li>db_row_id是数据库默认为该行记录生成的唯一隐式主键</li>
 <li>db_trx_id是记录创建这条记录以及最后一次修改该记录的事务的ID。</li>
@@ -1080,7 +1080,7 @@
 <li>隔离级别是读已提交：快照读总是取最新的版本即可，即最近被 Commit 的那个版本的数据记录。<br>另外两个隔离级别都没有必要用到 MVCC，因为读未提交直接修改原始数据即可，其他事务查看数据的时候立刻可以看到，根本无须版本字段。可串行化本来的语义就是要阻塞其他事务的读取操作，而 MVCC 是做读取时无锁优化的，自然就不会放到一起用。</li>
 </ul>
 <p>在RR隔离级别下，分析隔离级别，此时已有一个事务ID 99，其他三个事务如下，事务开启时刻，带上已生效的版本号ID</p>
-<p><img src="http://images.caiqichang.cn/2023img/transactiongeli2.png" srcset="/cqc-blog/img/loading.gif" lazyload alt="image"></p>
+<p><img src="http://images.caiqichang.cn/2023img/transactiongeli2.png" srcset="/img/loading.gif" lazyload alt="image"></p>
 <p>事务A视图版本100，事务B视图版本101，事务C视图版本102</p>
 <ol>
 <li>更新数据都是先读后写的，而这个读，只能读当前的值，称为“当前读”（ current read） 。</li>
@@ -1104,7 +1104,7 @@
 <li>在读提交隔离级别下，每一个语句执行前都会重新算出一个新的视图。</li>
 </ol>
 <p>下述场景中，读提交(RC)隔离级别下：</p>
-<p><img src="http://images.caiqichang.cn/2023img/transactiongeli4.png" srcset="/cqc-blog/img/loading.gif" lazyload alt="image"></p>
+<p><img src="http://images.caiqichang.cn/2023img/transactiongeli4.png" srcset="/img/loading.gif" lazyload alt="image"></p>
 <p>事务A查询语句返回的是k&#x3D;2。事务B查询结果k&#x3D;3。</p>
 <h4 id="参考资料-1"><a href="#参考资料-1" class="headerlink" title="参考资料"></a>参考资料</h4><ul>
 <li><a target="_blank" rel="noopener" href="https://www.php.cn/mysql-tutorials-460111.html">全网最全的一篇数据库MVCC详解，不全我负责</a></li>
@@ -1121,9 +1121,9 @@
 <li>当有一条记录需要更新的时候，InnoDB引擎就会先把记录写到redo log（粉板） 里面，并更新<strong>内存</strong>，这个时候更新就算完成了。 同时，InnoDB引擎会在适当的时候，将这个操作记录更新到磁盘里面，而这个更新往往是在系统比较空闲的时候做，这就像打烊以后掌柜做的事。(由于磁盘连接开销大，)</li>
 <li>InnoDB的redo log是固定大小的，比如可以配置为一组4个文件，每个文件的大小是1GB，那么这块“粉板”总共就可以记录4GB的操作。 从头开始写，写到末尾就又回到开头循环写，如下面这个图所示</li>
 </ul>
-<p><img src="http://images.caiqichang.cn/2023img/redologwrite.jpg" srcset="/cqc-blog/img/loading.gif" lazyload alt="image"></p>
+<p><img src="http://images.caiqichang.cn/2023img/redologwrite.jpg" srcset="/img/loading.gif" lazyload alt="image"></p>
 <p>redo log buffer ：redo log buffer就是一块内存，用来先存redo日志的。 在执行事务的时候，如insert、update会先存在buffer中。等事务commit，再一起写入redo log</p>
-<h4 id="redo-log-写入机制"><a href="#redo-log-写入机制" class="headerlink" title="redo log 写入机制"></a>redo log 写入机制</h4><p><img src="http://images.caiqichang.cn/2023img/redologwrite.png" srcset="/cqc-blog/img/loading.gif" lazyload alt="image"></p>
+<h4 id="redo-log-写入机制"><a href="#redo-log-写入机制" class="headerlink" title="redo log 写入机制"></a>redo log 写入机制</h4><p><img src="http://images.caiqichang.cn/2023img/redologwrite.png" srcset="/img/loading.gif" lazyload alt="image"></p>
 <p>这三种状态分别是：</p>
 <ol>
 <li>存在redo log buffer中，物理上是在MySQL进程内存中，就是图中的红色部分；</li>
@@ -1143,7 +1143,7 @@
 <li>并行的事务提交的时候，顺带将这个事务的redo log buffer持久化到磁盘。</li>
 </ol>
 <h3 id="binlog"><a href="#binlog" class="headerlink" title="binlog"></a>binlog</h3><p>MySQL整体来看，其实就有两块： 一块是Server层，它主要做的是MySQL功能层面的事情； 还有一块是引擎层，负责存储相关的具体事宜。 上面我们聊到的粉板redo log是InnoDB引擎特有的日志，而Server层也有自己的日志，称为binlog（归档日志） 。</p>
-<h4 id="binlog写入机制"><a href="#binlog写入机制" class="headerlink" title="binlog写入机制"></a>binlog写入机制</h4><p><img src="http://images.caiqichang.cn/2023img/binlogwrite.jpg" srcset="/cqc-blog/img/loading.gif" lazyload alt="image"></p>
+<h4 id="binlog写入机制"><a href="#binlog写入机制" class="headerlink" title="binlog写入机制"></a>binlog写入机制</h4><p><img src="http://images.caiqichang.cn/2023img/binlogwrite.jpg" srcset="/img/loading.gif" lazyload alt="image"></p>
 <p>每个线程有自己binlog cache，但是共用同一份binlog文件。</p>
 <ol>
 <li>图中的write，指的就是指把日志写入到文件系统的page cache，并没有把数据持久化到磁盘，所以速度比较快。</li>
@@ -1173,7 +1173,7 @@
 </blockquote>
 <h3 id="crash-safe的设置"><a href="#crash-safe的设置" class="headerlink" title="crash-safe的设置"></a>crash-safe的设置</h3><p>redo log用于保证crash-safe能力。innodb_flush_log_at_trx_commit这个参数设置成1的时候，表示每次事务的redo log都直接持久化到磁盘，建议设置成1，这样可以保证 MySQL异常重启之后数据不丢失。 <br>sync_binlog这个参数设置成1的时候，表示每次事务的binlog都持久化到磁盘。这个参数也建议你设置成1，这样可以保证MySQL异常重启之后binlog不丢失。</p>
 <p>这就是通常说的MySQL的“双1”配置，指的就是sync_binlog和innodb_flush_log_at_trx_commit都设 置成 1。也就是说，一个事务完整提交前，需要等待两次刷盘，一次是<strong>redo log（prepare 阶段）</strong>，一次是binlog。</p>
-<h3 id="两阶段提交"><a href="#两阶段提交" class="headerlink" title="两阶段提交"></a>两阶段提交</h3><p><img src="http://images.caiqichang.cn/2023img/twocommit.jpg" srcset="/cqc-blog/img/loading.gif" lazyload alt="image"></p>
+<h3 id="两阶段提交"><a href="#两阶段提交" class="headerlink" title="两阶段提交"></a>两阶段提交</h3><p><img src="http://images.caiqichang.cn/2023img/twocommit.jpg" srcset="/img/loading.gif" lazyload alt="image"></p>
 <p>两阶段提交：主要用于保证redo log 与binlog 的状态保持逻辑上一致。</p>
 <p>图中 两个“commit”的概念：<br>“commit语句”，是指MySQL语法中，用于提交一个事务的命令。一般跟begin&#x2F;start transaction配对使用。<br>图中用到的这个“commit步骤”，指的是事务提交过程中的一个小步骤，也是最后一步。 当这个步骤执行完成后，这个事务就提交完成了。<br>“commit语句”执行的时候，会包含“commit 步骤</p>
 <p><strong>崩溃后的数据恢复阶段</strong>:<br>如果在更新或写入数据的过程中，机器出现崩溃。那么在机器在重启后，MySQL会首先去验证redo log的完整性，如果redo log中没有prepare状态的记录，则记录是完整的，就日记提交。如果redolog中存在prepare记录，那么就去验证这条redolog对应的binlog记录，如果这条binlog是完整的，那么完整提交redo log，否则执行回滚逻辑</p>
@@ -1225,7 +1225,7 @@
 <li><p>事务提交的时候，一次性将事务中的sql语句（一个事物可能对应多个sql语句）按照一定的格式记录到binlog中。这里与redo log很明显的差异就是redo log并不一定是在事务提交的时候刷新到磁盘，redo log是在事务开始之后就开始逐步写入磁盘。</p>
 </li>
 </ol>
-<h3 id="两阶段提交的组提交机制执行流程"><a href="#两阶段提交的组提交机制执行流程" class="headerlink" title="两阶段提交的组提交机制执行流程"></a>两阶段提交的组提交机制执行流程</h3><p>crash-safe的参数设置会导致频繁的刷盘，在高TPS下容易达到磁盘能力的瓶颈。<br>MySQL为了让组提交的效果更好，把redo log做fsync的时间拖到了binlog write 之后，整体的提交流程改成如下：<br><img src="http://images.caiqichang.cn/2023img/actualWrite.jpg" srcset="/cqc-blog/img/loading.gif" lazyload alt="image"></p>
+<h3 id="两阶段提交的组提交机制执行流程"><a href="#两阶段提交的组提交机制执行流程" class="headerlink" title="两阶段提交的组提交机制执行流程"></a>两阶段提交的组提交机制执行流程</h3><p>crash-safe的参数设置会导致频繁的刷盘，在高TPS下容易达到磁盘能力的瓶颈。<br>MySQL为了让组提交的效果更好，把redo log做fsync的时间拖到了binlog write 之后，整体的提交流程改成如下：<br><img src="http://images.caiqichang.cn/2023img/actualWrite.jpg" srcset="/img/loading.gif" lazyload alt="image"></p>
 <p>WAL机制主要得益于两个方面：</p>
 <ol>
 <li>redo log 和 binlog都是顺序写，磁盘的顺序写比随机写速度要快；</li>
@@ -1262,11 +1262,11 @@
 <h3 id="order-by-处理流程"><a href="#order-by-处理流程" class="headerlink" title="order by 处理流程"></a>order by 处理流程</h3><h4 id="全字段排序"><a href="#全字段排序" class="headerlink" title="全字段排序"></a>全字段排序</h4><p>全字段排序，按字面意思就是按字段进行排序的一种处理方式。</p>
 <figure class="highlight n1ql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs n1ql"><span class="hljs-keyword">CREATE</span> TABLE <span class="hljs-symbol">`t`</span> (<br><span class="hljs-symbol">`id`</span> int(<span class="hljs-number">11</span>) <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>,<br><span class="hljs-symbol">`city`</span> varchar(<span class="hljs-number">16</span>) <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>,<br><span class="hljs-symbol">`name`</span> varchar(<span class="hljs-number">16</span>) <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>,<br><span class="hljs-symbol">`age`</span> int(<span class="hljs-number">11</span>) <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>,<br><span class="hljs-symbol">`addr`</span> varchar(<span class="hljs-number">128</span>) DEFAULT <span class="hljs-literal">NULL</span>,<br><span class="hljs-keyword">PRIMARY</span> <span class="hljs-keyword">KEY</span> (<span class="hljs-symbol">`id`</span>),<br><span class="hljs-keyword">KEY</span> <span class="hljs-symbol">`city`</span> (<span class="hljs-symbol">`city`</span>)<br>) ENGINE=InnoDB;<br><br><span class="hljs-keyword">select</span> city,name,age <span class="hljs-keyword">from</span> t <span class="hljs-keyword">where</span> city=<span class="hljs-string">&#x27;杭州&#x27;</span> <span class="hljs-keyword">order</span> <span class="hljs-keyword">by</span> name <span class="hljs-keyword">limit</span> <span class="hljs-number">1000</span> ;<br></code></pre></td></tr></table></figure>
 
-<p><img src="http://images.caiqichang.cn/2023img/orderby1.jpg" srcset="/cqc-blog/img/loading.gif" lazyload alt="image"></p>
+<p><img src="http://images.caiqichang.cn/2023img/orderby1.jpg" srcset="/img/loading.gif" lazyload alt="image"></p>
 <blockquote>
 <p>Extra这个字段中的<code>Using filesort</code>表示的就是需要排序，MySQL会给每个线程分配一块内存用于排序，称为sort_buffer。</p>
 </blockquote>
-<p><img src="http://images.caiqichang.cn/2023img/orderby2.jpg" srcset="/cqc-blog/img/loading.gif" lazyload alt="image"><br>这个语句执行流程如下所示 ：</p>
+<p><img src="http://images.caiqichang.cn/2023img/orderby2.jpg" srcset="/img/loading.gif" lazyload alt="image"><br>这个语句执行流程如下所示 ：</p>
 <ol>
 <li>初始化<code>sort_buffer</code>，确定放入<code>name、city、age</code>这三个字段；</li>
 <li>从索引city找到第一个满足<code>city=&#39;杭州’</code>条件的主键id，也就是图中的ID_X；</li>
@@ -1291,7 +1291,7 @@
 <figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs awk"><span class="hljs-regexp">/* 打开optimizer_trace，只对本线程有效 */</span><br>SET optimizer_trace=<span class="hljs-string">&#x27;enabled=on&#x27;</span>;<br></code></pre></td></tr></table></figure>
 
 
-<h4 id="rowId排序"><a href="#rowId排序" class="headerlink" title="rowId排序"></a>rowId排序</h4><p><code>max_length_for_sort_data</code>: 是MySQL中专门控制用于排序的行数据的长度的一个参数。它的意思是，如果单行的长度超过这个值，MySQL就认为单行太大，要换一个算法。<br><img src="http://images.caiqichang.cn/2023img/orderby3.jpg" srcset="/cqc-blog/img/loading.gif" lazyload alt="image"></p>
+<h4 id="rowId排序"><a href="#rowId排序" class="headerlink" title="rowId排序"></a>rowId排序</h4><p><code>max_length_for_sort_data</code>: 是MySQL中专门控制用于排序的行数据的长度的一个参数。它的意思是，如果单行的长度超过这个值，MySQL就认为单行太大，要换一个算法。<br><img src="http://images.caiqichang.cn/2023img/orderby3.jpg" srcset="/img/loading.gif" lazyload alt="image"></p>
 <blockquote>
 <p>与全字段排序的区别，主要体现在内存排序完毕之后要多一次查询。因为排序的字段超过了<code>max_length_for_sort_data</code>的限制。</p>
 </blockquote>
@@ -1305,7 +1305,7 @@
 </blockquote>
 <p>order by rand()使用了内存临时表，内存临时表排序的时候使用了<code>rowid排序</code>方法。<br>直接使用order by rand()，这个语句需要Using temporary和 Using filesort，查询的执行代价往往是比较大的</p>
 <h3 id="join的执行过程"><a href="#join的执行过程" class="headerlink" title="join的执行过程"></a>join的执行过程</h3><p>以下为三种join算法，主要的区别在于连接的字段是否有索引</p>
-<h4 id="Index-Nested-Loop-Join"><a href="#Index-Nested-Loop-Join" class="headerlink" title="Index Nested-Loop Join"></a>Index Nested-Loop Join</h4><p><img src="http://images.caiqichang.cn/2023img/indexJoin.png" srcset="/cqc-blog/img/loading.gif" lazyload alt="image"></p>
+<h4 id="Index-Nested-Loop-Join"><a href="#Index-Nested-Loop-Join" class="headerlink" title="Index Nested-Loop Join"></a>Index Nested-Loop Join</h4><p><img src="http://images.caiqichang.cn/2023img/indexJoin.png" srcset="/img/loading.gif" lazyload alt="image"></p>
 <p><code>select * from t1 straight_join t2 on (t1.a=t2.a);</code>  t1与t2的a字段均有索引。<br>执行流程：</p>
 <ol>
 <li>从表t1中读入一行数据 R；</li>
@@ -1337,7 +1337,7 @@
 <li>把表t1的数据读入线程内存join_buffer中，由于这个语句中写的是<code>select *</code>，因此是把整个表t1放入了内存； </li>
 <li>扫描表t2，把表t2中的每一行取出来，跟join_buffer中的数据做对比，满足join条件的，作为结果集的一部分返回。</li>
 </ol>
-<p>如果t1的数据超过了join buffer的限制，那整个执行流程如下，处理完部分数据先放到结果集中：<br><img src="http://images.caiqichang.cn/2023img/blockJoin.png" srcset="/cqc-blog/img/loading.gif" lazyload alt="image"></p>
+<p>如果t1的数据超过了join buffer的限制，那整个执行流程如下，处理完部分数据先放到结果集中：<br><img src="http://images.caiqichang.cn/2023img/blockJoin.png" srcset="/img/loading.gif" lazyload alt="image"></p>
 <h4 id="join语句mysql的优化"><a href="#join语句mysql的优化" class="headerlink" title="join语句mysql的优化"></a>join语句mysql的优化</h4><p><code>Multi-Range Read</code>优化</p>
 <ul>
 <li>大多数的数据都是按照主键递增顺序插入得到的，所以可以认为，如果按照主键的递增顺序查询的话，对磁盘的读比较接近顺序读，能够提升读性能</li>
@@ -1354,7 +1354,7 @@
 <li>在使用join的时候，应该让<strong>小表做驱动表</strong>，连接表按各自条件进行过滤后，数据量小的为小表</li>
 <li>把join的条件写在where和写在on中区别为：一个为连接的条件，一个为过滤的条件。</li>
 </ol>
-<h3 id="union执行流程"><a href="#union执行流程" class="headerlink" title="union执行流程"></a>union执行流程</h3><p><img src="http://images.caiqichang.cn/2023img/union1.png" srcset="/cqc-blog/img/loading.gif" lazyload alt="image"></p>
+<h3 id="union执行流程"><a href="#union执行流程" class="headerlink" title="union执行流程"></a>union执行流程</h3><p><img src="http://images.caiqichang.cn/2023img/union1.png" srcset="/img/loading.gif" lazyload alt="image"></p>
 <p><code>(select 1000 as f) union (select id from t1 order by id desc limit 2);</code><br>执行流程：</p>
 <ol>
 <li>创建一个内存临时表，这个临时表只有一个整型字段f，并且f是主键字段。</li>
@@ -1362,7 +1362,7 @@
 <li>执行第二个子查询：拿到第一行id&#x3D;1000，试图插入临时表中。但由于1000这个值已经存在于临时表了，违反了唯一性约束，所以插入失败，然后继续执行；取到第二行id&#x3D;999，插入临时表成功。</li>
 <li>从临时表中按行取出数据，返回结果，并删除临时表，结果中包含两行数据分别是1000和999</li>
 </ol>
-<p><img src="http://images.caiqichang.cn/2023img/union.jpg" srcset="/cqc-blog/img/loading.gif" lazyload alt="image"></p>
+<p><img src="http://images.caiqichang.cn/2023img/union.jpg" srcset="/img/loading.gif" lazyload alt="image"></p>
 <p><strong>union all</strong>:<br><code>(select 1000 as f) union all(select id from t1 order by id desc limit 2);</code><br>与上面<code>union</code>的区别为<code>union all</code>不需要除重，因此直接把查询结果放在结果集中返回。</p>
 <h3 id="group-by-执行流程"><a href="#group-by-执行流程" class="headerlink" title="group by 执行流程"></a>group by 执行流程</h3><p><code>select id%10 as m, count(*) as c from t1 group by m;</code><br>使用explain分析sql</p>
 <ul>
@@ -1370,7 +1370,7 @@
 <li><code>Using temporary</code>，表示使用了临时表；</li>
 <li><code>Using filesort</code>，表示需要文件排序。</li>
 </ul>
-<p><img src="http://images.caiqichang.cn/2023img/groupby.png" srcset="/cqc-blog/img/loading.gif" lazyload alt="image"></p>
+<p><img src="http://images.caiqichang.cn/2023img/groupby.png" srcset="/img/loading.gif" lazyload alt="image"></p>
 <p>这个语句的执行流程：</p>
 <ol>
 <li>创建内存临时表，表里有两个字段m和c，主键是m；</li>
@@ -1403,7 +1403,7 @@
 <blockquote>
 <p>这个策略，就是为了处理类似全表扫描的操作量身定制的。防止一个对历史数据大表的全表扫描，而导致Buffer Pool的内存命中率急剧下降</p>
 </blockquote>
-<p><img src="http://images.caiqichang.cn/2023img/lru.png" srcset="/cqc-blog/img/loading.gif" lazyload alt="image"></p>
+<p><img src="http://images.caiqichang.cn/2023img/lru.png" srcset="/img/loading.gif" lazyload alt="image"></p>
 <p>执行流程：</p>
 <ol>
 <li>访问数据页P3，P3位于young区域，移动到队头</li>
@@ -1429,7 +1429,7 @@
 <blockquote>
 <p>将数据从磁盘读入内存涉及随机IO的访问，是数据库里面成本最高的操作之一。<br>change buffer 因为减少了随机磁盘访问，所以对更新性能的提升是会很明显的。</p>
 </blockquote>
-<h4 id="change-buffer-和-redo-log"><a href="#change-buffer-和-redo-log" class="headerlink" title="change buffer 和 redo log"></a>change buffer 和 redo log</h4><p><img src="http://images.caiqichang.cn/2023img/changebuffer.png" srcset="/cqc-blog/img/loading.gif" lazyload alt="image"></p>
+<h4 id="change-buffer-和-redo-log"><a href="#change-buffer-和-redo-log" class="headerlink" title="change buffer 和 redo log"></a>change buffer 和 redo log</h4><p><img src="http://images.caiqichang.cn/2023img/changebuffer.png" srcset="/img/loading.gif" lazyload alt="image"></p>
 <figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs scss">mysql&gt; insert into <span class="hljs-built_in">t</span>(id,k) <span class="hljs-built_in">values</span>(id1,k1),(id2,k2);<br></code></pre></td></tr></table></figure>
 
 <p>图中涉及了四个部分：内存、redo log（ib_log_fileX）、 数据表空间 （t.ibd）、系统表空间（ibdata1）。</p>
@@ -1444,7 +1444,7 @@
 </blockquote>
 <p>具体可见order by排序章节</p>
 <h3 id="内存临时表"><a href="#内存临时表" class="headerlink" title="内存临时表"></a>内存临时表</h3><p>使用<code>explain</code>关键字分析中：<code>Extra</code>字段显示<code>Using temporary</code>，表示的是需要使用临时表；<code>Using filesort</code>，表示的是需要执行 排序操作。</p>
-<p><img src="http://images.caiqichang.cn/2023img/orderTmpMemoryTable.png" srcset="/cqc-blog/img/loading.gif" lazyload alt="image"></p>
+<p><img src="http://images.caiqichang.cn/2023img/orderTmpMemoryTable.png" srcset="/img/loading.gif" lazyload alt="image"></p>
 <p>在order by 排序中，若数据超过sort buffer的大小，那么就会考虑使用内存临时表<br><code>select word from words order by rand() limit 3;</code></p>
 <ol>
 <li>创建一个临时表。这个临时表使用的是memory引擎，这个表没有建索引。 </li>
@@ -1541,14 +1541,14 @@
 </ol>
 <h2 id="MySQL架构"><a href="#MySQL架构" class="headerlink" title="MySQL架构"></a>MySQL架构</h2><h3 id="主从模式-读写分离"><a href="#主从模式-读写分离" class="headerlink" title="主从模式(读写分离)"></a>主从模式(读写分离)</h3><p>读写分离的主要目标就是分摊主库的压力</p>
 <p>客户端直连</p>
-<p><img src="http://images.caiqichang.cn/2023img/readwrite1.png" srcset="/cqc-blog/img/loading.gif" lazyload alt="image"></p>
+<p><img src="http://images.caiqichang.cn/2023img/readwrite1.png" srcset="/img/loading.gif" lazyload alt="image"></p>
 <p>上述的结构是客户端(client)主动做负载均衡，这种模式下一般会把数据库的连接信息放在客户端的连接层。也就是说，由客户端来选择后端数据库进行查询。</p>
 <ul>
 <li>优点：客户端直连方案，因为少了一层proxy转发，所以查询性能稍微好一点儿，并且整体架构简单，排查问题更方便。</li>
 <li>缺点：在出现主备切换、库迁移等操作的时候，客户端都会感知到，并且需要调整数据库连接信息。</li>
 </ul>
 <p>客户端连接代理proxy</p>
-<p><img src="http://images.caiqichang.cn/2023img/readwrite2.png" srcset="/cqc-blog/img/loading.gif" lazyload alt="image"></p>
+<p><img src="http://images.caiqichang.cn/2023img/readwrite2.png" srcset="/img/loading.gif" lazyload alt="image"></p>
 <p>在MySQL和客户端之间有一个中间代理层proxy，客户端只连接proxy，由proxy根据请求类型和上下文决定请求的分发路由。</p>
 <ul>
 <li>优点：客户端不需要关注后端细节，连接维护、后端信息维 护等工作，都是由proxy完成的。</li>
@@ -1577,7 +1577,7 @@
 </blockquote>
 <p>水平分表是在同一个数据库内，把同一个表的数据按一定规则拆到多个表中。</p>
 <h4 id="分库分表的查询"><a href="#分库分表的查询" class="headerlink" title="分库分表的查询"></a>分库分表的查询</h4><p>一般分库分表的场景，就是要把一个逻辑上的大表分散到不同的数据库实例上。比如。将一个大 表ht，按照<strong>字段f</strong>，拆分成1024个分表，然后分布到32个数据库实例上。一般情况下，这种分库分表系统都有一个中间层proxy。</p>
-<p><img src="http://images.caiqichang.cn/2023img/shardTable.png" srcset="/cqc-blog/img/loading.gif" lazyload alt="image"></p>
+<p><img src="http://images.caiqichang.cn/2023img/shardTable.png" srcset="/img/loading.gif" lazyload alt="image"></p>
 <p><code>select v from ht where f=N;</code><br>通过分表规则（比如，N%1024)来确认需要的数据被放在了哪个分表上。这种语句只需要访问一个分表</p>
 <p><code>select v from ht where k &gt;= M order by t_modified desc limit 100;</code><br>由于查询条件里面没有用到分区字段f，只能到所有的分区中去查找满足条件的所有 行，然后统一做order by的操作。</p>
 <p>思路1：在proxy层的进程代码中实现排序。<br>缺点：</p>
@@ -1608,7 +1608,7 @@
 <li>主库会生成一个 log dump 线程，用来给从库 I&#x2F;O 线程传 binlog；</li>
 <li>SQL 线程会读取 relay log 文件中的日志，并解析成具体操作，来实现主从的操作一致，而最终数据一致；</li>
 </ol>
-<p><img src="http://images.caiqichang.cn/2023img/master-slave-sync.png" srcset="/cqc-blog/img/loading.gif" lazyload alt="image"></p>
+<p><img src="http://images.caiqichang.cn/2023img/master-slave-sync.png" srcset="/img/loading.gif" lazyload alt="image"></p>
 <p><strong>请求流程</strong>:<br>MySQL 建立请求的主从的详细流程如下：</p>
 <ol>
 <li>当从服务器连接主服务器时，主服务器会创建一个 log dump 线程，用于发送 binlog 的内容。在读取 binlog 的内容的操作中，会对象主节点上的 binlog 加锁，当读取完成并发送给从服务器后解锁。</li>
@@ -1616,7 +1616,7 @@
 <li>从节点 SQL 线程负责读取 realy-log 中的内容，解析成具体的操作执行，最终保证主从数据的一致性。</li>
 </ol>
 <h4 id="MySQL异步复制"><a href="#MySQL异步复制" class="headerlink" title="MySQL异步复制"></a>MySQL异步复制</h4><p>master事务的提交不需要经过slave的确认。<br>master不关心slave是否接收到master的binlog。slave接收到master的binlog后先写relay log，最后异步地去执行relay log中的sql应用到自身。<br>由于master的提交不需要确保slave relay log是否被正确接受，当slave接受master binlog失败或者relay log应用失败，master无法感知。</p>
-<h4 id="MySQL半同步复制"><a href="#MySQL半同步复制" class="headerlink" title="MySQL半同步复制"></a>MySQL半同步复制</h4><p><img src="http://images.caiqichang.cn/2023img/master-slave-half-sync.png" srcset="/cqc-blog/img/loading.gif" lazyload alt="image"></p>
+<h4 id="MySQL半同步复制"><a href="#MySQL半同步复制" class="headerlink" title="MySQL半同步复制"></a>MySQL半同步复制</h4><p><img src="http://images.caiqichang.cn/2023img/master-slave-half-sync.png" srcset="/img/loading.gif" lazyload alt="image"></p>
 <p>在master事务的commit之前，必须确保一个slave收到relay log并且响应给master以后，才能进行事务的commit。但是slave对于relay log的应用仍然是异步进行的</p>
 <h4 id="MySQL组复制"><a href="#MySQL组复制" class="headerlink" title="MySQL组复制"></a>MySQL组复制</h4><p>基于传统异步复制和半同步复制的缺陷——数据的一致性问题无法保证</p>
 <h2 id="其他面试题"><a href="#其他面试题" class="headerlink" title="其他面试题"></a>其他面试题</h2><h3 id="主键索引是否使用自增"><a href="#主键索引是否使用自增" class="headerlink" title="主键索引是否使用自增"></a>主键索引是否使用自增</h3><p>使用自增好处：</p>
@@ -1853,7 +1853,7 @@
     
       <span class="category-chain">
         
-  <a href="/cqc-blog/categories/%E4%B8%AD%E9%97%B4%E4%BB%B6/" class="category-chain-item">中间件</a>
+  <a href="/categories/%E4%B8%AD%E9%97%B4%E4%BB%B6/" class="category-chain-item">中间件</a>
   
   
 
@@ -1868,7 +1868,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/cqc-blog/tags/MySQL/" class="print-no-link">#MySQL</a>
+        <a href="/tags/MySQL/" class="print-no-link">#MySQL</a>
       
     </div>
   
@@ -1881,7 +1881,7 @@
   <div class="license-box my-3">
     <div class="license-title">
       <div>MySQL</div>
-      <div>http://cactuscode.gitee.io/cqc-blog/2023/04/20/MySQL/</div>
+      <div>https://cai-qichang.github.io/2023/04/20/MySQL/</div>
     </div>
     <div class="license-meta">
       
@@ -1918,7 +1918,7 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/cqc-blog/2023/04/25/MongoDB/" title="MongoDB">
+                      <a href="/2023/04/25/MongoDB/" title="MongoDB">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">MongoDB</span>
                         <span class="visible-mobile">上一篇</span>
@@ -1928,7 +1928,7 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/cqc-blog/2023/04/15/Redis/" title="Redis">
+                      <a href="/2023/04/15/Redis/" title="Redis">
                         <span class="hidden-mobile">Redis</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
@@ -2093,8 +2093,8 @@
 
 <script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
 <script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
-<script  src="/cqc-blog/js/events.js" ></script>
-<script  src="/cqc-blog/js/plugins.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
 
 
   <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
@@ -2116,7 +2116,7 @@
 
 
   
-    <script  src="/cqc-blog/js/img-lazyload.js" ></script>
+    <script  src="/js/img-lazyload.js" ></script>
   
 
 
@@ -2215,7 +2215,7 @@
 
   <script>Fluid.plugins.imageCaption();</script>
 
-  <script  src="/cqc-blog/js/local-search.js" ></script>
+  <script  src="/js/local-search.js" ></script>
 
   <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
 
@@ -2225,7 +2225,7 @@
 
 <!-- 主题的启动项，将它保持在最底部 -->
 <!-- the boot of the theme, keep it at the bottom -->
-<script  src="/cqc-blog/js/boot.js" ></script>
+<script  src="/js/boot.js" ></script>
 
 
   

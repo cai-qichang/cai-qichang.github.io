@@ -9,8 +9,8 @@
   <meta charset="UTF-8">
   <!-- 通过 CDN 引入霞鹜文楷字体 -->
   <link rel="stylesheet" href="https://npm.elemecdn.com/lxgw-wenkai-screen-webfont/style.css" media="print" onload="this.media='all'">
-  <link rel="apple-touch-icon" sizes="76x76" href="/cqc-blog/img/me.png">
-  <link rel="icon" href="/cqc-blog/img/me.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/me.png">
+  <link rel="icon" href="/img/me.png">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
@@ -21,7 +21,7 @@
     <meta name="description" content="消息队列参考资料：  消息队列背后的设计思想 Kafka 精妙的高性能设计(上篇) Kafka 精妙的高性能设计(下篇) Kafka 概述：深入理解架构 冰河-字节跳动面试官这样问消息队列：高可用、不重复消费、可靠传输、顺序消费、消息堆积，我整理了下 面试官让我重构 Kafka，懵了…… Pulsar 【RabbitMQ的那点事】Exchange类型（超详细） RabbitMQ  为什么使用消息队">
 <meta property="og:type" content="article">
 <meta property="og:title" content="消息队列">
-<meta property="og:url" content="http://cactuscode.gitee.io/cqc-blog/2023/05/20/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/index.html">
+<meta property="og:url" content="https://cai-qichang.github.io/2023/05/20/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/index.html">
 <meta property="og:site_name" content="caiqichang&#39;s Blog">
 <meta property="og:description" content="消息队列参考资料：  消息队列背后的设计思想 Kafka 精妙的高性能设计(上篇) Kafka 精妙的高性能设计(下篇) Kafka 概述：深入理解架构 冰河-字节跳动面试官这样问消息队列：高可用、不重复消费、可靠传输、顺序消费、消息堆积，我整理了下 面试官让我重构 Kafka，懵了…… Pulsar 【RabbitMQ的那点事】Exchange类型（超详细） RabbitMQ  为什么使用消息队">
 <meta property="og:locale" content="zh_CN">
@@ -86,12 +86,12 @@
 <link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
 
 
-<link  rel="stylesheet" href="/cqc-blog/css/main.css" />
+<link  rel="stylesheet" href="/css/main.css" />
 
 
-  <link id="highlight-css" rel="stylesheet" href="/cqc-blog/css/highlight.css" />
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
   
-    <link id="highlight-css-dark" rel="stylesheet" href="/cqc-blog/css/highlight-dark.css" />
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
   
 
 
@@ -100,15 +100,15 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"cactuscode.gitee.io","root":"/cqc-blog/","version":"1.9.5","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/cqc-blog/local-search.xml","include_content_in_search":true};
+    var CONFIG = {"hostname":"cai-qichang.github.io","root":"/","version":"1.9.5","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
       Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
     }
   </script>
-  <script  src="/cqc-blog/js/utils.js" ></script>
-  <script  src="/cqc-blog/js/color-schema.js" ></script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
   
 
 
@@ -125,7 +125,7 @@
 <div class="header-inner" style="height: 70vh;">
   <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
-    <a class="navbar-brand" href="/cqc-blog/">
+    <a class="navbar-brand" href="/">
       <strong>caiqichang</strong>
     </a>
 
@@ -144,7 +144,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/cqc-blog/">
+              <a class="nav-link" href="/">
                 <i class="iconfont icon-home-fill"></i>
                 <span>首页</span>
               </a>
@@ -156,7 +156,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/cqc-blog/archives/">
+              <a class="nav-link" href="/archives/">
                 <i class="iconfont icon-archive-fill"></i>
                 <span>归档</span>
               </a>
@@ -168,7 +168,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/cqc-blog/categories/">
+              <a class="nav-link" href="/categories/">
                 <i class="iconfont icon-category-fill"></i>
                 <span>分类</span>
               </a>
@@ -180,7 +180,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/cqc-blog/tags/">
+              <a class="nav-link" href="/tags/">
                 <i class="iconfont icon-tags-fill"></i>
                 <span>标签</span>
               </a>
@@ -192,7 +192,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/cqc-blog/about/">
+              <a class="nav-link" href="/about/">
                 <i class="iconfont icon-user-fill"></i>
                 <span>关于</span>
               </a>
@@ -222,7 +222,7 @@
   
 
 <div id="banner" class="banner" parallax=true
-     style="background: url('/cqc-blog/img/yueqiu.jpg') no-repeat center center; background-size: cover;">
+     style="background: url('/img/yueqiu.jpg') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
       <div class="banner-text text-center fade-in-up">
@@ -329,13 +329,13 @@
 <blockquote>
 <p>消息队列主要适用于处理<strong>对消息要求不是很实时，同时一份数据可能会多处使用的场景</strong>。</p>
 </blockquote>
-<h2 id="异步、削峰、解耦"><a href="#异步、削峰、解耦" class="headerlink" title="异步、削峰、解耦"></a>异步、削峰、解耦</h2><h3 id="异步"><a href="#异步" class="headerlink" title="异步"></a>异步</h3><p><img src="http://images.caiqichang.cn/2023img/async.png" srcset="/cqc-blog/img/loading.gif" lazyload alt="image"><br>例子中我们把暂存快递的快递柜比作暂存数据的消息队列。当有了快递柜后，对于快递员而言，每次需要送快递时，只需要将快递投掷到快递柜，然后再通过短信或者电话通知收货人具体的快递信息即可。他就可以继续去派送下一单。而对于收获人而言，也可以根据具体方便的时间来取件。这样一来，二者完全异步了，不用相互等待了。</p>
+<h2 id="异步、削峰、解耦"><a href="#异步、削峰、解耦" class="headerlink" title="异步、削峰、解耦"></a>异步、削峰、解耦</h2><h3 id="异步"><a href="#异步" class="headerlink" title="异步"></a>异步</h3><p><img src="http://images.caiqichang.cn/2023img/async.png" srcset="/img/loading.gif" lazyload alt="image"><br>例子中我们把暂存快递的快递柜比作暂存数据的消息队列。当有了快递柜后，对于快递员而言，每次需要送快递时，只需要将快递投掷到快递柜，然后再通过短信或者电话通知收货人具体的快递信息即可。他就可以继续去派送下一单。而对于收获人而言，也可以根据具体方便的时间来取件。这样一来，二者完全异步了，不用相互等待了。</p>
 <blockquote>
 <p>主要体现的消息队列的消息暂存的功能，使上下游的消息调用可以异步进行。</p>
 </blockquote>
-<h3 id="削峰"><a href="#削峰" class="headerlink" title="削峰"></a>削峰</h3><p><img src="http://images.caiqichang.cn/2023img/cut-off.png" srcset="/cqc-blog/img/loading.gif" lazyload alt="image"></p>
+<h3 id="削峰"><a href="#削峰" class="headerlink" title="削峰"></a>削峰</h3><p><img src="http://images.caiqichang.cn/2023img/cut-off.png" srcset="/img/loading.gif" lazyload alt="image"></p>
 <p>对于大流量的请求，可以将请求放在消息队列。消息队列可以设置消息的效率频率，匹配服务器的服务能力，解决大流量请求发送服务器导致的服务器宕机问题。<br>如常见的双11等活动，高峰值期间产生的订单消息等数据首先送入到消息队列中暂存，然后供下游系统根据自己的消费能力来逐步处理。同时<strong>这类消息往往对时延的要求不是很高，比较适合采用消息队列暂存</strong>。</p>
-<h3 id="解耦"><a href="#解耦" class="headerlink" title="解耦"></a>解耦</h3><p><img src="http://images.caiqichang.cn/2023img/divorce.png" srcset="/cqc-blog/img/loading.gif" lazyload alt="image"></p>
+<h3 id="解耦"><a href="#解耦" class="headerlink" title="解耦"></a>解耦</h3><p><img src="http://images.caiqichang.cn/2023img/divorce.png" srcset="/img/loading.gif" lazyload alt="image"></p>
 <p>上图最主流的推荐系统中内容的流转过程。在推荐系统中当创作者发布了一条内容后，该内容会首先经过安全部分的相关审核，通过审核后的内容，通常需要进行内容入库存储、送入模型进行特征的计算和生成。<br>假如后期我们想提升推荐的效果，需要单独构建一份冷启动的推荐池，此时也需要用到这部分内容，那问题来了，在没有使用消息队列时，对于上游服务而言，需要通过扩展新的逻辑来实现该功能。在该场景里，会存在依赖三个下游服务，如果其中一个下游服务失败后，该如何处理，是重试还是返回失败等这些细节的处理。如果后期这部分数据还想在其他渠道分发，那又该如何对接。明显这种场景下面临着<strong>系统紧耦合</strong>的问题。<br>如果引入了消息队列。当内容审核通过后，就直接将数据生产出来丢到消息队列中，下游的多个服务再从消息队列消费数据。当后续这一份数据需要扩展供其他系统使用时，也只要通过新的消费者来接入到消息队列消费就ok。上游生产消息的模块不要做任何的改动。</p>
 <p>额外功能或业务的添加会导致业务流程处理的时间变长，虽然可以使用异步如线程、线程池来实现。但是使用线程实现的话，每个流程都要try catch去处理异常场景，<strong>业务流程的耦合性太强</strong>，而且系统中会杂糅进调用其他系统的代码。不利于维护。<br>使用消息队列来实现，相当于流程操作完成，只要通知消息队列一个流程完成的消息就行了。其他业务流程订阅消息，接收到消息就会去处理对应的逻辑，降低整个流程的耦合性。</p>
 <h2 id="系统复杂度"><a href="#系统复杂度" class="headerlink" title="系统复杂度"></a>系统复杂度</h2><p>问题： 重复消费、消息丢失、顺序消费</p>
@@ -431,7 +431,7 @@
 <p><strong>本地消息表</strong></p>
 <p>本地消息表这个方案最初是ebay提出的<a target="_blank" rel="noopener" href="https://queue.acm.org/detail.cfm?id=1394128">ebay的完整方案</a></p>
 <p>此方案的核心是将需要分布式处理的任务通过消息日志的方式来异步执行。消息日志可以存储到本地文本、数据库或消息队列，再通过业务规则自动或人工发起重试。人工重试更多的是应用于支付场景，通过对账系统对事后问题的处理。</p>
-<p><img src="http://images.caiqichang.cn/2023img/local-message-table.png" srcset="/cqc-blog/img/loading.gif" lazyload alt="image"></p>
+<p><img src="http://images.caiqichang.cn/2023img/local-message-table.png" srcset="/img/loading.gif" lazyload alt="image"></p>
 <p>本地消息表实现：</p>
 <ol>
 <li>在发送端建立一张用于发送消息专用的数据库表，在必须要发送事务的场景下，更新数据同时插入本地消息表，保证事务的一致性。</li>
@@ -449,7 +449,7 @@
 <li><a target="_blank" rel="noopener" href="https://blog.csdn.net/hosaos/article/details/108644527">最终一致性之本地消息表、消息事务(三种常见错误场景)</a></li>
 </ul>
 <h2 id="消息队列选型"><a href="#消息队列选型" class="headerlink" title="消息队列选型"></a>消息队列选型</h2><p>目前主要的消息队列有 ActiveMQ、RabbitMq、Kafka、RocketMq，用的比较多的是Kafka和RocketMq两个，主要这两个都支持10万级的高吞吐量，而且相应的开发社区活跃，遇到源码问题便于维护。</p>
-<p><img src="http://images.caiqichang.cn/2023img/compare.png" srcset="/cqc-blog/img/loading.gif" lazyload alt="image"></p>
+<p><img src="http://images.caiqichang.cn/2023img/compare.png" srcset="/img/loading.gif" lazyload alt="image"></p>
 <ol>
 <li>ActiveMQ 和 RabbitMQ 二者属于同一量级，在吞吐量上比后面三者差一个量级；</li>
 <li>支持强一致性的有 RocketMQ 和 Pulsar，在对消息一致性要求比较高的场景可以采用这些产品。同时 kafka 虽然会有数据丢失的风险，但其吞吐量比较高同时社区非常活跃，在大数据的绝大部分场景里，都可以采用 kafka</li>
@@ -510,7 +510,7 @@
 <td>它使用了傻瓜经纪人&#x2F;智能消费者模型</td>
 </tr>
 </tbody></table>
-<h2 id="消息队列背后的设计思想"><a href="#消息队列背后的设计思想" class="headerlink" title="消息队列背后的设计思想"></a>消息队列背后的设计思想</h2><h3 id="消息队列核心模型"><a href="#消息队列核心模型" class="headerlink" title="消息队列核心模型"></a>消息队列核心模型</h3><p><img src="http://images.caiqichang.cn/2023img/mq-structure.png" srcset="/cqc-blog/img/loading.gif" lazyload alt="image"></p>
+<h2 id="消息队列背后的设计思想"><a href="#消息队列背后的设计思想" class="headerlink" title="消息队列背后的设计思想"></a>消息队列背后的设计思想</h2><h3 id="消息队列核心模型"><a href="#消息队列核心模型" class="headerlink" title="消息队列核心模型"></a>消息队列核心模型</h3><p><img src="http://images.caiqichang.cn/2023img/mq-structure.png" srcset="/img/loading.gif" lazyload alt="image"></p>
 <p>对于一个消息队列而言，从数据流向的维度，可以拆解为三大部分：<strong>生产者、消息队列集群、消费者</strong>，数据是从生产者流向消息队列集群，最终再从消息队列集群流向消费者</p>
 <p><strong>生产者</strong>： 生产数据的服务，通常也称为数据的输入提供方，这里的数据通常指我们的业务数据。其次生产者通常会有多个，消息队列集群内部也会有多个分区队列，所以在生产者发送数据时，通常会存在负载均衡的一些策略，常见的有按 <strong>key hash、轮询、随机等方式。其本质是一条数据，被消息队列封装后也被称为一条消息，该条消息只能发送到其消息队列集群内部的一个分区队列中。因此只需按照一定的策略从多个队列中选择一个队列即可</strong>。</p>
 <blockquote>
@@ -526,10 +526,10 @@
 <li>等待推送数据</li>
 <li>主动拉取数据</li>
 </ol>
-<p><img src="http://images.caiqichang.cn/2023img/push-pull.png" srcset="/cqc-blog/img/loading.gif" lazyload alt="image"></p>
-<h3 id="消息队列模型"><a href="#消息队列模型" class="headerlink" title="消息队列模型"></a>消息队列模型</h3><p>消息队列有两种模型：队列模型和发布&#x2F;订阅模型。<br><img src="http://images.caiqichang.cn/2023img/queue-core.png" srcset="/cqc-blog/img/loading.gif" lazyload alt="avatar"></p>
-<h4 id="队列模型"><a href="#队列模型" class="headerlink" title="队列模型"></a>队列模型</h4><p>消费者之间是竞争关系，即每条消息只能被一个消费者消费。<br><img src="http://images.caiqichang.cn/2023img/queueModel.jpg" srcset="/cqc-blog/img/loading.gif" lazyload alt="avatar"></p>
-<h4 id="发布订阅模型"><a href="#发布订阅模型" class="headerlink" title="发布订阅模型"></a>发布订阅模型</h4><p>解决一条消息能被多个消费者消费的问题，消息发往一个Topic主题中，所有订阅了这个 Topic 的订阅者都能消费这条消息。<br><img src="http://images.caiqichang.cn/2023img/queueModel2.jpg" srcset="/cqc-blog/img/loading.gif" lazyload alt="avatar"></p>
+<p><img src="http://images.caiqichang.cn/2023img/push-pull.png" srcset="/img/loading.gif" lazyload alt="image"></p>
+<h3 id="消息队列模型"><a href="#消息队列模型" class="headerlink" title="消息队列模型"></a>消息队列模型</h3><p>消息队列有两种模型：队列模型和发布&#x2F;订阅模型。<br><img src="http://images.caiqichang.cn/2023img/queue-core.png" srcset="/img/loading.gif" lazyload alt="avatar"></p>
+<h4 id="队列模型"><a href="#队列模型" class="headerlink" title="队列模型"></a>队列模型</h4><p>消费者之间是竞争关系，即每条消息只能被一个消费者消费。<br><img src="http://images.caiqichang.cn/2023img/queueModel.jpg" srcset="/img/loading.gif" lazyload alt="avatar"></p>
+<h4 id="发布订阅模型"><a href="#发布订阅模型" class="headerlink" title="发布订阅模型"></a>发布订阅模型</h4><p>解决一条消息能被多个消费者消费的问题，消息发往一个Topic主题中，所有订阅了这个 Topic 的订阅者都能消费这条消息。<br><img src="http://images.caiqichang.cn/2023img/queueModel2.jpg" srcset="/img/loading.gif" lazyload alt="avatar"></p>
 <p>消费者模型其实是一个<code>1:N:M</code> 的关系，一份数据被N个消费者组独立使用，每个消费者组中有M个消费者进行分摊消费<br>其实这种模型也称为发布订阅模型，对于一条消息而言，<strong>组间广播</strong>、<strong>组内单播</strong>。一条消息只能被一个消费者组中的一个消费者使用。在消费者组内部也存在一些负载均衡的策略。常用的有：轮询、随机、hash、一致性 hash等方案。</p>
 <p><strong>发布&#x2F;订阅模型兼容队列模型，即只有一个消费者的情况下和队列模型基本一致</strong></p>
 <blockquote>
@@ -575,7 +575,7 @@
 </blockquote>
 <p>消息审计: 指在消息在生产、存储和消费的整个过程之间对消息个数及延迟的审计，以此来检测是否有数据丢失、是否有数据重复、端到端的延迟又是多少等。</p>
 <p>消息路由: 将消息路由到指定的队列中，消费者消费队列里的消息。</p>
-<h1 id="Kafka"><a href="#Kafka" class="headerlink" title="Kafka"></a>Kafka</h1><h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><p><img src="http://images.caiqichang.cn/2023img/kafka-structure.png" srcset="/cqc-blog/img/loading.gif" lazyload alt="image"></p>
+<h1 id="Kafka"><a href="#Kafka" class="headerlink" title="Kafka"></a>Kafka</h1><h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><p><img src="http://images.caiqichang.cn/2023img/kafka-structure.png" srcset="/img/loading.gif" lazyload alt="image"></p>
 <ol>
 <li><p>生产者<code>Producer</code>：生产者，负责创建消息，然后投递到 Kafka 集群中，投递时需要指定消息所属的 Topic，同时确定好发往哪个 Partition。</p>
 </li>
@@ -598,7 +598,7 @@
 <li><p>消费组<code>Consumer Group</code>：一群消费者的集合，向Topic订阅消费消息的单位是Consumers。</p>
 </li>
 </ol>
-<h2 id="Kafka-高性能设计技术"><a href="#Kafka-高性能设计技术" class="headerlink" title="Kafka 高性能设计技术"></a>Kafka 高性能设计技术</h2><p><img src="http://images.caiqichang.cn/2023img/kafka-advantage.png" srcset="/cqc-blog/img/loading.gif" lazyload alt="image"></p>
+<h2 id="Kafka-高性能设计技术"><a href="#Kafka-高性能设计技术" class="headerlink" title="Kafka 高性能设计技术"></a>Kafka 高性能设计技术</h2><p><img src="http://images.caiqichang.cn/2023img/kafka-advantage.png" srcset="/img/loading.gif" lazyload alt="image"></p>
 <h3 id="Producer发送端"><a href="#Producer发送端" class="headerlink" title="Producer发送端"></a>Producer发送端</h3><ol>
 <li><p>批量发送消息。Kafka 采用了批量发送消息的方式，通过将多条消息按照分区进行分组，然后每次发送一个消息集合，从而大大减少了网络传输的<code>overhead</code>。</p>
 </li>
@@ -611,14 +611,14 @@
 </li>
 <li><p>内存池复用。</p>
 <blockquote>
-<p>Producer 一上来就会占用一个固定大小的内存块，比如 64MB，然后将 64 MB 划分成 M 个小内存块(比如一个小内存块大小是 16KB)。当需要创建一个新的 Batch 时，直接从内存池中取出一个 16 KB 的内存块即可，然后往里面不断写入消息，但最大写入量就是 16 KB，接着将 Batch 发送给 Broker ，此时该内存块就可以还回到缓冲池中继续复用了，根本不涉及垃圾回收。<br><img src="http://images.caiqichang.cn/2023img/kafka-producer.png" srcset="/cqc-blog/img/loading.gif" lazyload alt="image"></p>
+<p>Producer 一上来就会占用一个固定大小的内存块，比如 64MB，然后将 64 MB 划分成 M 个小内存块(比如一个小内存块大小是 16KB)。当需要创建一个新的 Batch 时，直接从内存池中取出一个 16 KB 的内存块即可，然后往里面不断写入消息，但最大写入量就是 16 KB，接着将 Batch 发送给 Broker ，此时该内存块就可以还回到缓冲池中继续复用了，根本不涉及垃圾回收。<br><img src="http://images.caiqichang.cn/2023img/kafka-producer.png" srcset="/img/loading.gif" lazyload alt="image"></p>
 </blockquote>
 </li>
 </ol>
 <h3 id="Broker存储消息"><a href="#Broker存储消息" class="headerlink" title="Broker存储消息"></a>Broker存储消息</h3><ol>
 <li><p>IO多路复用: kafka采用<code>Reactor</code>网络通信模型。</p>
 <blockquote>
-<p><code>Acceptor</code>线程，负责监听新的连接。<code>Processor</code>线程都有自己的<code>selector</code>，负责从<code>socket</code>中读写数据。<code>KafkaRequestHandler</code>业务处理线程，进行业务处理，然后生成<code>response</code>，再交由给<code>Processor</code>线程。<br><img src="http://images.caiqichang.cn/2023img/kafka-broker-connect.png" srcset="/cqc-blog/img/loading.gif" lazyload alt="image"></p>
+<p><code>Acceptor</code>线程，负责监听新的连接。<code>Processor</code>线程都有自己的<code>selector</code>，负责从<code>socket</code>中读写数据。<code>KafkaRequestHandler</code>业务处理线程，进行业务处理，然后生成<code>response</code>，再交由给<code>Processor</code>线程。<br><img src="http://images.caiqichang.cn/2023img/kafka-broker-connect.png" srcset="/img/loading.gif" lazyload alt="image"></p>
 </blockquote>
 </li>
 <li><p>磁盘顺序写。快速的存储消息。kafka本质上就是一个队列，是先进先出的，而且消息一旦生产了就不可变。这种有序性和不可变性使得Kafka完全可以「<strong>顺序写</strong>」日志文件。</p>
@@ -710,7 +710,7 @@
 <td>丢失数据的风险最低。极端情况(ISR列表为空)时也有丢失数据的风险</td>
 </tr>
 </tbody></table>
-<h3 id="故障转移过程"><a href="#故障转移过程" class="headerlink" title="故障转移过程"></a>故障转移过程</h3><p><img src="http://images.caiqichang.cn/2023img/kafka-collapse.png" srcset="/cqc-blog/img/loading.gif" lazyload alt="image"></p>
+<h3 id="故障转移过程"><a href="#故障转移过程" class="headerlink" title="故障转移过程"></a>故障转移过程</h3><p><img src="http://images.caiqichang.cn/2023img/kafka-collapse.png" srcset="/img/loading.gif" lazyload alt="image"></p>
 <blockquote>
 <p>LEO：每个副本最大的 offset。<br>HW：消费者能见到的最大的 offset，ISR 队列中最小的 LEO。</p>
 </blockquote>
@@ -750,9 +750,9 @@
 </blockquote>
 </li>
 </ol>
-<p><img src="http://images.caiqichang.cn/2023img/kafka-partition-consumer.png" srcset="/cqc-blog/img/loading.gif" lazyload alt="image"></p>
+<p><img src="http://images.caiqichang.cn/2023img/kafka-partition-consumer.png" srcset="/img/loading.gif" lazyload alt="image"></p>
 <h3 id="offset"><a href="#offset" class="headerlink" title="offset"></a>offset</h3><p><code>offset</code>(消费进度):表示消费者的消费进度，offset在broker以内部<code>topic(__consumer_offsets)</code>的方式来保存起来。</p>
-<h2 id="kafka解决宕机与丢消息"><a href="#kafka解决宕机与丢消息" class="headerlink" title="kafka解决宕机与丢消息"></a>kafka解决宕机与丢消息</h2><p><img src="http://images.caiqichang.cn/2023img/kafkaStructure.jpg" srcset="/cqc-blog/img/loading.gif" lazyload alt="image"></p>
+<h2 id="kafka解决宕机与丢消息"><a href="#kafka解决宕机与丢消息" class="headerlink" title="kafka解决宕机与丢消息"></a>kafka解决宕机与丢消息</h2><p><img src="http://images.caiqichang.cn/2023img/kafkaStructure.jpg" srcset="/img/loading.gif" lazyload alt="image"></p>
 <ul>
 <li>红色块的Partition代表的是主分区，紫色的Partition块代表的是备份分区。生产者往topic丢数据，是与主分区交互，消费者消费topic的数据，也是与主分区交互。</li>
 <li>备份分区仅仅用作于备份，不做读写。如果某个Broker挂了，那就会选举出其他Broker的Partition来作为主分区，这就实现了高可用。</li>
@@ -789,7 +789,7 @@
 <li>增加partition与消费者，让消息均匀分布到不同partition中。</li>
 <li>消费者消费的时候进一步进行消息拆分，将消息分配到映射到不同到内存队列中，每个内存队列由一个线程消费。</li>
 </ol>
-<p><img src="http://images.caiqichang.cn/2023img/kafka-order-consumer.png" srcset="/cqc-blog/img/loading.gif" lazyload alt="image"></p>
+<p><img src="http://images.caiqichang.cn/2023img/kafka-order-consumer.png" srcset="/img/loading.gif" lazyload alt="image"></p>
 <h2 id="kafka-架构的缺陷"><a href="#kafka-架构的缺陷" class="headerlink" title="kafka 架构的缺陷"></a>kafka 架构的缺陷</h2><p><strong>Kafka 把 broker 和 partition 的数据存储牢牢绑定在一起</strong>。</p>
 <blockquote>
 <p>典型的扩容场景</p>
@@ -900,7 +900,7 @@
 <ul>
 <li>标签(Tag)：为消息设置的标志，用于同一主题下区分不同类型的消息。来自同一业务单元的消息，可以根据不同业务目的在同一主题下设置不同标签。标签能够有效地保持代码的清晰度和连贯性，并优化RocketMQ提供的查询系统。</li>
 </ul>
-<h2 id="基本架构"><a href="#基本架构" class="headerlink" title="基本架构"></a>基本架构</h2><p><img src="http://images.caiqichang.cn/2023img/rocketmqAC.jpg" srcset="/cqc-blog/img/loading.gif" lazyload alt="avatar"><br>主要包含四部分Producer、Consumer、Broker、NameServer</p>
+<h2 id="基本架构"><a href="#基本架构" class="headerlink" title="基本架构"></a>基本架构</h2><p><img src="http://images.caiqichang.cn/2023img/rocketmqAC.jpg" srcset="/img/loading.gif" lazyload alt="avatar"><br>主要包含四部分Producer、Consumer、Broker、NameServer</p>
 <ul>
 <li>Producer与NameServer集群中的其中一个节点(随机选择)建立长连接，定期从NameServer获取Topic路由信息，并向<strong>提供Topic 服务的Master建立长连接</strong>，且定时向Master发送心跳。</li>
 <li>Consumer与NameServer集群中的其中一个节点(随机选择)建立长连接，定期从NameServer获取Topic路由信息，并向<strong>提供Topic服务的Master、Slave建立长连接</strong>，且定时向Master、Slave发送心跳。</li>
@@ -918,7 +918,7 @@
 <li>社区活跃度不是特别活跃那种</li>
 <li>没有在 mq 核心中去实现JMS等接口，有些系统要迁移需要修改大量代码</li>
 </ul>
-<h2 id="事务实现"><a href="#事务实现" class="headerlink" title="事务实现"></a>事务实现</h2><p>RocketMQ采用了2PC的思想来实现了提交事务消息，同时增加一个补偿逻辑来处理二阶段超时或者失败的消息。<br><img src="http://images.caiqichang.cn/2023img/rocketMqTransaction.jpg" srcset="/cqc-blog/img/loading.gif" lazyload alt="avatar"></p>
+<h2 id="事务实现"><a href="#事务实现" class="headerlink" title="事务实现"></a>事务实现</h2><p>RocketMQ采用了2PC的思想来实现了提交事务消息，同时增加一个补偿逻辑来处理二阶段超时或者失败的消息。<br><img src="http://images.caiqichang.cn/2023img/rocketMqTransaction.jpg" srcset="/img/loading.gif" lazyload alt="avatar"></p>
 <p>2pc主要缺点，协调者故障、阻塞、宕机，导致commit消息未全部发送完毕，参与者预提交事务消息请求阻塞。rocketmq引入参与者的回查补偿机制，解决该问题。</p>
 <p>补偿流程：</p>
 <ol>
@@ -928,7 +928,7 @@
 </ol>
 <p>其中，补偿阶段用于解决消息Commit或者Rollback发生超时或者失败的情况。</p>
 <h1 id="RabbitMQ"><a href="#RabbitMQ" class="headerlink" title="RabbitMQ"></a>RabbitMQ</h1><p>RabbitMQ是一个开源的消息代理和队列服务器，用来通过普通协议在不同的应用之间共享数据(跨平台跨语言)。RabbitMQ是使用Erlang语言编写，并且基于AMQP协议实现。</p>
-<h2 id="基本概念-2"><a href="#基本概念-2" class="headerlink" title="基本概念"></a>基本概念</h2><p><img src="http://images.caiqichang.cn/2023img/rabbitmq.png" srcset="/cqc-blog/img/loading.gif" lazyload alt="avatar"></p>
+<h2 id="基本概念-2"><a href="#基本概念-2" class="headerlink" title="基本概念"></a>基本概念</h2><p><img src="http://images.caiqichang.cn/2023img/rabbitmq.png" srcset="/img/loading.gif" lazyload alt="avatar"></p>
 <ol>
 <li>Channel（信道）：多路复用连接中的一条独立的双向数据流通道。信道是建立在真实的TCP连接内的虚拟连接，复用TCP连接的通道。</li>
 <li>Producer（消息的生产者）：向消息队列发布消息的客户端应用程序。</li>
@@ -952,16 +952,16 @@
 <figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs text">// prefetchSize：消息体大小限制；0为不限制<br>// prefetchCount：RabbitMQ同时给一个消费者推送的消息个数。即一旦有N个消息还没有ack，则该consumer将block掉，直到有消息ack。默认是1.<br>// global：限流策略的应用级别。consumer[false]、channel[true]。<br>void BasicQos(unit prefetchSize, unshort prefetchCount, bool global);<br>channel.basicQos(...);<br></code></pre></td></tr></table></figure>
 
 <h2 id="Exchange类型"><a href="#Exchange类型" class="headerlink" title="Exchange类型"></a>Exchange类型</h2><p>Exchange分发消息时，根据类型的不同分发策略有区别。目前共四种类型：<strong>direct</strong>、<strong>fanout</strong>、<strong>topic</strong>、headers(headers匹配AMQP消息的header而不是路由键(Routing-key)，此外headers交换器和direct交换器完全一致，但是性能差了很多，目前几乎用不到了，所以直接看另外三种类型)。</p>
-<h3 id="Direct模式"><a href="#Direct模式" class="headerlink" title="Direct模式"></a>Direct模式</h3><p><img src="http://images.caiqichang.cn/2023img/rabbitmq-direct.png" srcset="/cqc-blog/img/loading.gif" lazyload alt="avatar"></p>
+<h3 id="Direct模式"><a href="#Direct模式" class="headerlink" title="Direct模式"></a>Direct模式</h3><p><img src="http://images.caiqichang.cn/2023img/rabbitmq-direct.png" srcset="/img/loading.gif" lazyload alt="avatar"></p>
 <p>消息中的路由键(routing key)如果和Binding中的binding key一致，交换器就将消息发到对应的队列中。路由键与队列名完全匹配。</p>
 <p>direct模式下，如果有两个Consumer同时订阅一个queue？</p>
 <blockquote>
 <p>RabbitMQ的设定：<strong>当多个消费者同时监听一个队列时，他们并不能同时消费一条消息，而是随机消费消息，即一个队列中一条消息，只能被一个消费者消费。</strong><br>Direct exchange经常用来循环分发任务给多个工作者（workers）。当这样做的时候，我们需要明白一点，在AMQP 0-9-1中，消息的负载均衡是发生在消费者（consumer）之间的，而不是队列（queue）之间。</p>
 </blockquote>
-<p><img src="http://images.caiqichang.cn/2023img/rabbitmq-direct-multi.png" srcset="/cqc-blog/img/loading.gif" lazyload alt="avatar"></p>
+<p><img src="http://images.caiqichang.cn/2023img/rabbitmq-direct-multi.png" srcset="/img/loading.gif" lazyload alt="avatar"></p>
 <p>也就是官网workingQueue模式</p>
-<p><img src="http://images.caiqichang.cn/2023img/rabbitmq-direct-workingqueue.png" srcset="/cqc-blog/img/loading.gif" lazyload alt="avatar"></p>
-<h3 id="Fanout模式"><a href="#Fanout模式" class="headerlink" title="Fanout模式"></a>Fanout模式</h3><p><img src="http://images.caiqichang.cn/2023img/rabbitmq-fanout.png" srcset="/cqc-blog/img/loading.gif" lazyload alt="avatar"></p>
+<p><img src="http://images.caiqichang.cn/2023img/rabbitmq-direct-workingqueue.png" srcset="/img/loading.gif" lazyload alt="avatar"></p>
+<h3 id="Fanout模式"><a href="#Fanout模式" class="headerlink" title="Fanout模式"></a>Fanout模式</h3><p><img src="http://images.caiqichang.cn/2023img/rabbitmq-fanout.png" srcset="/img/loading.gif" lazyload alt="avatar"></p>
 <p>每个发到fanout类型交换器的消息都会分到所有绑定的队列上去。fanout交换器不处理该路由键，只是简单的将队列绑定到交换器上，每个发送到交换器的消息都会被转发到与该交换器绑定的所有队列上。</p>
 <p>扇型交换机投递消息的拷贝到所有绑定到它的队列，所以他的应用案例都极其相似：</p>
 <ul>
@@ -978,7 +978,7 @@
 <li>星号(<code>*</code>)：表示准确的匹配一个单词</li>
 <li>井号(<code>#</code>)：则表示匹配0个或者多个单词。</li>
 </ul>
-<p><img src="http://images.caiqichang.cn/2023img/rabbitmq-topic.png" srcset="/cqc-blog/img/loading.gif" lazyload alt="avatar"></p>
+<p><img src="http://images.caiqichang.cn/2023img/rabbitmq-topic.png" srcset="/img/loading.gif" lazyload alt="avatar"></p>
 <blockquote>
 <p>如果一个message在发送的时候，routing key是quick.orange.rabbit，那么两个queue都能收到。<br>如果routing key是lazy.orange.elephant，那么两个queue也都能收到。<br>如果routing key是quick.orange.fox，那么只有Q1能收到。<br>如果routing是lazy.brown.fox，那么只有Q2能收到。<br>如果routing key是quick.brown.fox，那么没有queue会收到。</p>
 </blockquote>
@@ -1043,7 +1043,7 @@
     
       <span class="category-chain">
         
-  <a href="/cqc-blog/categories/%E4%B8%AD%E9%97%B4%E4%BB%B6/" class="category-chain-item">中间件</a>
+  <a href="/categories/%E4%B8%AD%E9%97%B4%E4%BB%B6/" class="category-chain-item">中间件</a>
   
   
 
@@ -1058,7 +1058,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/cqc-blog/tags/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/" class="print-no-link">#消息队列</a>
+        <a href="/tags/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/" class="print-no-link">#消息队列</a>
       
     </div>
   
@@ -1071,7 +1071,7 @@
   <div class="license-box my-3">
     <div class="license-title">
       <div>消息队列</div>
-      <div>http://cactuscode.gitee.io/cqc-blog/2023/05/20/消息队列/</div>
+      <div>https://cai-qichang.github.io/2023/05/20/消息队列/</div>
     </div>
     <div class="license-meta">
       
@@ -1108,7 +1108,7 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/cqc-blog/2023/05/23/Springboot%E6%95%B4%E5%90%88elasticsearch/" title="Springboot整合elasticsearch">
+                      <a href="/2023/05/23/Springboot%E6%95%B4%E5%90%88elasticsearch/" title="Springboot整合elasticsearch">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">Springboot整合elasticsearch</span>
                         <span class="visible-mobile">上一篇</span>
@@ -1118,7 +1118,7 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/cqc-blog/2023/05/15/ZooKeeper/" title="ZooKeeper">
+                      <a href="/2023/05/15/ZooKeeper/" title="ZooKeeper">
                         <span class="hidden-mobile">ZooKeeper</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
@@ -1283,8 +1283,8 @@
 
 <script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
 <script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
-<script  src="/cqc-blog/js/events.js" ></script>
-<script  src="/cqc-blog/js/plugins.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
 
 
   <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
@@ -1306,7 +1306,7 @@
 
 
   
-    <script  src="/cqc-blog/js/img-lazyload.js" ></script>
+    <script  src="/js/img-lazyload.js" ></script>
   
 
 
@@ -1405,7 +1405,7 @@
 
   <script>Fluid.plugins.imageCaption();</script>
 
-  <script  src="/cqc-blog/js/local-search.js" ></script>
+  <script  src="/js/local-search.js" ></script>
 
   <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
 
@@ -1415,7 +1415,7 @@
 
 <!-- 主题的启动项，将它保持在最底部 -->
 <!-- the boot of the theme, keep it at the bottom -->
-<script  src="/cqc-blog/js/boot.js" ></script>
+<script  src="/js/boot.js" ></script>
 
 
   

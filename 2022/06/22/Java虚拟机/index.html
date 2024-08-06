@@ -9,8 +9,8 @@
   <meta charset="UTF-8">
   <!-- 通过 CDN 引入霞鹜文楷字体 -->
   <link rel="stylesheet" href="https://npm.elemecdn.com/lxgw-wenkai-screen-webfont/style.css" media="print" onload="this.media='all'">
-  <link rel="apple-touch-icon" sizes="76x76" href="/cqc-blog/img/me.png">
-  <link rel="icon" href="/cqc-blog/img/me.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/me.png">
+  <link rel="icon" href="/img/me.png">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
@@ -21,7 +21,7 @@
     <meta name="description" content="JVM大部分参考周志明【深入理解Java虚拟机】  附上官网文档搭配食用 java8官网文档  面试题 介绍下 Java 内存区域(运行时数据区) Java 对象的创建过程(五步，建议能默写出来并且要知道每一步虚拟机做了什么) 对象的访问定位的两种方式(句柄和直接指针两种方式) 如何判断对象是否死亡(两种方法)。 简单的介绍一下强引用、软引用、弱引用、虚引用(虚引用与软引用和弱引用的区别、使用软引">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Java虚拟机">
-<meta property="og:url" content="http://cactuscode.gitee.io/cqc-blog/2022/06/22/Java%E8%99%9A%E6%8B%9F%E6%9C%BA/index.html">
+<meta property="og:url" content="https://cai-qichang.github.io/2022/06/22/Java%E8%99%9A%E6%8B%9F%E6%9C%BA/index.html">
 <meta property="og:site_name" content="caiqichang&#39;s Blog">
 <meta property="og:description" content="JVM大部分参考周志明【深入理解Java虚拟机】  附上官网文档搭配食用 java8官网文档  面试题 介绍下 Java 内存区域(运行时数据区) Java 对象的创建过程(五步，建议能默写出来并且要知道每一步虚拟机做了什么) 对象的访问定位的两种方式(句柄和直接指针两种方式) 如何判断对象是否死亡(两种方法)。 简单的介绍一下强引用、软引用、弱引用、虚引用(虚引用与软引用和弱引用的区别、使用软引">
 <meta property="og:locale" content="zh_CN">
@@ -89,12 +89,12 @@
 <link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
 
 
-<link  rel="stylesheet" href="/cqc-blog/css/main.css" />
+<link  rel="stylesheet" href="/css/main.css" />
 
 
-  <link id="highlight-css" rel="stylesheet" href="/cqc-blog/css/highlight.css" />
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
   
-    <link id="highlight-css-dark" rel="stylesheet" href="/cqc-blog/css/highlight-dark.css" />
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
   
 
 
@@ -103,15 +103,15 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"cactuscode.gitee.io","root":"/cqc-blog/","version":"1.9.5","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/cqc-blog/local-search.xml","include_content_in_search":true};
+    var CONFIG = {"hostname":"cai-qichang.github.io","root":"/","version":"1.9.5","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
       Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
     }
   </script>
-  <script  src="/cqc-blog/js/utils.js" ></script>
-  <script  src="/cqc-blog/js/color-schema.js" ></script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
   
 
 
@@ -128,7 +128,7 @@
 <div class="header-inner" style="height: 70vh;">
   <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
-    <a class="navbar-brand" href="/cqc-blog/">
+    <a class="navbar-brand" href="/">
       <strong>caiqichang</strong>
     </a>
 
@@ -147,7 +147,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/cqc-blog/">
+              <a class="nav-link" href="/">
                 <i class="iconfont icon-home-fill"></i>
                 <span>首页</span>
               </a>
@@ -159,7 +159,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/cqc-blog/archives/">
+              <a class="nav-link" href="/archives/">
                 <i class="iconfont icon-archive-fill"></i>
                 <span>归档</span>
               </a>
@@ -171,7 +171,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/cqc-blog/categories/">
+              <a class="nav-link" href="/categories/">
                 <i class="iconfont icon-category-fill"></i>
                 <span>分类</span>
               </a>
@@ -183,7 +183,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/cqc-blog/tags/">
+              <a class="nav-link" href="/tags/">
                 <i class="iconfont icon-tags-fill"></i>
                 <span>标签</span>
               </a>
@@ -195,7 +195,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/cqc-blog/about/">
+              <a class="nav-link" href="/about/">
                 <i class="iconfont icon-user-fill"></i>
                 <span>关于</span>
               </a>
@@ -225,7 +225,7 @@
   
 
 <div id="banner" class="banner" parallax=true
-     style="background: url('/cqc-blog/img/yueqiu.jpg') no-repeat center center; background-size: cover;">
+     style="background: url('/img/yueqiu.jpg') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
       <div class="banner-text text-center fade-in-up">
@@ -325,7 +325,7 @@
 <li>介绍一下 CMS,G1 收集器。</li>
 <li>Minor Gc 和 Full GC 有什么不同呢？</li>
 </ul>
-<p><img src="http://images.caiqichang.cn/2023img/heap-detail.jpg" srcset="/cqc-blog/img/loading.gif" lazyload alt="avatar"></p>
+<p><img src="http://images.caiqichang.cn/2023img/heap-detail.jpg" srcset="/img/loading.gif" lazyload alt="avatar"></p>
 <h2 id="虚拟机内存区域"><a href="#虚拟机内存区域" class="headerlink" title="虚拟机内存区域"></a>虚拟机内存区域</h2><h3 id="程序计数器"><a href="#程序计数器" class="headerlink" title="程序计数器"></a>程序计数器</h3><p>定义：可以看作是当前线程所执行的字节码的行号指示器，为线程隔离的数据区。<br>java多线程切换时，每个线程独立的程序计数器，各条线程之间的计数器互不影响，独立存储，保证了线程切换后能恢复到正确的位置。</p>
 <blockquote>
 <p>唯一一个无OOM的区域</p>
@@ -345,7 +345,7 @@
 </ul>
 <h3 id="Java堆"><a href="#Java堆" class="headerlink" title="Java堆"></a>Java堆</h3><p>定义:是虚拟机所管理的内存中最大的一块。Java堆是被所有线程共享的一块内存区域，在虚拟机启动时创建。</p>
 <ul>
-<li>参数-Xmx和-Xms 最大堆内存和最小堆内存<br><img src="http://images.caiqichang.cn/2023img/hotstop-heap.jpg" srcset="/cqc-blog/img/loading.gif" lazyload alt="avatar"></li>
+<li>参数-Xmx和-Xms 最大堆内存和最小堆内存<br><img src="http://images.caiqichang.cn/2023img/hotstop-heap.jpg" srcset="/img/loading.gif" lazyload alt="avatar"></li>
 </ul>
 <h3 id="方法区"><a href="#方法区" class="headerlink" title="方法区"></a>方法区</h3><p>定义：是被各个线程共享的内存区域，它用于存储已被虚拟机加载的类型信息(类名、方法描述、字段描述)、常量、静态变量、即时编译器编译后的代码缓存等数据。</p>
 <blockquote>
@@ -359,7 +359,7 @@
 <blockquote>
 <p>在 Java 7 之前，JVM 将 Java String Pool 放置在 永久代空间(java7方法区的实现)中，该空间具有固定大小——它不能在运行时扩展并且不符合垃圾收集条件。<br>在永久代(而不是堆)中使用字符串的风险是，如果我们创建太多字符串，我们可能会从 JVM 中得到 OutOfMemory 错误。<br>从 Java 7 开始，Java String Pool 存储在 <strong>Heap 空间</strong>中，由 JVM 进行垃圾回收。 这种方法的优点是降低了 OutOfMemory 错误的风险，因为未引用的字符串将从池中删除，从而释放内存。</p>
 </blockquote>
-<h3 id="HotSpot-的后台线程"><a href="#HotSpot-的后台线程" class="headerlink" title="HotSpot 的后台线程"></a>HotSpot 的后台线程</h3><p><img src="http://images.caiqichang.cn/2023img/hotspotThread.jpg" srcset="/cqc-blog/img/loading.gif" lazyload alt="avatar"></p>
+<h3 id="HotSpot-的后台线程"><a href="#HotSpot-的后台线程" class="headerlink" title="HotSpot 的后台线程"></a>HotSpot 的后台线程</h3><p><img src="http://images.caiqichang.cn/2023img/hotspotThread.jpg" srcset="/img/loading.gif" lazyload alt="avatar"></p>
 <h3 id="内存区域溢出分析"><a href="#内存区域溢出分析" class="headerlink" title="内存区域溢出分析"></a>内存区域溢出分析</h3><h4 id="java堆溢出"><a href="#java堆溢出" class="headerlink" title="java堆溢出"></a>java堆溢出</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// -Xms20m -Xmx20m -XX:+HeapDumpOnOutOfMemoryError</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">HeapOOM</span> &#123;<br>    <span class="hljs-keyword">static</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">OOMObject</span> &#123;<br><br>    &#125;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;<br>        List&lt;OOMObject&gt; list = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayList</span>&lt;&gt;();<br>        <span class="hljs-keyword">while</span> (<span class="hljs-literal">true</span>) &#123;<br>            list.add(<span class="hljs-keyword">new</span> <span class="hljs-title class_">OOMObject</span>());<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <h4 id="虚拟机栈和本地方法栈溢出"><a href="#虚拟机栈和本地方法栈溢出" class="headerlink" title="虚拟机栈和本地方法栈溢出"></a>虚拟机栈和本地方法栈溢出</h4><p>虚拟机栈和本地方法栈的溢出有StackOverflowError和OutOfMemoryError</p>
@@ -414,7 +414,7 @@
 <blockquote>
 <p>白色：本对象没有被访问过 (没有被GCRoot扫描过，有可能是为垃圾对象)；<br>灰色：本对象已经被访问过(被GCRoot扫描过)，且本对象中的属性没有被GCRoot扫描，该对象就是为灰色对象；如果该对象的属性被扫描的情况下，从灰色变为黑色。<br>黑色：本对象已经被访问过(被GCRoot扫描过)，且本对象中的属性已经被GCRoot扫描过，该对象就是为黑色对象。</p>
 </blockquote>
-<p><img src="http://images.caiqichang.cn/2023img/color-mark.png" srcset="/cqc-blog/img/loading.gif" lazyload alt="avatar"></p>
+<p><img src="http://images.caiqichang.cn/2023img/color-mark.png" srcset="/img/loading.gif" lazyload alt="avatar"></p>
 <blockquote>
 <p>三色标记算法缺陷：在并发标记阶段的时候，因为用户线程与GC线程同时运行，有可能会产生多标或者漏标；<br>多标–多标记(浮动垃圾)<br>漏标–漏标记</p>
 </blockquote>
@@ -424,7 +424,7 @@
 <li>并发清除阶段：用户与GC线程同时运行，会产生新的对象但是没有及时被GC清理。 只能在下一次GC清理垃圾的修复。</li>
 </ol>
 <p><strong>漏标问题</strong></p>
-<p><img src="http://images.caiqichang.cn/2023img/mark-problem.png" srcset="/cqc-blog/img/loading.gif" lazyload alt="avatar"></p>
+<p><img src="http://images.caiqichang.cn/2023img/mark-problem.png" srcset="/img/loading.gif" lazyload alt="avatar"></p>
 <ol>
 <li>用户线程先执行C的E属性&#x3D;null；GC线程的GcRoot就扫描不到E。GC就认为E对象就是为垃圾对象，不可达对象。</li>
 <li>用户线程执行B.E属性&#x3D;E；E对象就是应该是为可达对象。<br>因为GCRoot是从C开始，不会从黑色的B开始，就会导致漏标的情况发生。</li>
@@ -502,7 +502,7 @@
 <li>survivor To 和 survivor From 互换</li>
 </ol>
 <blockquote>
-<p>最后， survivor To 和 survivor From 互换，原 survivor To 成为下一次 GC 时的 survivor From区。<br><img src="http://images.caiqichang.cn/2023img/edenGc.jpg" srcset="/cqc-blog/img/loading.gif" lazyload alt="avatar"></p>
+<p>最后， survivor To 和 survivor From 互换，原 survivor To 成为下一次 GC 时的 survivor From区。<br><img src="http://images.caiqichang.cn/2023img/edenGc.jpg" srcset="/img/loading.gif" lazyload alt="avatar"></p>
 </blockquote>
 <p><strong>相关问题</strong></p>
 <p>为什么需要Survivor区域？</p>
@@ -516,7 +516,7 @@
 <ul>
 <li><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_33881050/article/details/91448770">https://blog.csdn.net/weixin_33881050/article/details/91448770</a></li>
 </ul>
-<h3 id="经典的垃圾收集器"><a href="#经典的垃圾收集器" class="headerlink" title="经典的垃圾收集器"></a>经典的垃圾收集器</h3><p><img src="http://images.caiqichang.cn/2023img/garbage-collector.jpg" srcset="/cqc-blog/img/loading.gif" lazyload alt="avatar"></p>
+<h3 id="经典的垃圾收集器"><a href="#经典的垃圾收集器" class="headerlink" title="经典的垃圾收集器"></a>经典的垃圾收集器</h3><p><img src="http://images.caiqichang.cn/2023img/garbage-collector.jpg" srcset="/img/loading.gif" lazyload alt="avatar"></p>
 <h4 id="Serial收集器"><a href="#Serial收集器" class="headerlink" title="Serial收集器"></a>Serial收集器</h4><ul>
 <li>定义:一个单线程的垃圾收集器，在垃圾收集时必须暂停其他所有工作线程，直到收集结束。</li>
 <li>对于新生代采取复制算法暂停所有线程，对于老年代使用标记-整理算法同样暂停所有线程。</li>
@@ -531,7 +531,7 @@
 <li>定义：使用标记-整理算法。</li>
 <li>用途：可以Parallel Scavenge收集器搭配使用，另一种是作为CMS收集器发生失败的后背方案。</li>
 </ul>
-<p><img src="http://images.caiqichang.cn/2023img/serial-1.jpg" srcset="/cqc-blog/img/loading.gif" lazyload alt="avatar"></p>
+<p><img src="http://images.caiqichang.cn/2023img/serial-1.jpg" srcset="/img/loading.gif" lazyload alt="avatar"></p>
 <h4 id="ParNew收集器"><a href="#ParNew收集器" class="headerlink" title="ParNew收集器"></a>ParNew收集器</h4><ul>
 <li>定义：Serial收集器的多线程并行版本。</li>
 <li>唯一的优点仅有ParNew和Serial可以和CMS收集器配合工作，以后ParNew将会合并入CMS，成为其处理新生代的组成部分。</li>
@@ -539,7 +539,7 @@
 <li>新生代：标记复制。老年代：标记-整理</li>
 <li>常使用参数：-XX:SurvivorRatio、-XX:PretenureSizeThreshold、-XX:HandlePromotionFailure</li>
 </ul>
-<p><img src="http://images.caiqichang.cn/2023img/parNew-1.jpg" srcset="/cqc-blog/img/loading.gif" lazyload alt="avatar"></p>
+<p><img src="http://images.caiqichang.cn/2023img/parNew-1.jpg" srcset="/img/loading.gif" lazyload alt="avatar"></p>
 <h4 id="Parallel-Scavenge-收集器"><a href="#Parallel-Scavenge-收集器" class="headerlink" title="Parallel Scavenge 收集器"></a>Parallel Scavenge 收集器</h4><p>定义：新生代收集器，同样基于标记-复制算法，能够并行收集的多线程收集器。特点是达到一个可控制的吞吐量。<br><code>吞吐量= 运行客户代码时间/(运行用户代码时间+运行垃圾收集时间)</code></p>
 <p>虚拟机完成用户任务及垃圾收集用了100分钟，其中垃圾收集用了1分钟，吞吐量&#x3D;99%</p>
 <ul>
@@ -560,7 +560,7 @@
 <blockquote>
 <p>与Parallel Scavenge搭配作为“吞吐量优先”的收集器搭配组合</p>
 </blockquote>
-<p><img src="http://images.caiqichang.cn/2023img/parallel.jpg" srcset="/cqc-blog/img/loading.gif" lazyload alt="avatar"></p>
+<p><img src="http://images.caiqichang.cn/2023img/parallel.jpg" srcset="/img/loading.gif" lazyload alt="avatar"></p>
 <h4 id="CMS-Concurrent-Mark-Sweep-收集器"><a href="#CMS-Concurrent-Mark-Sweep-收集器" class="headerlink" title="CMS(Concurrent Mark Sweep)收集器"></a>CMS(Concurrent Mark Sweep)收集器</h4><p>定义：一种以获取最短回收停顿时间为目标的收集器，工作于老年代。</p>
 <hr>
 <p><strong>深入理解Java虚拟机中CMS流程说明：</strong></p>
@@ -571,7 +571,7 @@
 <li>重新标记：因用户程序继续运行而导致标记产生变动的那部分对象的标记记录，通常比初始标记长远比并发标记段。</li>
 <li>并发清除：清理删除掉标记阶段判断的已经死亡的对象，由于不需要移动对象，因此可以与用户线程共同执行。</li>
 </ol>
-<p><img src="http://images.caiqichang.cn/2023img/cms-1.jpg" srcset="/cqc-blog/img/loading.gif" lazyload alt="avatar"></p>
+<p><img src="http://images.caiqichang.cn/2023img/cms-1.jpg" srcset="/img/loading.gif" lazyload alt="avatar"></p>
 <hr>
 <p><strong>实战Java虚拟机中流程说明：</strong></p>
 <p>主要流程:</p>
@@ -587,7 +587,7 @@
 <blockquote>
 <p>开关<code>-XX:-CMSPrecleaningEnabled</code> 用来开关预清理</p>
 </blockquote>
-<p><img src="http://images.caiqichang.cn/2023img/cms-process.png" srcset="/cqc-blog/img/loading.gif" lazyload alt="avatar"></p>
+<p><img src="http://images.caiqichang.cn/2023img/cms-process.png" srcset="/img/loading.gif" lazyload alt="avatar"></p>
 <hr>
 <p>特点：</p>
 <ol>
@@ -621,7 +621,7 @@
 <li>筛选回收：更新Region的统计数据，进行回收价值和成本的排序，根据用户期望的停顿时间来构建回收集合。回收集合的存活对象复制到空的Region，再清理旧的Region。涉及到对象移动，需要暂停用户线程，使用多线程并行完成移动。</li>
 </ol>
 <p>G1整体是基于标记-整理算法实现的收集器，但从局部优势基于标记-复制算法实现。在执行标记整理的时候，还进行了压缩的工作，这是之前的垃圾收集器都没有的。</p>
-<p><img src="http://images.caiqichang.cn/2023img/g1.jpg" srcset="/cqc-blog/img/loading.gif" lazyload alt="avatar"><br><img src="http://images.caiqichang.cn/2023img/g1-memory.jpg" srcset="/cqc-blog/img/loading.gif" lazyload alt="avatar"></p>
+<p><img src="http://images.caiqichang.cn/2023img/g1.jpg" srcset="/img/loading.gif" lazyload alt="avatar"><br><img src="http://images.caiqichang.cn/2023img/g1-memory.jpg" srcset="/img/loading.gif" lazyload alt="avatar"></p>
 <hr>
 <p><strong>实战Java虚拟机中流程说明：</strong></p>
 <p>收集过程：</p>
@@ -641,13 +641,13 @@
 <li>独占清理: 这个阶段是会引起停顿的，它将计算各个区域的存活对象和GC回收比例并进行排序，识别可供混合回收的区域 在这个阶段，还会更新记忆集(Remembered Set), 该阶段给出了需要被混合回收的区域并进行了标记，在混合回收阶段，需要这些信息。</li>
 <li>井发清理阶段: 这里会识别并清理完全空闲的区域 它是井发的清理，不会引起停顿。</li>
 </ol>
-<p><img src="http://images.caiqichang.cn/2023img/g1-concurrent-process.png" srcset="/cqc-blog/img/loading.gif" lazyload alt="avatar"></p>
+<p><img src="http://images.caiqichang.cn/2023img/g1-concurrent-process.png" srcset="/img/loading.gif" lazyload alt="avatar"></p>
 <p>由于并发标记周期包含一次新生代GC，故新生代会被整理。但由于并发标记周期执行时，应用程序依然在运行。因此，并发标记周期结束后，又会有新的Eden空间被使用。并发标记周期执行前后最大的不同是在该阶段后，系统增加了一些标记为G的区域。这些区域被标记，是因为它们内部的垃圾比例较高，因此希望在后续的混合GC中进行收集(注意在并发标记周期中并未正式收集这些区域〉。</p>
-<p><strong>并发回收阶段前后的可能情况</strong><br><img src="http://images.caiqichang.cn/2023img/g1-concurrent-alloc.png" srcset="/cqc-blog/img/loading.gif" lazyload alt="avatar"></p>
+<p><strong>并发回收阶段前后的可能情况</strong><br><img src="http://images.caiqichang.cn/2023img/g1-concurrent-alloc.png" srcset="/img/loading.gif" lazyload alt="avatar"></p>
 <p><strong>混合回收</strong></p>
 <p>定义：在并发标记周期中，虽然有部分对象被回收，但是总体上说，回收的比例是相当低的。但是在并发标记周期后，己经明确知道哪些区域含有比较多的垃圾对象，在混合回收阶段，就可以专门针对这些区域进行回收。当然G1会优先回收垃圾比例较高的区域，因为回收这些区域的性价比也比较高。这个阶段叫作混合回收。</p>
-<p><img src="http://images.caiqichang.cn/2023img/g1-alloc.png" srcset="/cqc-blog/img/loading.gif" lazyload alt="avatar"></p>
-<p>混合GC会执行多次，直到回收了足够多的内存空间，然后，它会触发一次新生代GC。新生代GC后，又可能会发生一次并发标记周期的处理。最后，又会起混合GC的执行。<br><img src="http://images.caiqichang.cn/2023img/g1-MixedGC.png" srcset="/cqc-blog/img/loading.gif" lazyload alt="avatar"></p>
+<p><img src="http://images.caiqichang.cn/2023img/g1-alloc.png" srcset="/img/loading.gif" lazyload alt="avatar"></p>
+<p>混合GC会执行多次，直到回收了足够多的内存空间，然后，它会触发一次新生代GC。新生代GC后，又可能会发生一次并发标记周期的处理。最后，又会起混合GC的执行。<br><img src="http://images.caiqichang.cn/2023img/g1-MixedGC.png" srcset="/img/loading.gif" lazyload alt="avatar"></p>
 <p><strong>必要时的Full GC</strong></p>
 <p>并发收集由于让应用程序和GC线程交替工作，因此总是不能完全避免在特别繁忙的场合会出现在回收过程中内存不充足的情况。当遇到这种情况时，G1会转入一个Full GC进行回收。</p>
 <blockquote>
@@ -740,8 +740,8 @@
 </blockquote>
 <figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs stylus">-Djava<span class="hljs-selector-class">.rmi</span><span class="hljs-selector-class">.server</span>.hostname=外网访问 ip 地址 <br>-Dcom<span class="hljs-selector-class">.sun</span><span class="hljs-selector-class">.management</span><span class="hljs-selector-class">.jmxremote</span>.port=<span class="hljs-number">60001</span>   <span class="hljs-comment">//监控的端口号</span><br>-Dcom<span class="hljs-selector-class">.sun</span><span class="hljs-selector-class">.management</span><span class="hljs-selector-class">.jmxremote</span>.authenticate=false   <span class="hljs-comment">//关闭认证</span><br>-Dcom<span class="hljs-selector-class">.sun</span><span class="hljs-selector-class">.management</span><span class="hljs-selector-class">.jmxremote</span>.ssl=false<br></code></pre></td></tr></table></figure>
 
-<h2 id="类文件"><a href="#类文件" class="headerlink" title="类文件"></a>类文件</h2><h3 id="类文件结构"><a href="#类文件结构" class="headerlink" title="类文件结构"></a>类文件结构</h3><p>方法体出现ACC_SYNCHRONIZED 标识，该标识指明了该方法是一个同步方法，JVM 通过该 ACC_SYNCHRONIZED 访问标志来辨别一个方法是否声明为同步方法，从而执行相应的同步调用。<br><img src="http://images.caiqichang.cn/2023img/synchronizeMethod.jpg" srcset="/cqc-blog/img/loading.gif" lazyload alt="avatar"></p>
-<p>方法体对应的访问范围<br><img src="http://images.caiqichang.cn/2023img/classArea.jpg" srcset="/cqc-blog/img/loading.gif" lazyload alt="avatar"></p>
+<h2 id="类文件"><a href="#类文件" class="headerlink" title="类文件"></a>类文件</h2><h3 id="类文件结构"><a href="#类文件结构" class="headerlink" title="类文件结构"></a>类文件结构</h3><p>方法体出现ACC_SYNCHRONIZED 标识，该标识指明了该方法是一个同步方法，JVM 通过该 ACC_SYNCHRONIZED 访问标志来辨别一个方法是否声明为同步方法，从而执行相应的同步调用。<br><img src="http://images.caiqichang.cn/2023img/synchronizeMethod.jpg" srcset="/img/loading.gif" lazyload alt="avatar"></p>
+<p>方法体对应的访问范围<br><img src="http://images.caiqichang.cn/2023img/classArea.jpg" srcset="/img/loading.gif" lazyload alt="avatar"></p>
 <h3 id="双亲委派模型"><a href="#双亲委派模型" class="headerlink" title="双亲委派模型"></a>双亲委派模型</h3><p>站在虚拟机角度，只存在两种不同的类加载器：</p>
 <ol>
 <li>启动类加载器BootStrap ClassLoader，由虚拟机实现，是虚拟机自身一部分。</li>
@@ -760,7 +760,7 @@
 <li>只有当所有父加载器都无法自己完成这个类加载请求，子加载器才会进行加载。</li>
 </ol>
 <p>作用：因为这样可以避免重复加载，当父亲已经加载了该类的时候，就没有必要 ClassLoader 再加载一次。考虑到安全因素，我们试想一下，如果不使用这种委托模式，那我们就可以随时使用自定义的String来动态替代java核心api中定义的类型，这样会存在非常大的安全隐患，而双亲委托的方式，就可以避免这种情况，因为String 已经在启动时就被引导类加载器(Bootstrcp ClassLoader)加载，所以用户自定义的ClassLoader永远也无法加载一个自己写的String，除非你改变 JDK 中 ClassLoader 搜索类的默认算法。</p>
-<p><img src="http://images.caiqichang.cn/2023img/687474703a2f2f7777312e73696e61696d672e636e2f6c617267652f38646333363365366c7931673266776674713833726a32306a6730647a337a362e6a7067" srcset="/cqc-blog/img/loading.gif" lazyload alt="avatar"></p>
+<p><img src="http://images.caiqichang.cn/2023img/687474703a2f2f7777312e73696e61696d672e636e2f6c617267652f38646333363365366c7931673266776674713833726a32306a6730647a337a362e6a7067" srcset="/img/loading.gif" lazyload alt="avatar"></p>
 <p>相关代码：</p>
 <figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><code class="hljs reasonml">protected Class&lt;?&gt; load<span class="hljs-constructor">Class(String <span class="hljs-params">name</span>, <span class="hljs-params">boolean</span> <span class="hljs-params">resolve</span>)</span><br>    throws ClassNotFoundException<br>&#123;<br>    synchronized (get<span class="hljs-constructor">ClassLoadingLock(<span class="hljs-params">name</span>)</span>) &#123;<br>        <span class="hljs-comment">// First, check if the class has already been loaded</span><br>        Class&lt;?&gt; c = find<span class="hljs-constructor">LoadedClass(<span class="hljs-params">name</span>)</span>;<br>        <span class="hljs-keyword">if</span> (c<span class="hljs-operator"> == </span>null) &#123;<br>            long t0 = <span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">System</span>.</span></span>nano<span class="hljs-constructor">Time()</span>;<br>            <span class="hljs-keyword">try</span> &#123;<br>                <span class="hljs-keyword">if</span> (parent != null) &#123;<br>                    c = parent.load<span class="hljs-constructor">Class(<span class="hljs-params">name</span>, <span class="hljs-params">false</span>)</span>;<br>                &#125; <span class="hljs-keyword">else</span> &#123;<br>                    c = find<span class="hljs-constructor">BootstrapClassOrNull(<span class="hljs-params">name</span>)</span>;<br>                &#125;<br>            &#125; catch (ClassNotFoundException e) &#123;<br>                <span class="hljs-comment">// ClassNotFoundException thrown if class not found</span><br>                <span class="hljs-comment">// from the non-null parent class loader</span><br>            &#125;<br><br>            <span class="hljs-keyword">if</span> (c<span class="hljs-operator"> == </span>null) &#123;<br>                <span class="hljs-comment">// If still not found, then invoke findClass in order</span><br>                <span class="hljs-comment">// to find the class.</span><br>                long t1 = <span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">System</span>.</span></span>nano<span class="hljs-constructor">Time()</span>;<br>                c = find<span class="hljs-constructor">Class(<span class="hljs-params">name</span>)</span>;<br><br>                <span class="hljs-comment">// this is the defining class loader; record the stats</span><br>                sun.misc.<span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">PerfCounter</span>.</span></span>get<span class="hljs-constructor">ParentDelegationTime()</span>.add<span class="hljs-constructor">Time(<span class="hljs-params">t1</span> - <span class="hljs-params">t0</span>)</span>;<br>                sun.misc.<span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">PerfCounter</span>.</span></span>get<span class="hljs-constructor">FindClassTime()</span>.add<span class="hljs-constructor">ElapsedTimeFrom(<span class="hljs-params">t1</span>)</span>;<br>                sun.misc.<span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">PerfCounter</span>.</span></span>get<span class="hljs-constructor">FindClasses()</span>.increment<span class="hljs-literal">()</span>;<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">if</span> (resolve) &#123;<br>            resolve<span class="hljs-constructor">Class(<span class="hljs-params">c</span>)</span>;<br>        &#125;<br>        return c;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
@@ -849,7 +849,7 @@
 <li>该类没有在其他任何地方被引用</li>
 <li>该类的类加载器的实例已被GC</li>
 </ul>
-<h2 id="对象创建及使用"><a href="#对象创建及使用" class="headerlink" title="对象创建及使用"></a>对象创建及使用</h2><p><img src="http://images.caiqichang.cn/2023img/objcreate.jpg" srcset="/cqc-blog/img/loading.gif" lazyload alt="avatar"></p>
+<h2 id="对象创建及使用"><a href="#对象创建及使用" class="headerlink" title="对象创建及使用"></a>对象创建及使用</h2><p><img src="http://images.caiqichang.cn/2023img/objcreate.jpg" srcset="/img/loading.gif" lazyload alt="avatar"></p>
 <p>对象的创建</p>
 <ol>
 <li>类加载检查：虚拟机遇到new命令，先检查是否能在常量池定位到一个类的引用，检查这个符号代表的类是否已被加载、解析和初始化过。</li>
@@ -870,7 +870,7 @@
 <li>CAS+失败重试</li>
 <li>本地线程分配缓冲(Thread Local Allocation Buffer,TLAB) ，每个线程在Java堆中预先分配一小块内存，基于 CAS 的独享线程(Mutator Threads)可以优先将对象分配在 Eden 中的一块内存，因为是 Java 线程独享的内存区没有锁竞争，所以分配速度更快，每个 TLAB 都是一个线程独享的。</li>
 </ul>
-<h3 id="对象内存分布"><a href="#对象内存分布" class="headerlink" title="对象内存分布"></a>对象内存分布</h3><p><img src="http://images.caiqichang.cn/2023img/object-head.jpg" srcset="/cqc-blog/img/loading.gif" lazyload alt="avatar"><br>对象在堆内存中的存储布局可以分为三部分：对象头、实例数据(对象有效信息)和对齐填充(仅起占位符作用)\</p>
+<h3 id="对象内存分布"><a href="#对象内存分布" class="headerlink" title="对象内存分布"></a>对象内存分布</h3><p><img src="http://images.caiqichang.cn/2023img/object-head.jpg" srcset="/img/loading.gif" lazyload alt="avatar"><br>对象在堆内存中的存储布局可以分为三部分：对象头、实例数据(对象有效信息)和对齐填充(仅起占位符作用)\</p>
 <p>Hotspot的对象头包括两部分信息：</p>
 <ol>
 <li>第一部分：存储对象自身的运行数据，如HashCode、GC分代年龄、锁状态标志、线程持有的锁、偏向线程ID等。</li>
@@ -973,7 +973,7 @@
 <li>将对象存储在新声代<code>Eden</code>中，<code>EDEN_TOP</code>指针移位。若新声代无法存储对象，执行<code>Young GC</code>，并尝试重新分配对象。</li>
 <li><code>Young GC</code> 后重新分配对象，若仍然无法分配。对象直接进入老年代。</li>
 </ol>
-<p><img src="http://images.caiqichang.cn/2023img/object-alloc.png" srcset="/cqc-blog/img/loading.gif" lazyload alt="image"></p>
+<p><img src="http://images.caiqichang.cn/2023img/object-alloc.png" srcset="/img/loading.gif" lazyload alt="image"></p>
 <ul>
 <li><a target="_blank" rel="noopener" href="https://programmerall.com/article/46551700936/">JVM About Object Distribution In Pile, Stack, TLAB</a></li>
 <li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/BlueStarWei/p/9358757.html">JVM之对象分配：栈上分配 &amp; TLAB分配</a></li>
@@ -1018,7 +1018,7 @@
 
 <p>相关文章：<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/61049063?utm_source=wechat_session">看完你还敢说你懂JVM吗？</a></p>
 <h2 id="CMS-ParNew收集器的流程梳理"><a href="#CMS-ParNew收集器的流程梳理" class="headerlink" title="CMS + ParNew收集器的流程梳理"></a>CMS + ParNew收集器的流程梳理</h2><h3 id="young区域-年轻代"><a href="#young区域-年轻代" class="headerlink" title="young区域(年轻代)"></a>young区域(年轻代)</h3><ol>
-<li>对象首先分配到Eden，分配满了触发Young Gc(Minor Gc)，基于复制交换算法，晋升对象年龄+1。<br><img src="http://images.caiqichang.cn/2023img/edenGc2.jpg" srcset="/cqc-blog/img/loading.gif" lazyload alt="avatar"></li>
+<li>对象首先分配到Eden，分配满了触发Young Gc(Minor Gc)，基于复制交换算法，晋升对象年龄+1。<br><img src="http://images.caiqichang.cn/2023img/edenGc2.jpg" srcset="/img/loading.gif" lazyload alt="avatar"></li>
 <li>年龄到达老年代门槛的晋升老年代。<ul>
 <li>动态对象年龄判断：如果在 Survivor 空间中相同年龄所有对象大小的总和大于 Survivor 空间的一半，年龄大于或等于该年龄的对象就可以直接进入老年代，无须等到 -XX:MaxTenuringThreshold 中要求的年龄。</li>
 <li>晋升失败触发FULL GC的两种场景：<ol>
@@ -1071,7 +1071,7 @@
 </ul>
 <h4 id="其他老年代问题"><a href="#其他老年代问题" class="headerlink" title="其他老年代问题"></a>其他老年代问题</h4><p> CMS 无法处理浮动垃圾(Floating Garbage)。CMS 的并发清理阶段，应用还在运行，因此不断有新的垃圾产生，而这些垃圾不在这次清理标记的范畴里，无法在本次 GC 被清除掉，这些就是浮动垃圾，除此之外在 Remark 之前那些断开引用脱离了读写屏障控制的对象也算浮动垃圾。</p>
 <h3 id="相关文章"><a href="#相关文章" class="headerlink" title="相关文章"></a>相关文章</h3><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/hynblogs/p/12292345.html">图解垃圾回收</a></p>
-<h2 id="Java虚拟机内存调优"><a href="#Java虚拟机内存调优" class="headerlink" title="Java虚拟机内存调优"></a>Java虚拟机内存调优</h2><p>jdk1.8前的参数设置<br> <img src="http://images.caiqichang.cn/2023img/jvmParameter.jpg" srcset="/cqc-blog/img/loading.gif" lazyload alt="avatar"><br> <img src="http://images.caiqichang.cn/2023img/jvmGCType.jpg" srcset="/cqc-blog/img/loading.gif" lazyload alt="avatar"></p>
+<h2 id="Java虚拟机内存调优"><a href="#Java虚拟机内存调优" class="headerlink" title="Java虚拟机内存调优"></a>Java虚拟机内存调优</h2><p>jdk1.8前的参数设置<br> <img src="http://images.caiqichang.cn/2023img/jvmParameter.jpg" srcset="/img/loading.gif" lazyload alt="avatar"><br> <img src="http://images.caiqichang.cn/2023img/jvmGCType.jpg" srcset="/img/loading.gif" lazyload alt="avatar"></p>
 <h3 id="基本概念重述"><a href="#基本概念重述" class="headerlink" title="基本概念重述"></a>基本概念重述</h3><p>跨代引用解决方案</p>
 <p>Card Table：中文翻译为卡表，主要是用来标记卡页的状态，每个卡表项对应一个卡页。当卡页中一个对象引用有写操作时，写屏障将会标记对象所在的卡表状态改为 dirty，卡表的本质是用来解决跨代引用的问题。</p>
 <p>内存分配</p>
@@ -1147,8 +1147,8 @@
 <blockquote>
 <p>GC 耗时增大 -&gt; 线程 Block 增多 -&gt;  RT 上涨。</p>
 </blockquote>
-<h3 id="案例"><a href="#案例" class="headerlink" title="案例"></a>案例</h3><h4 id="美团技术案例-基于CMS-JDK1-8"><a href="#美团技术案例-基于CMS-JDK1-8" class="headerlink" title="美团技术案例(基于CMS JDK1.8)"></a>美团技术案例(基于CMS JDK1.8)</h4><p><img src="http://images.caiqichang.cn/2023img/gcProcess.jpg" srcset="/cqc-blog/img/loading.gif" lazyload alt="avatar"></p>
-<p><img src="http://images.caiqichang.cn/2023img/localIssue.png" srcset="/cqc-blog/img/loading.gif" lazyload alt="avatar"></p>
+<h3 id="案例"><a href="#案例" class="headerlink" title="案例"></a>案例</h3><h4 id="美团技术案例-基于CMS-JDK1-8"><a href="#美团技术案例-基于CMS-JDK1-8" class="headerlink" title="美团技术案例(基于CMS JDK1.8)"></a>美团技术案例(基于CMS JDK1.8)</h4><p><img src="http://images.caiqichang.cn/2023img/gcProcess.jpg" srcset="/img/loading.gif" lazyload alt="avatar"></p>
+<p><img src="http://images.caiqichang.cn/2023img/localIssue.png" srcset="/img/loading.gif" lazyload alt="avatar"></p>
 <p><strong>场景一：动态扩容引起的空间震荡</strong></p>
 <p>服务刚刚启动时 GC 次数较多，最大空间剩余很多但是依然发生 GC， GC Cause 一般为 Allocation Failure，且在 GC 日志中会观察到经历一次 GC ，堆内各个空间的大小会被调整。</p>
 <p>解决：尽量将成对出现的空间大小配置参数设置成固定的，</p>
@@ -1355,7 +1355,7 @@
     
       <span class="category-chain">
         
-  <a href="/cqc-blog/categories/Java%E5%9F%BA%E7%A1%80/" class="category-chain-item">Java基础</a>
+  <a href="/categories/Java%E5%9F%BA%E7%A1%80/" class="category-chain-item">Java基础</a>
   
   
 
@@ -1370,7 +1370,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/cqc-blog/tags/Java%E8%99%9A%E6%8B%9F%E6%9C%BA/" class="print-no-link">#Java虚拟机</a>
+        <a href="/tags/Java%E8%99%9A%E6%8B%9F%E6%9C%BA/" class="print-no-link">#Java虚拟机</a>
       
     </div>
   
@@ -1383,7 +1383,7 @@
   <div class="license-box my-3">
     <div class="license-title">
       <div>Java虚拟机</div>
-      <div>http://cactuscode.gitee.io/cqc-blog/2022/06/22/Java虚拟机/</div>
+      <div>https://cai-qichang.github.io/2022/06/22/Java虚拟机/</div>
     </div>
     <div class="license-meta">
       
@@ -1420,7 +1420,7 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/cqc-blog/2022/07/22/Java-Unit-%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/" title="Java-Unit-单元测试">
+                      <a href="/2022/07/22/Java-Unit-%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/" title="Java-Unit-单元测试">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">Java-Unit-单元测试</span>
                         <span class="visible-mobile">上一篇</span>
@@ -1430,7 +1430,7 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/cqc-blog/2022/05/22/Java-IO/" title="Java IO">
+                      <a href="/2022/05/22/Java-IO/" title="Java IO">
                         <span class="hidden-mobile">Java IO</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
@@ -1595,8 +1595,8 @@
 
 <script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
 <script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
-<script  src="/cqc-blog/js/events.js" ></script>
-<script  src="/cqc-blog/js/plugins.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
 
 
   <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
@@ -1618,7 +1618,7 @@
 
 
   
-    <script  src="/cqc-blog/js/img-lazyload.js" ></script>
+    <script  src="/js/img-lazyload.js" ></script>
   
 
 
@@ -1717,7 +1717,7 @@
 
   <script>Fluid.plugins.imageCaption();</script>
 
-  <script  src="/cqc-blog/js/local-search.js" ></script>
+  <script  src="/js/local-search.js" ></script>
 
   <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
 
@@ -1727,7 +1727,7 @@
 
 <!-- 主题的启动项，将它保持在最底部 -->
 <!-- the boot of the theme, keep it at the bottom -->
-<script  src="/cqc-blog/js/boot.js" ></script>
+<script  src="/js/boot.js" ></script>
 
 
   
