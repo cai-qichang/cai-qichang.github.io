@@ -1,0 +1,1369 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <!-- 通过 CDN 引入霞鹜文楷字体 -->
+  <link rel="stylesheet" href="https://npm.elemecdn.com/lxgw-wenkai-screen-webfont/style.css" media="print" onload="this.media='all'">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/me.png">
+  <link rel="icon" href="/img/me.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="caiqichang">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="wireshark1.工具 linux使用tcpdump  123456tcpdump [ -adeflnNOpqStvx ] [ -c 数量 ] [ -F 文件名 ]　　　　　[ -i 网络接口 ] [ -r 文件名] [ -s snaplen ]         [ -T 类型 ] [ -w 文件名 ] [表达式 ]  tcpdump的选项介绍1234567891011121314151617">
+<meta property="og:type" content="article">
+<meta property="og:title" content="wireshark">
+<meta property="og:url" content="https://cai-qichang.github.io/2021/08/18/wireshark/index.html">
+<meta property="og:site_name" content="caiqichang&#39;s Blog">
+<meta property="og:description" content="wireshark1.工具 linux使用tcpdump  123456tcpdump [ -adeflnNOpqStvx ] [ -c 数量 ] [ -F 文件名 ]　　　　　[ -i 网络接口 ] [ -r 文件名] [ -s snaplen ]         [ -T 类型 ] [ -w 文件名 ] [表达式 ]  tcpdump的选项介绍1234567891011121314151617">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://raw.githubusercontent.com/cai-qichang/cqc-photo/master/img/image-20230818202045128.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cai-qichang/cqc-photo/master/img/image-20230818203017370.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cai-qichang/cqc-photo/master/img/image-20230818203029507.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cai-qichang/cqc-photo/master/img/image-20230818203043359.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cai-qichang/cqc-photo/master/img/image-20230818203057242.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cai-qichang/cqc-photo/master/img/image-20230818203105627.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cai-qichang/cqc-photo/master/img/image-20230818203221529.png">
+<meta property="article:published_time" content="2021-08-18T12:15:53.000Z">
+<meta property="article:modified_time" content="2024-10-13T05:21:08.245Z">
+<meta property="article:author" content="caiqichang">
+<meta property="article:tag" content="网络抓包">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/cai-qichang/cqc-photo/master/img/image-20230818202045128.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>wireshark - caiqichang&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"cai-qichang.github.io","root":"/","version":"1.9.5","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>caiqichang</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/yueqiu.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="wireshark"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2021-08-18 20:15" pubdate>
+          2021年8月18日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          12k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          100 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">wireshark</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="wireshark"><a href="#wireshark" class="headerlink" title="wireshark"></a><strong>wireshark</strong></h1><h2 id="1-工具"><a href="#1-工具" class="headerlink" title="1.工具"></a><strong>1.工具</strong></h2><ol>
+<li><h3 id="linux使用tcpdump"><a href="#linux使用tcpdump" class="headerlink" title="linux使用tcpdump"></a><strong>linux使用tcpdump</strong></h3></li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs shell">tcpdump [ -adeflnNOpqStvx ] [ -c 数量 ] [ -F 文件名 ]<br><br>　　　　　[ -i 网络接口 ] [ -r 文件名] [ -s snaplen ]<br><br>         [ -T 类型 ] [ -w 文件名 ] [表达式 ]<br><br></code></pre></td></tr></table></figure>
+
+<h4 id="tcpdump的选项介绍"><a href="#tcpdump的选项介绍" class="headerlink" title="tcpdump的选项介绍"></a><strong>tcpdump的选项介绍</strong></h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><code class="hljs shell">-A 以ASCII格式打印出所有分组，并将链路层的头最小化。<br>-c 在收到指定的数量的分组后，tcpdump就会停止。<br>-C 在将一个原始分组写入文件之前，检查文件当前的大小是否超过了参数file_size<br>中指定的大小。如果超过了指定大小，则关闭当前文件，然后在打开一个新的文件。参数 file_size<br>的单位是兆字节（是1,000,000字节，而不是1,048,576字节）。<br>-d 将匹配信息包的代码以人们能够理解的汇编格式给出。<br>-dd 将匹配信息包的代码以c语言程序段的格式给出。<br>-ddd 将匹配信息包的代码以十进制的形式给出。<br>-D 打印出系统中所有可以用tcpdump截包的网络接口。<br>-e 在输出行打印出数据链路层的头部信息。<br>-E 用spi@ipaddr algo:secret解密那些以addr作为地址，并且包含了安全参数索引值spi的IPsec ESP分组。<br>-f 将外部的Internet地址以数字的形式打印出来。<br>-F 从指定的文件中读取表达式，忽略命令行中给出的表达式。<br>-i 指定监听的网络接口。<br>-l 使标准输出变为缓冲行形式。<br>-L 列出网络接口的已知数据链路。<br>-m 从文件module中导入SMI MIB模块定义。该参数可以被使用多次，以导入多个MIB模块。<br>-M 如果tcp报文中存在TCP-MD5选项，则需要用secret作为共享的验证码用于验证TCP-MD5选选项摘要（详情可参考RFC 2385）。<br>-n 不把网络地址转换成名字。<br>-N 不输出主机名中的域名部分。例如，link.linux265.com 只输出link。<br>-t 在输出的每一行不打印时间戳。<br>-O 不运行分组分组匹配（packet-matching）代码优化程序。<br>-P 不将网络接口设置成混杂模式。<br>-q 快速输出。只输出较少的协议信息。<br>-r 从指定的文件中读取包(这些包一般通过-w选项产生)。<br>-S 将tcp的序列号以绝对值形式输出，而不是相对值。<br>-s 从每个分组中读取最开始的snaplen个字节，而不是默认的68个字节。<br>-T 将监听到的包直接解释为指定的类型的报文，常见的类型有rpc远程过程调用）和snmp（简单网络管理协议；）。<br>-t 不在每一行中输出时间戳。<br>-tt 在每一行中输出非格式化的时间戳。<br>-ttt 输出本行和前面一行之间的时间差。<br>-tttt 在每一行中输出由date处理的默认格式的时间戳。<br>-u 输出未解码的NFS句柄。<br>-v 输出一个稍微详细的信息，例如在ip包中可以包括ttl和服务类型的信息。<br>-vv 输出详细的报文信息。<br>-w 直接将分组写入文件中，而不是不分析并打印出来。<br>-x 以16进制数形式显示每一个报文 (去掉链路层报头) . 可以显示较小的完整报文, 否则只显示snaplen个字节.<br>-xx 以16进制数形式显示每一个报文（包含链路层包头）。<br>-X 以16进制和ASCII码形式显示每个报文（去掉链路层报头）。<br>-XX 以16进制和ASCII吗形式显示每个报文（包含链路层报头）。<br>-y 设置tcpdump 捕获数据链路层协议类型<br>-Z 使tcpdump 放弃自己的超级权限(如果以root用户启动tcpdump, tcpdump将会有超级用户权限), 并把当前tcpdump的用户ID设置为user, 组ID设置为user首要所属组的ID<br><br></code></pre></td></tr></table></figure>
+
+<h4 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a><strong>常用命令</strong></h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><code class="hljs shell">01、抓取所有网络包，并在terminal中显示抓取的结果，将包以十六进制的形式显示。<br>tcpdump <br>02、抓取所有的网络包，并存到 result.cap 文件中。<br>tcpdump -w result.cap<br>03、抓取所有的经过eth0网卡的网络包，并存到 result.cap 文件中。<br>tcpdump -i eth0 -w result.cap<br>04、抓取源地址是192.168.1.100的包，并将结果保存到 result.cap 文件中。<br>tcpdump src host 192.168.1.100 -w result.cap <br>05、抓取地址包含是192.168.1.100的包，并将结果保存到 result.cap 文件中。<br>tcpdump host 192.168.1.100 -w result.cap <br>06、抓取目的地址包含是192.168.1.100的包，并将结果保存到 result.cap 文件中。<br>tcpdump dest host 192.168.1.100 -w result.cap <br>07、抓取主机地址为 192.168.1.100 的数据包<br>tcpdump -i eth0 -vnn host 192.168.1.100<br>08、抓取包含192.168.1.0/24网段的数据包<br>tcpdump -i eth0 -vnn net 192.168.1.0/24<br>09、抓取网卡eth0上所有包含端口22的数据包<br>tcpdump -i eth0 -vnn port 22<br>10、抓取指定协议格式的数据包，协议格式可以是「udp,icmp,arp,ip」中的任何一种,例如以下命令：<br>tcpdump udp  -i eth0 -vnn<br>11、抓取经过 eth0 网卡的源 ip 是 192.168.1.100 数据包，src参数表示源。<br>tcpdump -i eth0 -vnn src host 192.168.1.100<br>12、抓取经过 eth0 网卡目的 ip 是 192.168.1.100 数据包，dst参数表示目的。<br> tcpdump -i eth0 -vnn dst host 192.168.1.100<br>13、抓取源端口是22的数据包<br>tcpdump -i eth0 -vnn src port 22<br>14、抓取源ip是 192.168.1.100 且目的ip端口是22的数据包<br>tcpdump -i eth0 -vnn src host 192.168.1.100 and dst port 22<br>15、抓取源ip是192.168.1.100或者包含端口是22的数据包<br>tcpdump -i eth0 -vnn src host 192.168.1.100 or port 22<br>16、抓取源ip是192.168.1.100且端口不是22的数据包<br>tcpdump -i eth0 -vnn src host 192.168.1.100 and not port 22<br>17、抓取源ip是192.168.1.100且目的端口是22，或源ip是192.168.1.102且目的端口是80的数据包。<br>tcpdump -i eth0 -vnn ( src host 192.168.1.100 and dst port 22 ) or ( src host 192.168.1.102 and dst port 80 )<br>18、把抓取的数据包记录存到/tmp/result文件中，当抓取100个数据包后就退出程序。<br>tcpdump –i eth0 -vnn -w /tmp/result -c 100<br>19、从/tmp/result记录中读取tcp协议的数据包<br>tcpdump -i eth0  tcp  -vnn -r /tmp/result<br>20、想要截获所有192.168.1.100 的主机收到的和发出的所有的数据包：<br>tcpdump host 192.168.1.100<br>21、如果想要获取主机192.168.1.100除了和主机192.168.1.101之外所有主机通信的ip包，使用命令：<br>tcpdump ip host 192.168.1.100 and ! 192.168.1.101<br>22、如果想要获取主机 192.168.1.100 接收或发出的 telnet 包，使用如下命令：<br>tcpdump tcp port 23 host192.168.1.100<br><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_">#</span><span class="language-bash">抓取ip为192.168.77.142且端口为8201的数据包输出到8201.<span class="hljs-built_in">cap</span></span><br>tcpdump -i ens192  ip host 192.168.77.142 and port 8201 -w 8201.cap<br></code></pre></td></tr></table></figure>
+
+<h3 id="windowns直接使用wireshark"><a href="#windowns直接使用wireshark" class="headerlink" title="windowns直接使用wireshark"></a><strong>windowns直接使用wireshark</strong></h3><p><img src="https://raw.githubusercontent.com/cai-qichang/cqc-photo/master/img/image-20230818202045128.png" srcset="/img/loading.gif" lazyload alt="image-20230818202045128"></p>
+<h4 id="捕捉过滤"><a href="#捕捉过滤" class="headerlink" title="捕捉过滤"></a><strong>捕捉过滤</strong></h4><p>捕捉过滤器–<strong>捕捉前依据协议的相关信息进行过滤设置</strong></p>
+<table>
+<thead>
+<tr>
+<th><strong>语法：</strong></th>
+<th><strong>Protocol</strong></th>
+<th><strong>Direction</strong></th>
+<th><strong>Host(s)</strong></th>
+<th><strong>Value</strong></th>
+<th><strong>Logical Operations</strong></th>
+<th><strong>Other expression</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>例子：</td>
+<td>tcp</td>
+<td>dst</td>
+<td>10.1.1.1</td>
+<td>80</td>
+<td>and</td>
+<td>tcp dst 10.2.2.2 3128</td>
+</tr>
+</tbody></table>
+<p><strong>示例：</strong></p>
+<p><strong>(host 10.4.1.12 or src net 10.6.0.0&#x2F;16) and tcp dst portrange 200-10000 and dst net 10.0.0.0&#x2F;8</strong></p>
+<h5 id="字段详解："><a href="#字段详解：" class="headerlink" title="字段详解："></a><strong>字段详解：</strong></h5><p><strong>Protocol（协议）:</strong></p>
+<p>可能值: ether, fddi, ip, arp, rarp, decnet, lat, sca, moprc, mopdl, tcp and udp.</p>
+<p>如果没指明协议类型，则默认为捕捉所有支持的协议。</p>
+<p><strong>注：在wireshark的HELP-Manual Pages-Wireshark Filter中查到其支持的协议。</strong></p>
+<p><strong>Direction（方向）:</strong></p>
+<p>可能值: src, dst, src and dst, src or dst</p>
+<p>如果没指明方向，则默认使用 “src or dst” 作为关键字。</p>
+<p>”host 10.2.2.2″与”src or dst host 10.2.2.2″等价。</p>
+<p><strong>Host(s):</strong></p>
+<p>可能值： net, port, host, portrange.</p>
+<p>默认使用”host”关键字，”src 10.1.1.1″与”src host 10.1.1.1″等价。</p>
+<p><strong>Logical Operations（逻辑运算）:</strong></p>
+<p>可能值：not, and, or.</p>
+<p>否(“not”)具有最高的优先级。或(“or”)和与(“and”)具有相同的优先级，运算时从左至右进行。</p>
+<p>“not tcp port 3128 and tcp port 23″与”(not tcp port 3128) and tcp port 23″等价。</p>
+<p>“not tcp port 3128 and tcp port 23″与”not (tcp port 3128 and tcp port 23)”不等价。</p>
+<h2 id="2-分析"><a href="#2-分析" class="headerlink" title="2.分析"></a><strong>2.分析</strong></h2><h3 id="显示过滤"><a href="#显示过滤" class="headerlink" title="显示过滤"></a><strong>显示过滤</strong></h3><p><strong>对捕捉到的数据包依据协议或包的内容进行过滤</strong></p>
+<h4 id="协议过滤语法"><a href="#协议过滤语法" class="headerlink" title="协议过滤语法"></a><strong>协议过滤语法</strong></h4><table>
+<thead>
+<tr>
+<th>语法：</th>
+<th><strong>Protocol</strong></th>
+<th><strong>.</strong></th>
+<th><strong>String 1</strong></th>
+<th><strong>.</strong></th>
+<th><strong>String 2</strong></th>
+<th><strong>Comparison operator</strong></th>
+<th><strong>Value</strong></th>
+<th><strong>Logical Operations</strong></th>
+<th><strong>Other expression</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>例子：</td>
+<td>http</td>
+<td></td>
+<td>request</td>
+<td></td>
+<td>method</td>
+<td>&#x3D;&#x3D;</td>
+<td>“POST”</td>
+<td>or</td>
+<td>icmp.type</td>
+</tr>
+</tbody></table>
+<p>依据协议过滤时，可直接通过协议来进行过滤，也能依据协议的属性值进行过滤。</p>
+<p>按协议进行过滤：</p>
+<table>
+<thead>
+<tr>
+<th><strong>snmp || dns || icmp</strong></th>
+<th>显示SNMP或DNS或ICMP封包。</th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<p>按协议的属性值进行过滤：</p>
+<p><strong>ip.addr &#x3D;&#x3D; 10.1.1.1</strong></p>
+<p><strong>ip.src !&#x3D; 10.1.2.3 or ip.dst !&#x3D; 10.4.5.6</strong></p>
+<table>
+<thead>
+<tr>
+<th><strong>ip.src &#x3D;&#x3D; 10.230.0.0&#x2F;16</strong></th>
+<th>显示来自10.230网段的封包。</th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th><strong>tcp.port &#x3D;&#x3D; 25</strong></th>
+<th>显示来源或目的TCP端口号为25的封包。</th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th><strong>tcp.dstport &#x3D;&#x3D; 25</strong></th>
+<th>显示目的TCP端口号为25的封包。</th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th><strong>http.request.method&#x3D;&#x3D; “POST”</strong></th>
+<th>显示post请求方式的http封包。</th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th><strong>http.host &#x3D;&#x3D; “tracker.1ting.com”</strong></th>
+<th>显示请求的域名为tracker.1ting.com的http封包。</th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th><strong>tcp.flags.syn &#x3D;&#x3D; 0×02</strong></th>
+<th>显示包含TCP SYN标志的封包。</th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h3 id="内容过滤语法"><a href="#内容过滤语法" class="headerlink" title="内容过滤语法"></a><strong>内容过滤语法</strong></h3><h4 id="深度字符串匹配"><a href="#深度字符串匹配" class="headerlink" title="深度字符串匹配"></a><strong>深度字符串匹配</strong></h4><p><strong>contains</strong> ：<strong>Does the protocol, field or slice contain a value</strong></p>
+<p><strong>示例</strong></p>
+<table>
+<thead>
+<tr>
+<th><strong>tcp contains “http”</strong></th>
+<th>显示payload中包含”http”字符串的tcp封包。</th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th><strong>http.request.uri contains “online”</strong></th>
+<th>显示请求的uri包含”online”的http封包。</th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h4 id="特定偏移处值的过滤"><a href="#特定偏移处值的过滤" class="headerlink" title="特定偏移处值的过滤"></a><strong>特定偏移处值的过滤</strong></h4><p>tcp[20:3] &#x3D;&#x3D; 47:45:54 <strong>&#x2F;* 16进制形式，tcp头部一般是20字节，所以这个是对payload的前三个字节进行过滤 *&#x2F;</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">http.host[0:4] == &quot;trac&quot;<br></code></pre></td></tr></table></figure>
+
+<p>过滤中函数的使用（upper、lower）</p>
+<p><code>upper(string-field) - converts a string field to uppercase</code></p>
+<p><code>lower(string-field) - converts a string field to lowercase</code></p>
+<p><strong>示例</strong></p>
+<p><code>upper(http.request.uri) contains &quot;ONLINE&quot;</code></p>
+<p>wireshark过滤支持比较运算符、逻辑运算符，内容过滤时还能使用位运算。</p>
+<p>如果过滤器的语法是正确的，表达式的背景呈绿色。如果呈红色，说明表达式有误。</p>
+<h3 id="可能出现的错误"><a href="#可能出现的错误" class="headerlink" title="可能出现的错误"></a><strong>可能出现的错误</strong></h3><table>
+<thead>
+<tr>
+<th>代码</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Tcp previous segment lost</td>
+<td>tcp先前的分片丢失</td>
+</tr>
+<tr>
+<td>Tcpacked lost segment</td>
+<td>tcp应答丢失</td>
+</tr>
+<tr>
+<td>Tcp window update</td>
+<td>tcp窗口更新</td>
+</tr>
+<tr>
+<td>Tcp dup ack</td>
+<td>tcp重复应答</td>
+</tr>
+<tr>
+<td>Tcp keep alive</td>
+<td>tcp保持活动</td>
+</tr>
+<tr>
+<td>Tcp retransmission</td>
+<td>tcp重传</td>
+</tr>
+<tr>
+<td>Tcp ACKed unseen segument</td>
+<td>tcp看不见确认应答</td>
+</tr>
+<tr>
+<td>tcp port numbers reused</td>
+<td>tcp端口重复使用</td>
+</tr>
+<tr>
+<td>tcp fast retransmission</td>
+<td>tcp快速重传</td>
+</tr>
+<tr>
+<td>TCP Previoussegment lost</td>
+<td>发送方数据段丢失</td>
+</tr>
+<tr>
+<td>tcp spurious retransmission</td>
+<td>tcp伪重传</td>
+</tr>
+<tr>
+<td>tcp go to sleep</td>
+<td>别看了快去睡觉</td>
+</tr>
+</tbody></table>
+<h2 id="3-总结"><a href="#3-总结" class="headerlink" title="3.总结"></a><strong>3.总结</strong></h2><h3 id="1-建立连接"><a href="#1-建立连接" class="headerlink" title="1.建立连接"></a><strong>1.建立连接</strong></h3><p><img src="https://raw.githubusercontent.com/cai-qichang/cqc-photo/master/img/image-20230818203017370.png" srcset="/img/loading.gif" lazyload alt="image-20230818203017370"></p>
+<h3 id="2-发送请求"><a href="#2-发送请求" class="headerlink" title="2.发送请求"></a><strong>2.发送请求</strong></h3><p><img src="https://raw.githubusercontent.com/cai-qichang/cqc-photo/master/img/image-20230818203029507.png" srcset="/img/loading.gif" lazyload alt="image-20230818203029507"></p>
+<h3 id="3-传输数据"><a href="#3-传输数据" class="headerlink" title="3.传输数据"></a><strong>3.传输数据</strong></h3><p><img src="https://raw.githubusercontent.com/cai-qichang/cqc-photo/master/img/image-20230818203043359.png" srcset="/img/loading.gif" lazyload alt="image-20230818203043359"></p>
+<h3 id="4-异常情况"><a href="#4-异常情况" class="headerlink" title="4.异常情况"></a><strong>4.异常情况</strong></h3><p><img src="https://raw.githubusercontent.com/cai-qichang/cqc-photo/master/img/image-20230818203057242.png" srcset="/img/loading.gif" lazyload alt="image-20230818203057242"></p>
+<p><img src="https://raw.githubusercontent.com/cai-qichang/cqc-photo/master/img/image-20230818203105627.png" srcset="/img/loading.gif" lazyload alt="image-20230818203105627"></p>
+<h3 id="5-连接-结束"><a href="#5-连接-结束" class="headerlink" title="5.连接-结束"></a><strong>5.连接-结束</strong></h3><table>
+<thead>
+<tr>
+<th>代码</th>
+<th>官方</th>
+<th>直译</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>SYN</td>
+<td>synchronous建立联机</td>
+<td>表示建立连接</td>
+</tr>
+<tr>
+<td>FIN</td>
+<td>finish结束</td>
+<td>表示关闭连接</td>
+</tr>
+<tr>
+<td>ACK</td>
+<td>acknowledgement 确认</td>
+<td>表示响应</td>
+</tr>
+<tr>
+<td>PSH</td>
+<td>push传送</td>
+<td>表示有 DATA数据传输</td>
+</tr>
+<tr>
+<td>RST</td>
+<td>reset重置</td>
+<td>表示连接重置</td>
+</tr>
+<tr>
+<td>URG</td>
+<td>urgent紧急</td>
+<td></td>
+</tr>
+<tr>
+<td>Sequence number</td>
+<td>顺序号码</td>
+<td></td>
+</tr>
+<tr>
+<td>Acknowledge number</td>
+<td>确认号码</td>
+<td></td>
+</tr>
+</tbody></table>
+<h2 id="附录"><a href="#附录" class="headerlink" title="附录"></a><strong>附录</strong></h2><h3 id="状态码"><a href="#状态码" class="headerlink" title="状态码"></a><strong>状态码</strong></h3><p>RFC 标准把状态码分成了五类，用数字的第一位表示分类，这样状态码的实际可用范围就大大缩小了，由 000<del>999 变成了 100</del>599。</p>
+<p>这五类的具体含义是：</p>
+<p>1××：提示信息，表示目前是协议处理的中间状态，还需要后续的操作；</p>
+<p>2××：成功，报文已经收到并被正确处理；</p>
+<p>3××：重定向，资源位置发生变动，需要客户端重新发送请求；</p>
+<p>4××：客户端错误，请求报文有误，服务器无法处理；</p>
+<p>5××：服务器错误，服务器在处理请求时内部发生了错误。</p>
+<p>实际上需要注意的是HTTP本身是一个协议，需要通信的双方共同遵守，但这并不是必须的。目前 RFC 标准里总共有 41 个状态码，但状态码的定义是开放的，允许自行扩展。所以 Apache、Nginx 等 Web 服务器都定义了一些专有的状态码。如果你自己开发 Web 应用，也完全可以在不冲突的前提下定义新的状态码。</p>
+<p>1xx</p>
+<p>1xx 类状态码属于<strong>提示信息</strong>，是协议处理中的一种中间状态。例如在需要进行协议升级时，服务器会响应101。如下图所示，使用websocket时，会进行一次协议升级：<img src="https://raw.githubusercontent.com/cai-qichang/cqc-photo/master/img/image-20230818203221529.png" srcset="/img/loading.gif" lazyload alt="image-20230818203221529"></p>
+<p>2xx</p>
+<p>2xx 类状态码表示服务器<strong>成功</strong>处理了客户端的请求，也是我们最愿意看到的状态。</p>
+<ul>
+<li>「<strong>200 OK</strong>」是最常见的成功状态码，表示一切正常。如果是非</li>
+</ul>
+<p>HEAD 请求，服务器返回的响应头都会有 body 数据。</p>
+<ul>
+<li>「<strong>204 No Content</strong>」也是常见的成功状态码，与 200 OK 基本相同，但响应头没有 body 数据。</li>
+<li>「<strong>206 Partial Content</strong>」是应用于 HTTP 分块下载或断点续传，表示响应返回的 body 数据并不是资源的全部，而是其中的一部分，也是服务器处理成功的状态。状态码 <strong>206</strong> 通常还会伴随着头字段“Content-Range”，表示响应报文里 body 数据的具体范围，供客户端确认，例如“Content-Range: bytes 0-99&#x2F;2000”，意思是此次获取的是总计 2000 个字节的前 100 个字节，这其实也就是http协议的<strong>分段请求</strong>功能，这部分内容我们之后会详细介绍！</li>
+</ul>
+<p>3xx</p>
+<p>3xx 类状态码表示客户端请求的资源发生了变动，需要客户端用新的 URL 重新发送请求获取资源，也就是<strong>重定向</strong>。</p>
+<ul>
+<li>「<strong>301 Moved Permanently</strong>」表示永久重定向，说明请求的资源已经不存在了，需改用新的 URL 再次访问。</li>
+<li>「<strong>302 Found</strong>」表示临时重定向，说明请求的资源还在，但暂时需要用另一个 URL 来访问。</li>
+</ul>
+<p>301 和 302 都会在响应头里使用字段 Location，指明后续要跳转的 URL，浏览器会自动重定向新的 URL。</p>
+<ul>
+<li>「<strong>304 Not Modified</strong>」不具有跳转的含义，表示资源未修改，重定向已存在的缓冲文件，也称缓存重定向，也就是告诉客户端可以继续使用缓存资源，用于缓存控制。目前已经访问过了，是存在缓存的。服务器返回一个304的状态，表示没有做处理。没有改动，所以不处理。not modify的状态。</li>
+</ul>
+<p>4xx</p>
+<p>4××类状态码表示客户端发送的请求报文有误，服务器无法处理，它就是真正的“错误码”含义了。</p>
+<p>「<strong>400 Bad Request</strong>」是一个通用的错误码，表示请求报文有错误，但具体是数据格式错误、缺少请求头还是 URI 超长它没有明确说，只是一个笼统的错误，客户端看到 400 只会是“一头雾水”“不知所措”。所以，在开发 Web 应用时应当尽量避免给客户端返回 400，而是要用其他更有明确含义的状态码。</p>
+<p>「<strong>403 Forbidden</strong>」实际上不是客户端的请求出错，而是表示服务器禁止访问资源。原因可能多种多样，例如信息敏感、法律禁止等，如果服务器友好一点，可以在 body 里详细说明拒绝请求的原因，不过现实中通常都是直接给一个“闭门羹”。</p>
+<p>「<strong>404 Not Found</strong>」可能是我们最常看见也是最不愿意看到的一个状态码，它的原意是资源在本服务器上未找到，所以无法提供给客户端。但现在已经被“用滥了”，只要服务器“不高兴”就可以给出个 404，而我们也无从得知后面到底是真的未找到，还是有什么别的原因，某种程度上它比 403 还要令人讨厌。</p>
+<p>4××里剩下的一些代码较明确地说明了错误的原因，都很好理解，开发中常用的有：</p>
+<ul>
+<li>405 Method Not Allowed：不允许使用某些方法操作资源，例如不允许 POST 只能 GET；</li>
+<li>406 Not Acceptable：资源无法满足客户端请求的条件，例如请求中文但只有英文；</li>
+<li>408 Request Timeout：请求超时，服务器等待了过长的时间；</li>
+<li>409 Conflict：多个请求发生了冲突，可以理解为多线程并发时的竞态；</li>
+<li>413 Request Entity Too Large：请求报文里的 body 太大；</li>
+<li>414 Request-URI Too Long：请求行里的 URI 太大；</li>
+<li>429 Too Many Requests：客户端发送了太多的请求，通常是由于服务器的限连策略；</li>
+<li>431 Request Header Fields Too Large：请求头某个字段或总体太大；</li>
+</ul>
+<p>5xx</p>
+<p>5xx 类状态码表示客户端请求报文正确，但是<strong>服务器处理时内部发生了错误</strong>，属于服务器端的错误码。</p>
+<ul>
+<li>「<strong>500 Internal Server Error</strong>」与 400 类型，是个笼统通用的错误码，服务器发生了什么错误，我们并不知道。</li>
+<li>「<strong>501 Not Implemented</strong>」表示客户端请求的功能还不支持，类似“即将开业，敬请期待”的意思。</li>
+<li>「<strong>502 Bad Gateway</strong>」通常是服务器作为网关或代理时返回的错误码，表示服务器自身工作正常，访问后端服务器发生了错误。</li>
+<li>「<strong>503 Service Unavailable</strong>」表示服务器当前很忙，暂时无法响应客户端，类似“网络服务正忙，请稍后重试”的意思。</li>
+</ul>
+<h3 id="Header"><a href="#Header" class="headerlink" title="Header"></a><strong>Header</strong></h3><p>ttp header 消息通常被分为4个部分：general header, request header, response header, entity header。但是这种分法就理解而言，感觉界限不太明确。根据维基百科对http header内容的组织形式，大体分为Request（请求头）和Response（响应头）两部分。</p>
+<p>Requests部分</p>
+<table>
+<thead>
+<tr>
+<th>Header</th>
+<th>解释</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Accept</td>
+<td>指定客户端能够接收的内容类型</td>
+<td>Accept: text&#x2F;plain, text&#x2F;html</td>
+</tr>
+<tr>
+<td>Accept-Charset</td>
+<td>客户端可以接受的字符编码集。</td>
+<td>Accept-Charset: iso-8859-5</td>
+</tr>
+<tr>
+<td>Accept-Encoding</td>
+<td>指定客户端可以支持的web服务器返回内容压缩编码类型。</td>
+<td>Accept-Encoding: compress, gzip</td>
+</tr>
+<tr>
+<td>Accept-Language</td>
+<td>客户端可接受的语言</td>
+<td>Accept-Language: en,zh</td>
+</tr>
+<tr>
+<td>Accept-Ranges</td>
+<td>可以请求网页实体的一个或者多个子范围字段</td>
+<td>Accept-Ranges: bytes</td>
+</tr>
+<tr>
+<td>Authorization</td>
+<td>HTTP授权的授权证书</td>
+<td>Authorization: Basic QWxhZGRpbjpvcGVuIHNlc2FtZQ&#x3D;&#x3D;</td>
+</tr>
+<tr>
+<td>Cache-Control</td>
+<td>指定请求和响应遵循的缓存机制</td>
+<td>Cache-Control: no-cache</td>
+</tr>
+<tr>
+<td>Connection</td>
+<td>表示是否需要持久连接。（HTTP 1.1默认进行持久连接）</td>
+<td>Connection: close</td>
+</tr>
+<tr>
+<td>Cookie</td>
+<td>HTTP请求发送时，会把保存在该请求域名下的所有cookie值一起发送给web服务器。</td>
+<td>Cookie: $Version&#x3D;1; Skin&#x3D;new;</td>
+</tr>
+<tr>
+<td>Content-Length</td>
+<td>请求的内容长度</td>
+<td>Content-Length: 348</td>
+</tr>
+<tr>
+<td>Content-Type</td>
+<td>请求的与实体对应的MIME信息</td>
+<td>Content-Type: application&#x2F;x-www-form-urlencoded</td>
+</tr>
+<tr>
+<td>Date</td>
+<td>请求发送的日期和时间</td>
+<td>Date: Tue, 15 Nov 2010 08:12:31 GMT</td>
+</tr>
+<tr>
+<td>Expect</td>
+<td>请求的特定的服务器行为</td>
+<td>Expect: 100-continue</td>
+</tr>
+<tr>
+<td>From</td>
+<td>发出请求的用户的Email</td>
+<td>From: <a href="mailto:&#x75;&#115;&#101;&#x72;&#x40;&#x65;&#109;&#97;&#x69;&#108;&#46;&#x63;&#x6f;&#x6d;">&#x75;&#115;&#101;&#x72;&#x40;&#x65;&#109;&#97;&#x69;&#108;&#46;&#x63;&#x6f;&#x6d;</a></td>
+</tr>
+<tr>
+<td>Host</td>
+<td>指定请求的服务器的域名和端口号</td>
+<td>Host: <a target="_blank" rel="noopener" href="http://www.zcmhi.com/">www.zcmhi.com</a></td>
+</tr>
+<tr>
+<td>If-Match</td>
+<td>只有请求内容与实体相匹配才有效</td>
+<td>If-Match: “737060cd8c284d8af7ad3082f209582d”</td>
+</tr>
+<tr>
+<td>If-Modified-Since</td>
+<td>如果请求的部分在指定时间之后被修改则请求成功，未被修改则返回304代码</td>
+<td>If-Modified-Since: Sat, 29 Oct 2010 19:43:31 GMT</td>
+</tr>
+<tr>
+<td>If-None-Match</td>
+<td>如果内容未改变返回304代码，参数为服务器先前发送的Etag，与服务器回应的Etag比较判断是否改变</td>
+<td>If-None-Match: “737060cd8c284d8af7ad3082f209582d”</td>
+</tr>
+<tr>
+<td>If-Range</td>
+<td>如果实体未改变，服务器发送客户端丢失的部分，否则发送整个实体。参数也为Etag</td>
+<td>If-Range: “737060cd8c284d8af7ad3082f209582d”</td>
+</tr>
+<tr>
+<td>If-Unmodified-Since</td>
+<td>只在实体在指定时间之后未被修改才请求成功</td>
+<td>If-Unmodified-Since: Sat, 29 Oct 2010 19:43:31 GMT</td>
+</tr>
+<tr>
+<td>Max-Forwards</td>
+<td>限制信息通过代理和网关传送的时间</td>
+<td>Max-Forwards: 10</td>
+</tr>
+<tr>
+<td>Pragma</td>
+<td>用来包含实现特定的指令</td>
+<td>Pragma: no-cache</td>
+</tr>
+<tr>
+<td>Proxy-Authorization</td>
+<td>连接到代理的授权证书</td>
+<td>Proxy-Authorization: Basic QWxhZGRpbjpvcGVuIHNlc2FtZQ&#x3D;&#x3D;</td>
+</tr>
+<tr>
+<td>Range</td>
+<td>只请求实体的一部分，指定范围</td>
+<td>Range: bytes&#x3D;500-999</td>
+</tr>
+<tr>
+<td>Referer</td>
+<td>先前网页的地址，当前请求网页紧随其后,即来路</td>
+<td>Referer:<a target="_blank" rel="noopener" href="http://www.zcmhi.com/archives/71.html">http://www.zcmhi.com/archives/71.html</a></td>
+</tr>
+<tr>
+<td>TE</td>
+<td>客户端愿意接受的传输编码，并通知服务器接受接受尾加头信息</td>
+<td>TE: trailers,deflate;q&#x3D;0.5</td>
+</tr>
+<tr>
+<td>Upgrade</td>
+<td>向服务器指定某种传输协议以便服务器进行转换（如果支持）</td>
+<td>Upgrade: HTTP&#x2F;2.0, SHTTP&#x2F;1.3, IRC&#x2F;6.9, RTA&#x2F;x11</td>
+</tr>
+<tr>
+<td>User-Agent</td>
+<td>User-Agent的内容包含发出请求的用户信息</td>
+<td>User-Agent: Mozilla&#x2F;5.0 (Linux; X11)</td>
+</tr>
+<tr>
+<td>Via</td>
+<td>通知中间网关或代理服务器地址，通信协议</td>
+<td>Via: 1.0 fred, 1.1 nowhere.com (Apache&#x2F;1.1)</td>
+</tr>
+<tr>
+<td>Warning</td>
+<td>关于消息实体的警告信息</td>
+<td>Warn: 199 Miscellaneous warning</td>
+</tr>
+</tbody></table>
+<p>Responses 部分</p>
+<table>
+<thead>
+<tr>
+<th>Header</th>
+<th>解释</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Accept-Ranges</td>
+<td>表明服务器是否支持指定范围请求及哪种类型的分段请求</td>
+<td>Accept-Ranges: bytes</td>
+</tr>
+<tr>
+<td>Age</td>
+<td>从原始服务器到代理缓存形成的估算时间（以秒计，非负）</td>
+<td>Age: 12</td>
+</tr>
+<tr>
+<td>Allow</td>
+<td>对某网络资源的有效的请求行为，不允许则返回405</td>
+<td>Allow: GET, HEAD</td>
+</tr>
+<tr>
+<td>Cache-Control</td>
+<td>告诉所有的缓存机制是否可以缓存及哪种类型</td>
+<td>Cache-Control: no-cache</td>
+</tr>
+<tr>
+<td>Content-Encoding</td>
+<td>web服务器支持的返回内容压缩编码类型。</td>
+<td>Content-Encoding: gzip</td>
+</tr>
+<tr>
+<td>Content-Language</td>
+<td>响应体的语言</td>
+<td>Content-Language: en,zh</td>
+</tr>
+<tr>
+<td>Content-Length</td>
+<td>响应体的长度</td>
+<td>Content-Length: 348</td>
+</tr>
+<tr>
+<td>Content-Location</td>
+<td>请求资源可替代的备用的另一地址</td>
+<td>Content-Location: &#x2F;index.htm</td>
+</tr>
+<tr>
+<td>Content-MD5</td>
+<td>返回资源的MD5校验值</td>
+<td>Content-MD5: Q2hlY2sgSW50ZWdyaXR5IQ&#x3D;&#x3D;</td>
+</tr>
+<tr>
+<td>Content-Range</td>
+<td>在整个返回体中本部分的字节位置</td>
+<td>Content-Range: bytes 21010-47021&#x2F;47022</td>
+</tr>
+<tr>
+<td>Content-Type</td>
+<td>返回内容的MIME类型</td>
+<td>Content-Type: text&#x2F;html; charset&#x3D;utf-8</td>
+</tr>
+<tr>
+<td>Date</td>
+<td>原始服务器消息发出的时间</td>
+<td>Date: Tue, 15 Nov 2010 08:12:31 GMT</td>
+</tr>
+<tr>
+<td>ETag</td>
+<td>请求变量的实体标签的当前值</td>
+<td>ETag: “737060cd8c284d8af7ad3082f209582d”</td>
+</tr>
+<tr>
+<td>Expires</td>
+<td>响应过期的日期和时间</td>
+<td>Expires: Thu, 01 Dec 2010 16:00:00 GMT</td>
+</tr>
+<tr>
+<td>Last-Modified</td>
+<td>请求资源的最后修改时间</td>
+<td>Last-Modified: Tue, 15 Nov 2010 12:45:26 GMT</td>
+</tr>
+<tr>
+<td>Location</td>
+<td>用来重定向接收方到非请求URL的位置来完成请求或标识新的资源</td>
+<td>Location:<a target="_blank" rel="noopener" href="http://www.zcmhi.com/archives/94.html">http://www.zcmhi.com/archives/94.html</a></td>
+</tr>
+<tr>
+<td>Pragma</td>
+<td>包括实现特定的指令，它可应用到响应链上的任何接收方</td>
+<td>Pragma: no-cache</td>
+</tr>
+<tr>
+<td>Proxy-Authenticate</td>
+<td>它指出认证方案和可应用到代理的该URL上的参数</td>
+<td>Proxy-Authenticate: Basic</td>
+</tr>
+<tr>
+<td>refresh</td>
+<td>应用于重定向或一个新的资源被创造，在5秒之后重定向（由网景提出，被大部分浏览器支持）</td>
+<td>Refresh: 5; url&#x3D;<a target="_blank" rel="noopener" href="http://www.zcmhi.com/archives/94.html">http://www.zcmhi.com/archives/94.html</a></td>
+</tr>
+<tr>
+<td>Retry-After</td>
+<td>如果实体暂时不可取，通知客户端在指定时间之后再次尝试</td>
+<td>Retry-After: 120</td>
+</tr>
+<tr>
+<td>Server</td>
+<td>web服务器软件名称</td>
+<td>Server: Apache&#x2F;1.3.27 (Unix) (Red-Hat&#x2F;Linux)</td>
+</tr>
+<tr>
+<td>Set-Cookie</td>
+<td>设置Http Cookie</td>
+<td>Set-Cookie: UserID&#x3D;JohnDoe; Max-Age&#x3D;3600; Version&#x3D;1</td>
+</tr>
+<tr>
+<td>Trailer</td>
+<td>指出头域在分块传输编码的尾部存在</td>
+<td>Trailer: Max-Forwards</td>
+</tr>
+<tr>
+<td>Transfer-Encoding</td>
+<td>文件传输编码</td>
+<td>Transfer-Encoding:chunked</td>
+</tr>
+<tr>
+<td>Vary</td>
+<td>告诉下游代理是使用缓存响应还是从原始服务器请求</td>
+<td>Vary: *</td>
+</tr>
+<tr>
+<td>Via</td>
+<td>告知代理客户端响应是通过哪里发送的</td>
+<td>Via: 1.0 fred, 1.1 nowhere.com (Apache&#x2F;1.1)</td>
+</tr>
+<tr>
+<td>Warning</td>
+<td>警告实体可能存在的问题</td>
+<td>Warning: 199 Miscellaneous warning</td>
+</tr>
+<tr>
+<td>WWW-Authenticate</td>
+<td>表明客户端请求实体应该使用的授权方案</td>
+<td>WWW-Authenticate: Basic</td>
+</tr>
+</tbody></table>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E8%BF%90%E7%BB%B4%E7%9B%B8%E5%85%B3/" class="category-chain-item">运维相关</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E7%BD%91%E7%BB%9C%E6%8A%93%E5%8C%85/" class="print-no-link">#网络抓包</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>wireshark</div>
+      <div>https://cai-qichang.github.io/2021/08/18/wireshark/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>caiqichang</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2021年8月18日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              BY-蔡奇倡
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/08/19/%E6%90%AD%E5%BB%BAblog/" title="搭建blog">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">搭建blog</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/08/18/java%E5%8F%82%E6%95%B0%E6%A0%A1%E9%AA%8C/" title="java参数校验">
+                        <span class="hidden-mobile">java参数校验</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+    <!-- 备案信息 ICP for China -->
+    <div class="beian">
+  <span>
+    <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
+      粤ICP备2021019144号
+    </a>
+  </span>
+  
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

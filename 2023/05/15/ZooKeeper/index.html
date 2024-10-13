@@ -1,0 +1,851 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <!-- 通过 CDN 引入霞鹜文楷字体 -->
+  <link rel="stylesheet" href="https://npm.elemecdn.com/lxgw-wenkai-screen-webfont/style.css" media="print" onload="this.media='all'">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/me.png">
+  <link rel="icon" href="/img/me.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="caiqichang">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="zookeeper基本概念ZooKeeper 可以被用作注册中心、分布式锁；ZooKeeper 是 Hadoop 生态系统的一员；构建 ZooKeeper 集群的时候，使用的服务器最好是奇数台。 ZooKeeper概述 概念：ZooKeeper 是一个开源的分布式协调服务，它的设计目标是将那些复杂且容易出错的分布式一致性服务封装起来，构成一个高效可靠的原语集，并以一系列简单易用的接口提供给用户使用">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ZooKeeper">
+<meta property="og:url" content="https://cai-qichang.github.io/2023/05/15/ZooKeeper/index.html">
+<meta property="og:site_name" content="caiqichang&#39;s Blog">
+<meta property="og:description" content="zookeeper基本概念ZooKeeper 可以被用作注册中心、分布式锁；ZooKeeper 是 Hadoop 生态系统的一员；构建 ZooKeeper 集群的时候，使用的服务器最好是奇数台。 ZooKeeper概述 概念：ZooKeeper 是一个开源的分布式协调服务，它的设计目标是将那些复杂且容易出错的分布式一致性服务封装起来，构成一个高效可靠的原语集，并以一系列简单易用的接口提供给用户使用">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://raw.githubusercontent.com/cai-qichang/cqc-photo/master/img/znode.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cai-qichang/cqc-photo/master/img/zookeeperWatcher.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cai-qichang/cqc-photo/master/img/zookeeperCluster.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/cai-qichang/cqc-photo/master/img/zabSend.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/cai-qichang/cqc-photo/master/img/ZooKeeperConfiguration.png">
+<meta property="article:published_time" content="2023-05-15T11:51:00.000Z">
+<meta property="article:modified_time" content="2024-10-13T05:21:08.179Z">
+<meta property="article:author" content="caiqichang">
+<meta property="article:tag" content="ZooKeeper">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/cai-qichang/cqc-photo/master/img/znode.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>ZooKeeper - caiqichang&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"cai-qichang.github.io","root":"/","version":"1.9.5","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>caiqichang</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/yueqiu.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="ZooKeeper"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-05-15 19:51" pubdate>
+          2023年5月15日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          5.8k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          49 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">ZooKeeper</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="zookeeper"><a href="#zookeeper" class="headerlink" title="zookeeper"></a>zookeeper</h1><h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><p>ZooKeeper 可以被用作注册中心、分布式锁；<br>ZooKeeper 是 Hadoop 生态系统的一员；<br>构建 ZooKeeper 集群的时候，使用的服务器最好是奇数台。</p>
+<h3 id="ZooKeeper概述"><a href="#ZooKeeper概述" class="headerlink" title="ZooKeeper概述"></a>ZooKeeper概述</h3><ul>
+<li><p>概念：ZooKeeper 是一个<strong>开源的分布式协调服务</strong>，它的设计目标是将那些复杂且容易出错的分布式一致性服务封装起来，构成一个高效可靠的原语集，并以一系列简单易用的接口提供给用户使用。</p>
+</li>
+<li><p>ZooKeeper 为我们提供了高可用、高性能、稳定的分布式数据一致性解决方案，通常被用于实现诸如数据发布&#x2F;订阅、负载均衡、命名服务、分布式协调&#x2F;通知、集群管理、Master 选举、分布式锁和分布式队列等功能。</p>
+</li>
+<li><p>ZooKeeper 将数据保存在内存中，性能是非常棒的。 在“读”多于“写”的应用程序中尤其地高性能，因为“写”会导致所有的服务器间同步状态。（“读”多于“写”是协调服务的典型场景）。</p>
+</li>
+</ul>
+<h3 id="ZooKeeper-典型应用场景"><a href="#ZooKeeper-典型应用场景" class="headerlink" title="ZooKeeper 典型应用场景"></a>ZooKeeper 典型应用场景</h3><ul>
+<li><p>ZooKeeper 概览中，我们介绍到使用其通常被用于实现诸如数据发布&#x2F;订阅、负载均衡、命名服务、分布式协调&#x2F;通知、集群管理、Master 选举、分布式锁和分布式队列等功能。</p>
+</li>
+<li><p>下面选 3 个典型的应用场景来专门说说：</p>
+</li>
+</ul>
+<ol>
+<li>分布式锁 ： 通过创建唯一节点获得分布式锁，当获得锁的一方执行完相关代码或者是挂掉之后就释放锁。</li>
+<li>命名服务 ：可以通过 ZooKeeper 的顺序节点生成全局唯一 ID</li>
+<li>数据发布&#x2F;订阅 ：通过 Watcher 机制 可以很方便地实现数据发布&#x2F;订阅。当你将数据发布到 ZooKeeper 被监听的节点上，其他机器可通过监听 ZooKeeper 上节点的变化来实现配置的动态更新。</li>
+</ol>
+<h4 id="实际开源项目的应用"><a href="#实际开源项目的应用" class="headerlink" title="实际开源项目的应用"></a>实际开源项目的应用</h4><p>2.5. 有哪些著名的开源项目用到了 ZooKeeper?</p>
+<ul>
+<li>Kafka : ZooKeeper 主要为 Kafka 提供 Broker 和 Topic 的注册以及多个 Partition 的负载均衡等功能。</li>
+<li>Hbase : ZooKeeper 为 Hbase 提供确保整个集群只有一个 Master 以及保存和提供 regionserver 状态信息（是否在线）等功能。</li>
+<li>Hadoop : ZooKeeper 为 Namenode 提供高可用支持。</li>
+</ul>
+<h2 id="ZooKeeper-重要概念"><a href="#ZooKeeper-重要概念" class="headerlink" title="ZooKeeper 重要概念"></a>ZooKeeper 重要概念</h2><h3 id="Data-model（数据模型）"><a href="#Data-model（数据模型）" class="headerlink" title="Data model（数据模型）"></a>Data model（数据模型）</h3><ul>
+<li>ZooKeeper 数据模型采用层次化的多叉树形结构，每个节点上都可以存储数据（数字、字符串或者是二级制序列）。每个节点还可以拥有 N 个子节点，最上层是根节点以“&#x2F;”来代表。每个数据节点在 ZooKeeper 中被称为 znode，它是 ZooKeeper 中数据的最小单元。并且，每个 znode 都一个唯一的路径标识。</li>
+<li><strong>ZooKeeper 主要是用来协调服务的，而不是用来存储业务数据的，所以不要放比较大的数据在 znode 上，ZooKeeper 给出的上限是每个结点的数据大小最大是 1M。</strong></li>
+<li>zookeeper 节点表示：<br><img src="https://raw.githubusercontent.com/cai-qichang/cqc-photo/master/img/znode.png" srcset="/img/loading.gif" lazyload alt="avatar"></li>
+</ul>
+<h3 id="znode（数据节点）"><a href="#znode（数据节点）" class="headerlink" title="znode（数据节点）"></a>znode（数据节点）</h3><ul>
+<li>每个数据节点在 ZooKeeper 中被称为 znode，它是 ZooKeeper 中数据的最小单元。</li>
+<li>znode 分为 4 大类：<ul>
+<li>持久（PERSISTENT）节点 ：一旦创建就一直存在即使 ZooKeeper 集群宕机，直到将其删除。</li>
+<li>临时（EPHEMERAL）节点 ：临时节点的生命周期是与<strong>客户端会话</strong>（session）绑定的，<strong>会话消失则节点消失</strong>。并且，临时节点只能做叶子节点 ，不能创建子节点。</li>
+<li>持久顺序（PERSISTENT_SEQUENTIAL）节点 ：除了具有持久（PERSISTENT）节点的特性之外， 子节点的名称还具有顺序性。比如 &#x2F;node1&#x2F;app0000000001 、&#x2F;node1&#x2F;app0000000002 。</li>
+<li>临时顺序（EPHEMERAL_SEQUENTIAL）节点 ：除了具备临时（EPHEMERAL）节点的特性之外，子节点的名称还具有顺序性。</li>
+</ul>
+</li>
+</ul>
+<h4 id="znode数据结构"><a href="#znode数据结构" class="headerlink" title="znode数据结构"></a>znode数据结构</h4><p>每个节点由下面两部分组成：</p>
+<ul>
+<li>stat ：状态信息</li>
+<li>data ：节点存放的数据的具体内容</li>
+</ul>
+<p>以下为客户端获取znode节点信息的内容：</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs awk">[zk: <span class="hljs-number">127.0</span>.<span class="hljs-number">0.1</span>:<span class="hljs-number">2181</span>(CONNECTED) <span class="hljs-number">6</span>] get /dubbo<br><span class="hljs-regexp">//</span> 该数据节点关联的数据内容为空<br>null<br><span class="hljs-regexp">//</span> 下面是该数据节点的一些状态信息，其实就是 Stat 对象的格式化输出<br>cZxid = <span class="hljs-number">0</span>x2<br>ctime = Tue Nov <span class="hljs-number">27</span> <span class="hljs-number">11</span>:<span class="hljs-number">05</span>:<span class="hljs-number">34</span> CST <span class="hljs-number">2018</span><br>mZxid = <span class="hljs-number">0</span>x2   <span class="hljs-regexp">//</span> 即该节点最后一次更新时的事务 id<br>mtime = Tue Nov <span class="hljs-number">27</span> <span class="hljs-number">11</span>:<span class="hljs-number">05</span>:<span class="hljs-number">34</span> CST <span class="hljs-number">2018</span><br>pZxid = <span class="hljs-number">0</span>x3<br>cversion = <span class="hljs-number">1</span>    <span class="hljs-regexp">//</span> 子节点版本号，当前节点的子节点每次变化时值增加 <span class="hljs-number">1</span><br>dataVersion = <span class="hljs-number">0</span>  <span class="hljs-regexp">//</span> 数据节点内容版本号，节点创建时为 <span class="hljs-number">0</span>，每更新一次节点内容(不管内容有无变化)该版本号的值增加 <span class="hljs-number">1</span><br>aclVersion = <span class="hljs-number">0</span>   <span class="hljs-regexp">//</span> 节点的 ACL 版本号，表示该节点 ACL 信息变更次数<br>ephemeralOwner = <span class="hljs-number">0</span>x0<br>dataLength = <span class="hljs-number">0</span><br>numChildren = <span class="hljs-number">1</span>   <span class="hljs-regexp">//</span> 当前节点的子节点个数<br></code></pre></td></tr></table></figure>
+
+<h3 id="ACL权限控制"><a href="#ACL权限控制" class="headerlink" title="ACL权限控制"></a>ACL权限控制</h3><p>ZooKeeper 采用 ACL（AccessControlLists）策略来进行权限控制，类似于 UNIX 文件系统的权限控制。</p>
+<p>对于 znode 操作的权限，ZooKeeper 提供了以下 5 种：</p>
+<ul>
+<li>CREATE : 能创建子节点</li>
+<li>READ ：能获取节点数据和列出其子节点</li>
+<li>WRITE : 能设置&#x2F;更新节点数据</li>
+<li>DELETE : 能删除子节点</li>
+<li>ADMIN : 能设置节点 ACL 的权限</li>
+</ul>
+<p>其中 CREATE 和 DELETE 这两种权限都是针对 子节点 的权限控制。</p>
+<p>对于身份认证，提供了以下几种方式：</p>
+<ul>
+<li>world ： 默认方式，所有用户都可无条件访问。</li>
+<li>auth :不使用任何 id，代表任何已认证的用户。</li>
+<li>digest :用户名:密码认证方式： username:password 。</li>
+<li>ip : 对指定 ip 进行限制。</li>
+</ul>
+<h3 id="Watcher（事件监听器）"><a href="#Watcher（事件监听器）" class="headerlink" title="Watcher（事件监听器）"></a>Watcher（事件监听器）</h3><p>ZooKeeper 允许用户在指定节点上注册一些 Watcher，并且在一些特定事件触发的时候，ZooKeeper 服务端会将事件通知到感兴趣的客户端上去，该机制是 <strong>ZooKeeper 实现分布式协调服务的重要特性</strong>。</p>
+<blockquote>
+<p>特定事件如：监听Znode节点的数据变化、监听子节点的增减变化<br><img src="https://raw.githubusercontent.com/cai-qichang/cqc-photo/master/img/zookeeperWatcher.png" srcset="/img/loading.gif" lazyload alt="avatar"></p>
+</blockquote>
+<h3 id="会话"><a href="#会话" class="headerlink" title="会话"></a>会话</h3><p>Session 可以看作是 ZooKeeper 服务器与客户端的之间的一个 TCP 长连接。通过session</p>
+<ul>
+<li>客户端能够通过心跳检测与服务器保持有效的会话。</li>
+<li>能够向 ZooKeeper 服务器发送请求并接受响应。</li>
+<li>能够通过该连接接收来自服务器的 Watcher 事件通知。</li>
+</ul>
+<p>两个重要的属性：</p>
+<ul>
+<li>sessionTimeout 代表会话的超时时间。只要在sessionTimeout规定的时间内能够重新连接上集群中任意一台服务器，那么之前创建的会话仍然有效。</li>
+<li>sessionID是 ZooKeeper 会话的一个重要标识，保证全局唯一。</li>
+</ul>
+<h2 id="ZooKeeper集群"><a href="#ZooKeeper集群" class="headerlink" title="ZooKeeper集群"></a>ZooKeeper集群</h2><ul>
+<li>为了保证高可用，最好是以集群形态来部署 ZooKeeper，这样只要集群中大部分机器是可用的（能够容忍一定的机器故障）。通常 3 台服务器就可以构成一个 ZooKeeper 集群了</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/cai-qichang/cqc-photo/master/img/zookeeperCluster.jpg" srcset="/img/loading.gif" lazyload alt="avatar"></p>
+<p>Server为ZooKeeper服务器，集群间通过 ZAB 协议（ZooKeeper Atomic Broadcast）来保持数据的一致性。</p>
+<ul>
+<li>最典型集群模式： Master&#x2F;Slave 模式（主备模式）。在这种模式中，通常 Master 服务器作为主服务器提供写服务，其他的 Slave 服务器从服务器通过异步复制的方式获取 Master 服务器最新的数据提供读服务。</li>
+</ul>
+<h3 id="集群中角色及节点选择"><a href="#集群中角色及节点选择" class="headerlink" title="集群中角色及节点选择"></a>集群中角色及节点选择</h3><ul>
+<li>Leader：为客户端提供读和写的服务，负责投票的发起和决议，更新系统状态。</li>
+<li>Follower：为客户端提供读服务，如果是写服务则转发给 Leader。在选举过程中参与投票。</li>
+<li>Observer：为客户端提供读服务器，如果是写服务则转发给 Leader。不参与选举过程中的投票，也不参与“过半写成功”策略。在不影响写性能的情况下提升集群的读性能。此角色于 ZooKeeper3.3 系列新增的角色。</li>
+</ul>
+<p>具体选举的流程为Raft算法</p>
+<h4 id="ZooKeeper-集群中的服务器状态"><a href="#ZooKeeper-集群中的服务器状态" class="headerlink" title="ZooKeeper 集群中的服务器状态"></a>ZooKeeper 集群中的服务器状态</h4><p>LOOKING ：寻找 Leader。<br>LEADING ：Leader 状态，对应的节点为 Leader。<br>FOLLOWING ：Follower 状态，对应的节点为 Follower。<br>OBSERVING ：Observer 状态，对应节点为 Observer，该节点不参与 Leader 选举。</p>
+<h3 id="ZooKeeper-集群为啥最好奇数台？"><a href="#ZooKeeper-集群为啥最好奇数台？" class="headerlink" title="ZooKeeper 集群为啥最好奇数台？"></a>ZooKeeper 集群为啥最好奇数台？</h3><p>ZooKeeper 集群在宕掉几个 ZooKeeper 服务器之后，如果剩下的 ZooKeeper 服务器个数大于宕掉的个数的话整个 ZooKeeper 才依然可用。那么2n 和 2n-1 的容忍度是一样的，都是 n-1，因此使用奇数台服务器。</p>
+<h3 id="ZAB-协议"><a href="#ZAB-协议" class="headerlink" title="ZAB 协议"></a>ZAB 协议</h3><p>ZAB（ZooKeeper Atomic Broadcast 原子广播） 协议是为分布式协调服务 ZooKeeper 专门设计的一种支持崩溃恢复的原子广播协议。<strong>ZooKeeper 中主要依赖 ZAB 协议来实现分布式数据一致性</strong>，而并没有直接使用Paxos协议。</p>
+<p> ZAB协议包含两种基本的模式</p>
+<ul>
+<li>消息广播 ：当集群中已经有过半的Follower服务器完成了和Leader服务器的状态同步，那么整个服务框架就可以进入消息广播模式了。 </li>
+<li>崩溃恢复 ：当整个服务框架在运行过程中，当 Leader 服务器出现异常情况时，ZAB 协议就会进入恢复模式并选举产生新的Leader服务器。新Leader产生，集群其他机器就要与该服务器进行状态同步，保持数据一致。当过半服务器完成状态同步就退出恢复模式。</li>
+</ul>
+<h4 id="消息广播"><a href="#消息广播" class="headerlink" title="消息广播"></a>消息广播</h4><p><img src="https://raw.githubusercontent.com/cai-qichang/cqc-photo/master/img/zabSend.jpg" srcset="/img/loading.gif" lazyload alt="avatar"></p>
+<ul>
+<li>使用节点队列，保证follower和observer的顺序性。同时针对每个节点server也建立来了一个消息队列，使用TCP传输，保证消息的顺序性，避免消息因网络原因而导致处理顺序不一致，进而避免数据不一致问题。</li>
+<li>在 ZAB 中还定义了一个 全局单调递增的事务ID ZXID，同样也是为了保证顺序性。每个消息在leader中通过其 ZXID 来进行排序 ，才能得到处理。</li>
+</ul>
+<h4 id="崩溃恢复"><a href="#崩溃恢复" class="headerlink" title="崩溃恢复"></a>崩溃恢复</h4><ul>
+<li>类似于Raft选举 </li>
+<li>接着就是数据同步。</li>
+<li><a target="_blank" rel="noopener" href="https://github.com/Snailclimb/JavaGuide/blob/master/docs/system-design/distributed-system/zookeeper/zookeeper-plus.md#1-%E5%A5%BD%E4%B9%85%E4%B8%8D%E8%A7%81">https://github.com/Snailclimb/JavaGuide/blob/master/docs/system-design/distributed-system/zookeeper/zookeeper-plus.md#1-%E5%A5%BD%E4%B9%85%E4%B8%8D%E8%A7%81</a></li>
+</ul>
+<h2 id="实际应用实现"><a href="#实际应用实现" class="headerlink" title="实际应用实现"></a>实际应用实现</h2><h3 id="分布式锁"><a href="#分布式锁" class="headerlink" title="分布式锁"></a>分布式锁</h3><ul>
+<li>ZooKeeper保证无法重复创建同样的节点，进而保证了在高并发的情况下保证节点创建的全局唯一性</li>
+</ul>
+<p>流程：</p>
+<ol>
+<li>让多个客户端同时创建一个临时节点，创建成功的就说明获取到了锁 。</li>
+<li>没有获取到锁的客户端也像上面选主的非主节点创建一个 watcher 进行节点状态的监听，如果这个互斥锁被释放了（可能获取锁的客户端宕机了，或者那个客户端主动释放了锁）可以调用回调函数重新获得锁。</li>
+<li>使用监听模式，当监听的连接太多时，释放节点会导致过大的流量访问zk。</li>
+</ol>
+<p>改进流程：</p>
+<ol>
+<li>多个客户端，建立临时顺序节点。</li>
+<li>获取锁节点下的子节点并排序，如果创建节点为第一个子节点获得锁。</li>
+<li>若不是第一个节点，监听当前节点的前序节点，等待释放消息。</li>
+</ol>
+<h4 id="ZK在分布式锁中实践的一些缺点"><a href="#ZK在分布式锁中实践的一些缺点" class="headerlink" title="ZK在分布式锁中实践的一些缺点"></a>ZK在分布式锁中实践的一些缺点</h4><ul>
+<li>在创建锁和释放锁的过程中，都要动态创建、销毁瞬时节点来实现锁功能，性能没有缓存高。</li>
+<li>ZK中创建和删除节点只能通过Leader服务器来执行，然后将数据同步到所有的Follower机器上。</li>
+<li>（较少见，zk有重试机制）网络抖动可能导致ZK服务器认为连接断开，就释放临时节点，导致其他客户端获取到锁，实际连接并未断开。</li>
+</ul>
+<h4 id="zookeeper-同时实现-共享锁和独占锁"><a href="#zookeeper-同时实现-共享锁和独占锁" class="headerlink" title="zookeeper 同时实现 共享锁和独占锁"></a>zookeeper 同时实现 共享锁和独占锁</h4><ol>
+<li>规定所有创建节点必须有序。</li>
+<li>当你是读请求（要获取共享锁）的话，如果 没有比自己更小的节点，或比自己小的节点都是读请求 ，则可以获取到读锁，然后就可以开始读了。若存在写锁阻塞。</li>
+<li>如果是写请求，要等节点及其子节点读或写锁释放后才能获取到锁。</li>
+</ol>
+<h3 id="命名服务"><a href="#命名服务" class="headerlink" title="命名服务"></a>命名服务</h3><p>zookeeper 是通过 树形结构 来存储数据节点的，那也就是说，对于每个节点的 全路径，它必定是唯一的，我们可以使用节点的全路径作为命名方式了。</p>
+<ul>
+<li>路径是我们可以自己定义的，这对于我们对有些有语意的对象的ID设置可以更加便于理解。</li>
+</ul>
+<h3 id="注册中心实现"><a href="#注册中心实现" class="headerlink" title="注册中心实现"></a>注册中心实现</h3><p>实现：</p>
+<ol>
+<li>让 服务提供者 在 zookeeper 中创建一个临时节点并且将自己的<strong>ip、port、调用方式</strong>写入节点。</li>
+<li>当 服务消费者 需要进行调用的时候会 通过注册中心找到相应的服务的地址列表(IP端口什么的) ，并缓存到本地(方便以后调用)</li>
+<li>当消费者调用服务时，不会再去请求注册中心，而是直接通过负载均衡算法从地址列表中取一个服务提供者的服务器调用服务。</li>
+<li>当服务提供者的某台服务器宕机或下线时，相应的地址会从服务提供者地址列表中移除。同时，注册中心会将新的服务地址列表发送给服务消费者的机器并缓存在消费者本机。</li>
+</ol>
+<ul>
+<li>Eureka 注册中心会先试错，然后再更新</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/cai-qichang/cqc-photo/master/img/ZooKeeperConfiguration.png" srcset="/img/loading.gif" lazyload alt="avatar"></p>
+<h3 id="配置中心"><a href="#配置中心" class="headerlink" title="配置中心"></a>配置中心</h3><ul>
+<li>现在有三个系统A、B、C，他们有三份配置，分别是ASystem.yml、BSystem.yml、CSystem.yml，抽取公共配置common.yml。</li>
+<li>将common.yml这份配置放在ZooKeeper的Znode节点中，系统A、B、C监听着这个Znode节点有无变更，如果变更了，及时响应。</li>
+</ul>
+<h3 id="分布式队列"><a href="#分布式队列" class="headerlink" title="分布式队列"></a>分布式队列</h3><p>入队操作就是在 queue_fifo 下创建自增序的子节点，并把数据（队列大小）放入节点内。出队操作就是先找到 queue_fifo 下序号最下的那个节点，取出数据，然后删除此节点。</p>
+<h3 id="栅栏"><a href="#栅栏" class="headerlink" title="栅栏"></a>栅栏</h3><p>线程启动时在 ZooKeeper 节点 &#x2F;queue_barrier 下插入顺序临时节点，然后检查 &#x2F;queue&#x2F;barrier 下所有 children 节点的数量是否为所有的线程数，如果不是，则等待，如果是，则开始执行。</p>
+<ul>
+<li>相关文章：<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/59669985">https://zhuanlan.zhihu.com/p/59669985</a></li>
+</ul>
+<h2 id="命令行操作"><a href="#命令行操作" class="headerlink" title="命令行操作"></a>命令行操作</h2><ul>
+<li>临时节点都是会话级别的，会话断开之后，节点就删除了。</li>
+</ul>
+<figure class="highlight gauss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs gauss"><span class="hljs-keyword">create</span> /test laogong <span class="hljs-comment">// 创建永久节点 </span><br><br><span class="hljs-keyword">create</span> -e /test laogong <span class="hljs-comment">// 创建临时节点</span><br><br><span class="hljs-keyword">create</span> -s /test <span class="hljs-comment">// 创建顺序节点</span><br><br><span class="hljs-keyword">create</span> -e -s /test  <span class="hljs-comment">// 创建临时顺序节点</span><br></code></pre></td></tr></table></figure>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E4%B8%AD%E9%97%B4%E4%BB%B6/" class="category-chain-item">中间件</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/ZooKeeper/" class="print-no-link">#ZooKeeper</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>ZooKeeper</div>
+      <div>https://cai-qichang.github.io/2023/05/15/ZooKeeper/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>caiqichang</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2023年5月15日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              BY-蔡奇倡
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2023/05/20/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/" title="消息队列">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">消息队列</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2023/05/05/Elasticsearch/" title="Elasticsearch">
+                        <span class="hidden-mobile">Elasticsearch</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+    <!-- 备案信息 ICP for China -->
+    <div class="beian">
+  <span>
+    <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
+      粤ICP备2021019144号
+    </a>
+  </span>
+  
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

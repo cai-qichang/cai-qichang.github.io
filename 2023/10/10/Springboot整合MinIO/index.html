@@ -1,0 +1,755 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <!-- 通过 CDN 引入霞鹜文楷字体 -->
+  <link rel="stylesheet" href="https://npm.elemecdn.com/lxgw-wenkai-screen-webfont/style.css" media="print" onload="this.media='all'">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/me.png">
+  <link rel="icon" href="/img/me.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="caiqichang">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="一、Minio基础知识官方说明Minio是一款高性能的对象存储服务器，它兼容Amazon S3 API。它的设计目的是为了提供云存储服务的性能和可扩展性，同时还保持着本地存储的简单性和易用性。Minio可以在Linux、MacOS和Windows等操作系统上运行，它可以通过命令行界面或RESTful API进行管理。 Minio的核心是对象存储，对象是一组二进制数据和元数据的组合。对象可以存储为文">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Springboot整合MinIO">
+<meta property="og:url" content="https://cai-qichang.github.io/2023/10/10/Springboot%E6%95%B4%E5%90%88MinIO/index.html">
+<meta property="og:site_name" content="caiqichang&#39;s Blog">
+<meta property="og:description" content="一、Minio基础知识官方说明Minio是一款高性能的对象存储服务器，它兼容Amazon S3 API。它的设计目的是为了提供云存储服务的性能和可扩展性，同时还保持着本地存储的简单性和易用性。Minio可以在Linux、MacOS和Windows等操作系统上运行，它可以通过命令行界面或RESTful API进行管理。 Minio的核心是对象存储，对象是一组二进制数据和元数据的组合。对象可以存储为文">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://raw.githubusercontent.com/cai-qichang/cqc-photo/master/img/image-20231010141050675.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cai-qichang/cqc-photo/master/img/image-20231010143531816.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cai-qichang/cqc-photo/master/img/image-20231010144016893.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cai-qichang/cqc-photo/master/img/image-20231010144625213.png">
+<meta property="article:published_time" content="2023-10-10T06:04:24.000Z">
+<meta property="article:modified_time" content="2024-10-13T05:21:08.047Z">
+<meta property="article:author" content="caiqichang">
+<meta property="article:tag" content="MinIO">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/cai-qichang/cqc-photo/master/img/image-20231010141050675.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>Springboot整合MinIO - caiqichang&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"cai-qichang.github.io","root":"/","version":"1.9.5","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>caiqichang</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/yueqiu.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Springboot整合MinIO"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-10-10 14:04" pubdate>
+          2023年10月10日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          9.1k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          76 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">Springboot整合MinIO</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="一、Minio基础知识"><a href="#一、Minio基础知识" class="headerlink" title="一、Minio基础知识"></a>一、Minio基础知识</h1><h2 id="官方说明"><a href="#官方说明" class="headerlink" title="官方说明"></a>官方说明</h2><p>Minio是一款高性能的对象存储服务器，它兼容Amazon S3 API。它的设计目的是为了提供云存储服务的性能和可扩展性，同时还保持着本地存储的简单性和易用性。Minio可以在Linux、MacOS和Windows等操作系统上运行，它可以通过命令行界面或RESTful API进行管理。</p>
+<p>Minio的核心是对象存储，对象是一组二进制数据和元数据的组合。对象可以存储为文件，也可以存储为内存中的数据结构。对象可以存储在不同的存储介质中，如本地磁盘、网络文件系统、云存储等。Minio支持多种存储介质，它可以轻松地将数据存储到本地磁盘、Amazon S3、Google Cloud Storage、Microsoft Azure Blob Storage等云存储服务中。</p>
+<p>Minio的架构采用了分布式的设计，它可以将数据分散存储在多个节点中，从而实现数据的高可用和容错性。在Minio中，节点被称为Minio Server，每个Minio Server可以存储一个或多个对象存储桶。对象存储桶是一组对象的集合，类似于文件系统中的文件夹。每个对象存储桶都有一个唯一的名称，它可以在Minio集群中全局唯一。</p>
+<p>Minio的数据访问是通过RESTful API实现的，它可以提供各种数据管理功能，如创建、删除、读取、写入对象等。Minio的API与Amazon S3 API兼容，这意味着您可以使用Amazon S3 SDK和工具来与Minio交互。</p>
+<p>MinIO是一款基于Go语言发开的高性能、分布式的对象存储系统。客户端支持Java,Net,Python,Javacript, Golang语言。</p>
+<p><a target="_blank" rel="noopener" href="https://docs.min.io/">MinIO 英文官网</a> <a target="_blank" rel="noopener" href="http://docs.minio.org.cn/docs/">MinIO 中文官网</a> 注意：中文官方更新不及时，会有很多坑，请以英文官网为准。</p>
+<h3 id="基础概念"><a href="#基础概念" class="headerlink" title="基础概念"></a>基础概念</h3><p>1、Object：存储到minio的基本对象，如文件，字节流，Anything。。。。</p>
+<p>2、Bucket：用来存储Object的逻辑空间。每个Bucket之间的数据是互相隔离的。对于客户端而言，就相当于存放文件的顶层文件夹。</p>
+<p>3、Drlve：存储数据的磁盘，在MinIO启动时，以参数的方式传入。MinIO中所有的对象数据都会存在Drive里。</p>
+<p>4、Set：即一组 Drive的集合，分布式部署根据集群规模自动划分一个或者多个Set，每个Set中的Drive 分布在不同位置。一个对象存储在一个Set上。</p>
+<p>4.1、一个对象存储在一个Set上。</p>
+<p>4.2、一个集群划分为多个Set。</p>
+<p>4.3、一个Set包含的Drive数量是固定的，默认由系统根据集群规模自动计算得出。</p>
+<p>4.4、一个Set中的drive 尽可能分布在不同的节点上。</p>
+<p>5、纠删码：Minio 使用纠删码机制来保证高可靠性。</p>
+<p>5.1、使用highwayhash来处理数据损坏（Bit Rot Protectio）。关于纠删码，简单来说就是可以通过数学计算，把丢失的数据进行还原。</p>
+<p>5.2、纠删码是恢复丢失和算怀数据的数学算法，minio采用reed-solomincode将对象拆分成N&#x2F;2数据和N&#x2F;2奇偶校验块。这就意味着如果是12块盘，一个对象会被分成6个数据快、6个奇偶校验块，你可以丢失任意6块盘（不管其存放的是数据块还是奇偶校验块），你任可以从剩下的盘中的数据进行恢复。</p>
+<p>5.2、纠删码模式，把数据分成 DATA BLOCk：数据块、 PARITY BLOCK：校验块。一个BLOCK 10M左右，如果一个文件小于10M，就以文件大小进行分块。如果一个文件大于10m，就以10M为一个文件单位进行分块。</p>
+<h3 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h3><p>1、互联网非结构化数据的存储需求</p>
+<p>1.1 、电商网站：海量商品图片</p>
+<p>2.1、视频网站：海量视频文件</p>
+<p>3.1、网盘：海量文件</p>
+<h3 id="MinIO优势"><a href="#MinIO优势" class="headerlink" title="MinIO优势"></a>MinIO优势</h3><p>1、数据保护</p>
+<p>1.1、分布式MInio采用纠删码来放反多个节点待机和位衰减 bit rot</p>
+<p>1.2、分布式Minio至少需要4个硬盘，使用分布式Minio自动引入了纠删码功能。</p>
+<p>2、高可用</p>
+<p>2.1、单机Minio服务存在单点故障，相反，如果是有一个N快硬盘的分布式Minio，只要有N&#x2F;2硬盘在线，你的数据就是安全的。不过你需要至少有N&#x2F;2+1个硬盘来创建新的对象。</p>
+<p>2.2、例如，一个16节点的Minio集群，每个节点16块块硬盘，计算8台服务器宕机，这个集群仍然是可读的，不过你需要9台服务器才能写入数据。</p>
+<p>3、一致性</p>
+<p>3.1、Minio在分布式和单机模式下，所有读写炒作都严格遵守read-after-write 一致性模型</p>
+<h1 id="二、安装MinIO（CentOS7）"><a href="#二、安装MinIO（CentOS7）" class="headerlink" title="二、安装MinIO（CentOS7）"></a>二、安装MinIO（CentOS7）</h1><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">sudo yum install wget<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">wget https://dl.minio.org.cn/server/minio/release/linux-amd64/minio<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh"><span class="hljs-built_in">mkdir</span> /usr/local/minio<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh"><span class="hljs-built_in">cp</span> minio /usr/local/minio/<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh"><span class="hljs-built_in">cd</span> /usr/local/minio/<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh"><span class="hljs-built_in">chmod</span> +x minio<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">vim start-minio.sh<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs sh"><span class="hljs-built_in">export</span> MINIO_ROOT_USER=root<br><span class="hljs-built_in">export</span> MINIO_ROOT_PASSWORD=cqc123456<br><span class="hljs-comment"># ./minio server /usr/local/minio/data &gt; /usr/local/minio/minio.log 2&gt;&amp;1 &amp;   主要：密码要8位</span><br> <br><span class="hljs-comment"># 这个使新版的，把后台管理设置为9111端口，api接口和访问默认还是9000</span><br>./minio server --console-address 0.0.0.0:9111 /usr/local/minio/data &gt; /usr/local/minio/minio.log 2&gt;&amp;1 &amp;         <br></code></pre></td></tr></table></figure>
+
+<h1 id="三、Springboot整合"><a href="#三、Springboot整合" class="headerlink" title="三、Springboot整合"></a>三、Springboot整合</h1><h2 id="1-先去管理页面创建Buckets（桶）"><a href="#1-先去管理页面创建Buckets（桶）" class="headerlink" title="1.先去管理页面创建Buckets（桶）"></a>1.先去管理页面创建Buckets（桶）</h2><p><img src="https://raw.githubusercontent.com/cai-qichang/cqc-photo/master/img/image-20231010141050675.png" srcset="/img/loading.gif" lazyload alt="image-20231010141050675"></p>
+<h2 id="2-导入依赖"><a href="#2-导入依赖" class="headerlink" title="2.导入依赖"></a>2.导入依赖</h2><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependencies</span>&gt;</span><br>       <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>           <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework.boot<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>           <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-boot-starter-web<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>       <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br><br>       <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>           <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.projectlombok<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>           <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>lombok<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>           <span class="hljs-tag">&lt;<span class="hljs-name">optional</span>&gt;</span>true<span class="hljs-tag">&lt;/<span class="hljs-name">optional</span>&gt;</span><br>       <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br>       <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>           <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework.boot<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>           <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-boot-starter-test<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>           <span class="hljs-tag">&lt;<span class="hljs-name">scope</span>&gt;</span>test<span class="hljs-tag">&lt;/<span class="hljs-name">scope</span>&gt;</span><br>       <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br><br>       <span class="hljs-comment">&lt;!--MinIO--&gt;</span><br>       <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>           <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>io.minio<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>           <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>minio<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>           <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>8.5.6<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br>       <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br><br>       <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>           <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.apache.commons<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>           <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>commons-lang3<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>           <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>3.12.0<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br>       <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br>   <span class="hljs-tag">&lt;/<span class="hljs-name">dependencies</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<h2 id="3-项目配置-application-properties"><a href="#3-项目配置-application-properties" class="headerlink" title="3.项目配置(application.properties)"></a>3.项目配置(application.properties)</h2><figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs properties"><br><span class="hljs-attr">server.port</span>=<span class="hljs-string">9091</span><br><span class="hljs-comment"></span><br><span class="hljs-comment"># 配置minio相关</span><br><span class="hljs-attr">minio.endpoint</span> = <span class="hljs-string">http://192.168.55.180:9000</span><br><span class="hljs-attr">minio.accessKey</span> = <span class="hljs-string">root</span><br><span class="hljs-attr">minio.secretKey</span> = <span class="hljs-string">cqc123456</span><br><span class="hljs-attr">minio.bucketName</span> = <span class="hljs-string">cqc</span><br><span class="hljs-comment"></span><br><span class="hljs-comment"># 解决大文件上传</span><br><span class="hljs-attr">spring.servlet.multipart.max-file-size</span>=<span class="hljs-string">1000MB</span><br><span class="hljs-attr">spring.servlet.multipart.max-request-size</span>=<span class="hljs-string">5000MB</span><br></code></pre></td></tr></table></figure>
+
+<h2 id="4-代码部分"><a href="#4-代码部分" class="headerlink" title="4.代码部分"></a>4.代码部分</h2><h4 id="ResponseData-java"><a href="#ResponseData-java" class="headerlink" title="ResponseData.java"></a>ResponseData.java</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.cactus.minio.common;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">ResponseData</span> &#123;<br><br>    <span class="hljs-keyword">private</span> <span class="hljs-type">int</span> code;<br>    <span class="hljs-keyword">private</span> String msg;<br>    <span class="hljs-keyword">private</span> Object data;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> ResponseData <span class="hljs-title function_">error</span><span class="hljs-params">(String msg)</span> &#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ResponseData</span>(<span class="hljs-number">1500</span>,msg,<span class="hljs-literal">null</span>);<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-title function_">ResponseData</span><span class="hljs-params">(<span class="hljs-type">int</span> code, String msg, Object data)</span> &#123;<br>        <span class="hljs-built_in">this</span>.code = code;<br>        <span class="hljs-built_in">this</span>.msg = msg;<br>        <span class="hljs-built_in">this</span>.data = data;<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> ResponseData <span class="hljs-title function_">success</span><span class="hljs-params">(Object urlList)</span> &#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ResponseData</span>(<span class="hljs-number">200</span>,<span class="hljs-string">&quot;success&quot;</span>,urlList);<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-type">int</span> <span class="hljs-title function_">getCode</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-keyword">return</span> code;<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">setCode</span><span class="hljs-params">(<span class="hljs-type">int</span> code)</span> &#123;<br>        <span class="hljs-built_in">this</span>.code = code;<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> String <span class="hljs-title function_">getMsg</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-keyword">return</span> msg;<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">setMsg</span><span class="hljs-params">(String msg)</span> &#123;<br>        <span class="hljs-built_in">this</span>.msg = msg;<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> Object <span class="hljs-title function_">getData</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-keyword">return</span> data;<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">setData</span><span class="hljs-params">(Object data)</span> &#123;<br>        <span class="hljs-built_in">this</span>.data = data;<br>    &#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<h4 id="MinioConfig-java"><a href="#MinioConfig-java" class="headerlink" title="MinioConfig.java"></a>MinioConfig.java</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.cactus.minio.config;<br><br><span class="hljs-keyword">import</span> io.minio.MinioClient;<br><span class="hljs-keyword">import</span> lombok.Data;<br><span class="hljs-keyword">import</span> org.springframework.boot.context.properties.ConfigurationProperties;<br><span class="hljs-keyword">import</span> org.springframework.context.annotation.Bean;<br><span class="hljs-keyword">import</span> org.springframework.stereotype.Component;<br><br><span class="hljs-meta">@Data</span><br><span class="hljs-meta">@Component</span><br><span class="hljs-meta">@ConfigurationProperties(prefix = &quot;minio&quot;)</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">MinioConfig</span>&#123;<br>    <span class="hljs-keyword">private</span> String endpoint;<br>    <span class="hljs-keyword">private</span> String accessKey;<br>    <span class="hljs-keyword">private</span> String secretKey;<br>    <span class="hljs-keyword">private</span> String bucketName;<br> <br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 注入minio 客户端</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@return</span> MinioClient</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-meta">@Bean</span><br>    <span class="hljs-keyword">public</span> MinioClient <span class="hljs-title function_">minioClient</span><span class="hljs-params">()</span>&#123;<br> <br>        <span class="hljs-keyword">return</span> MinioClient.builder()<br>                .endpoint(endpoint)<br>                .credentials(accessKey, secretKey)<br>                .build();<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h4 id="FileController-java"><a href="#FileController-java" class="headerlink" title="FileController.java"></a>FileController.java</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.cactus.minio.controller;<br><br><span class="hljs-keyword">import</span> com.cactus.minio.common.ResponseData;<br><span class="hljs-keyword">import</span> io.minio.*;<br><span class="hljs-keyword">import</span> io.minio.http.Method;<br><span class="hljs-keyword">import</span> org.apache.commons.lang3.StringUtils;<br><span class="hljs-keyword">import</span> org.apache.tomcat.util.http.fileupload.IOUtils;<br><span class="hljs-keyword">import</span> org.springframework.beans.factory.annotation.Value;<br><span class="hljs-keyword">import</span> org.springframework.web.bind.annotation.*;<br><span class="hljs-keyword">import</span> org.springframework.web.multipart.MultipartFile;<br><br><span class="hljs-keyword">import</span> javax.annotation.Resource;<br><span class="hljs-keyword">import</span> javax.servlet.http.HttpServletResponse;<br><span class="hljs-keyword">import</span> java.io.IOException;<br><span class="hljs-keyword">import</span> java.io.InputStream;<br><span class="hljs-keyword">import</span> java.net.URLEncoder;<br><span class="hljs-keyword">import</span> java.util.ArrayList;<br><span class="hljs-keyword">import</span> java.util.HashMap;<br><span class="hljs-keyword">import</span> java.util.List;<br><span class="hljs-keyword">import</span> java.util.Map;<br><br><span class="hljs-meta">@RestController</span><br><span class="hljs-meta">@RequestMapping(&quot;/file&quot;)</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">FileController</span> &#123;<br>    <span class="hljs-meta">@Resource</span><br>    <span class="hljs-keyword">private</span> MinioClient minioClient;<br><br>    <span class="hljs-meta">@Value(&quot;$&#123;minio.bucketName&#125;&quot;)</span><br>    <span class="hljs-keyword">private</span> String bucketName;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 文件上传</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> file</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@return</span> ResponseData</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-meta">@PostMapping(&quot;/upload&quot;)</span><br>    <span class="hljs-keyword">public</span> ResponseData <span class="hljs-title function_">upload</span><span class="hljs-params">(<span class="hljs-meta">@RequestParam(name = &quot;file&quot;)</span> MultipartFile[] file)</span>&#123;<br>        <span class="hljs-keyword">if</span>(file == <span class="hljs-literal">null</span> || file.length ==<span class="hljs-number">0</span>)&#123;<br>            <span class="hljs-keyword">return</span> ResponseData.error(<span class="hljs-string">&quot;上传文件不能为空&quot;</span>);<br>        &#125;<br>        <span class="hljs-comment">//防御性编程，批量限制少于10个</span><br>        <span class="hljs-keyword">if</span>(file.length &gt; <span class="hljs-number">10</span>)&#123;<br>            <span class="hljs-keyword">return</span> ResponseData.error(<span class="hljs-string">&quot;请上传少于&quot;</span> + file.length + <span class="hljs-string">&quot;个文件&quot;</span>);<br>        &#125;<br>        <span class="hljs-keyword">try</span> &#123;<br>            List&lt;String&gt; urlList = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayList</span>&lt;&gt;(file.length);<br>            <span class="hljs-keyword">for</span> (MultipartFile multipartFile : file)&#123;<br>                <span class="hljs-type">InputStream</span> <span class="hljs-variable">in</span> <span class="hljs-operator">=</span> multipartFile.getInputStream();<br><span class="hljs-comment">//                minioClient.statObject(StatObjectArgs.builder().object(file.getOriginalFilename()).bucket(bucketName).build());</span><br>                minioClient.putObject(PutObjectArgs.builder().object(multipartFile.getOriginalFilename())<br>                        .bucket(bucketName)<br>                        .contentType(multipartFile.getContentType())<br>                        .stream(in, multipartFile.getSize(),-<span class="hljs-number">1</span>).build());<br>                in.close();<br>                <span class="hljs-type">String</span> <span class="hljs-variable">str</span> <span class="hljs-operator">=</span> minioClient.getPresignedObjectUrl(GetPresignedObjectUrlArgs.builder()<br>                        .bucket(bucketName)<br>                        .object(multipartFile.getOriginalFilename())<br>                        .method(Method.POST)<br>                        .build());<br>                <span class="hljs-type">String</span> <span class="hljs-variable">urlStr</span> <span class="hljs-operator">=</span> StringUtils.substringBefore(str, <span class="hljs-string">&quot;?&quot;</span>);<br>                urlList.add(urlStr);<br>            &#125;<br>            Map&lt;String, Object&gt; map = <span class="hljs-keyword">new</span> <span class="hljs-title class_">HashMap</span>&lt;&gt;();<br>            map.put(<span class="hljs-string">&quot;urlList&quot;</span>, urlList);<br>            <span class="hljs-keyword">return</span> ResponseData.success(map.get(<span class="hljs-string">&quot;urlList&quot;</span>));<br>        &#125; <span class="hljs-keyword">catch</span> (Exception e) &#123;<br>            <span class="hljs-keyword">return</span> ResponseData.error(<span class="hljs-string">&quot;上传失败:&quot;</span> + e.getMessage());<br>        &#125;<br>    &#125;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 下载文件</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> filename</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> response</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-meta">@GetMapping(&quot;/download/&#123;filename&#125;&quot;)</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">download</span><span class="hljs-params">(<span class="hljs-meta">@PathVariable</span> String filename, HttpServletResponse response)</span>&#123;<br>        <span class="hljs-type">InputStream</span> <span class="hljs-variable">in</span> <span class="hljs-operator">=</span> <span class="hljs-literal">null</span>;<br>        <span class="hljs-keyword">try</span> &#123;<br>            <span class="hljs-comment">//获取对象信息</span><br>            <span class="hljs-type">StatObjectResponse</span> <span class="hljs-variable">stat</span> <span class="hljs-operator">=</span> minioClient.statObject(<br>                    StatObjectArgs.builder().bucket(bucketName).object(filename).build());<br>            response.setContentType(stat.contentType());<br>            response.setHeader(<span class="hljs-string">&quot;Content-Disposition&quot;</span>, <span class="hljs-string">&quot;attachment;fileName=&quot;</span> + URLEncoder.encode(filename, <span class="hljs-string">&quot;utf-8&quot;</span>));<br>            <span class="hljs-comment">//文件下载</span><br>            in = minioClient.getObject(GetObjectArgs.builder().bucket(bucketName).object(filename).build());<br>            IOUtils.copy(in, response.getOutputStream());<br>        &#125;<span class="hljs-keyword">catch</span> (Exception e)&#123;<br>            e.getMessage();<br>        &#125;<span class="hljs-keyword">finally</span> &#123;<br>            <span class="hljs-keyword">if</span>(in != <span class="hljs-literal">null</span>)&#123;<br>                <span class="hljs-keyword">try</span> &#123;<br>                    in.close();<br>                &#125;<span class="hljs-keyword">catch</span> (IOException e)&#123;<br>                    e.getMessage();<br>                &#125;<br>            &#125;<br>        &#125;<br>    &#125;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 删除文件</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> filename</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@return</span> ResponseData</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-meta">@DeleteMapping(&quot;/delete/&#123;filename&#125;&quot;)</span><br>    <span class="hljs-keyword">public</span> ResponseData <span class="hljs-title function_">delete</span><span class="hljs-params">(<span class="hljs-meta">@PathVariable(&quot;filename&quot;)</span> String filename)</span>&#123;<br>        <span class="hljs-keyword">try</span> &#123;<br>            minioClient.removeObject(RemoveObjectArgs.builder().bucket(bucketName)<br>                    .object(filename).build());<br>        &#125;<span class="hljs-keyword">catch</span> (Exception e)&#123;<br>            e.getMessage();<br>            <span class="hljs-keyword">return</span> ResponseData.error(<span class="hljs-string">&quot;删除失败&quot;</span>);<br>        &#125;<br>        <span class="hljs-keyword">return</span> ResponseData.success(<span class="hljs-string">&quot;删除成功&quot;</span>);<br>    &#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<h1 id="四、测试"><a href="#四、测试" class="headerlink" title="四、测试"></a>四、测试</h1><h2 id="1-上传文件"><a href="#1-上传文件" class="headerlink" title="1.上传文件"></a>1.上传文件</h2><figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs tex">POST   http://localhost:9091/file/upload<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://raw.githubusercontent.com/cai-qichang/cqc-photo/master/img/image-20231010143531816.png" srcset="/img/loading.gif" lazyload alt="image-20231010143531816"></p>
+<h2 id="2-下载文件"><a href="#2-下载文件" class="headerlink" title="2.下载文件"></a>2.下载文件</h2><figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs tex">GET http://localhost:9091/file/download/增强功力.pdf<br></code></pre></td></tr></table></figure>
+
+<h2 id="3-删除文件"><a href="#3-删除文件" class="headerlink" title="3.删除文件"></a>3.删除文件</h2><figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs tex">DELETE http://localhost:9091/file/delete/增强功力.pdf<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://raw.githubusercontent.com/cai-qichang/cqc-photo/master/img/image-20231010144016893.png" srcset="/img/loading.gif" lazyload alt="image-20231010144016893"></p>
+<h1 id="五、总结"><a href="#五、总结" class="headerlink" title="五、总结"></a>五、总结</h1><ul>
+<li>MinIO用Buckets的概念进行分区，找一个文件 需要Buckets+文件名</li>
+<li>个人感觉MinIO比Hadoop、FastDFS无论在安装还行运维还是整合方面都是占优的</li>
+<li>上传到MinIO文件可以通过官方api合并文件（分片合并操作），也可以创建Buckets，存在大量api</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/cai-qichang/cqc-photo/master/img/image-20231010144625213.png" srcset="/img/loading.gif" lazyload alt="image-20231010144625213"></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E6%95%B4%E5%90%88%E7%B3%BB%E5%88%97/" class="category-chain-item">整合系列</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/MinIO/" class="print-no-link">#MinIO</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Springboot整合MinIO</div>
+      <div>https://cai-qichang.github.io/2023/10/10/Springboot整合MinIO/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>caiqichang</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2023年10月10日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              BY-蔡奇倡
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/08/06/%E6%AF%95%E4%B8%9A%E7%AC%AC%E4%BA%8C%E5%B9%B4/" title="毕业第二年">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">毕业第二年</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2023/09/20/Springboot%E6%95%B4%E5%90%88oauth2-0/" title="Springboot整合oauth2.0">
+                        <span class="hidden-mobile">Springboot整合oauth2.0</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+    <!-- 备案信息 ICP for China -->
+    <div class="beian">
+  <span>
+    <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
+      粤ICP备2021019144号
+    </a>
+  </span>
+  
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

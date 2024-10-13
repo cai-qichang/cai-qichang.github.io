@@ -1,0 +1,813 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <!-- 通过 CDN 引入霞鹜文楷字体 -->
+  <link rel="stylesheet" href="https://npm.elemecdn.com/lxgw-wenkai-screen-webfont/style.css" media="print" onload="this.media='all'">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/me.png">
+  <link rel="icon" href="/img/me.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="caiqichang">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="一、前言1、SpringCache是Spring提供的一个缓存框架，在Spring3.1版本开始支持将缓存添加到现有的spring应用程序中，在4.1开始，缓存已支持JSR-107注释和更多自定义的选项。 2、Spring Cache利用了AOP，实现了基于注解的缓存功能，并且进行了合理的抽象，业务代码不用关心底层是使用了什么缓存框架，只需要简单地加一个注解，就能实现缓存功能了，做到了对代码侵入性">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Springboot整合Springcache">
+<meta property="og:url" content="https://cai-qichang.github.io/2023/09/11/Springboot%E6%95%B4%E5%90%88Springcache/index.html">
+<meta property="og:site_name" content="caiqichang&#39;s Blog">
+<meta property="og:description" content="一、前言1、SpringCache是Spring提供的一个缓存框架，在Spring3.1版本开始支持将缓存添加到现有的spring应用程序中，在4.1开始，缓存已支持JSR-107注释和更多自定义的选项。 2、Spring Cache利用了AOP，实现了基于注解的缓存功能，并且进行了合理的抽象，业务代码不用关心底层是使用了什么缓存框架，只需要简单地加一个注解，就能实现缓存功能了，做到了对代码侵入性">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://raw.githubusercontent.com/cai-qichang/cqc-photo/master/img/20210506202738558.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cai-qichang/cqc-photo/master/img/744cd3d022e745f790e944d332663e2e.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cai-qichang/cqc-photo/master/img/0e1eea64d7c340b58a7eb7f4c7b97012.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cai-qichang/cqc-photo/master/img/image-20230911104624380.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cai-qichang/cqc-photo/master/img/image-20230911104718533.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cai-qichang/cqc-photo/master/img/image-20230911104810552.png">
+<meta property="article:published_time" content="2023-09-11T02:15:14.000Z">
+<meta property="article:modified_time" content="2024-10-13T05:21:08.085Z">
+<meta property="article:author" content="caiqichang">
+<meta property="article:tag" content="Springcache">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/cai-qichang/cqc-photo/master/img/20210506202738558.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>Springboot整合Springcache - caiqichang&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"cai-qichang.github.io","root":"/","version":"1.9.5","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>caiqichang</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/yueqiu.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Springboot整合Springcache"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-09-11 10:15" pubdate>
+          2023年9月11日 上午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          17k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          140 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">Springboot整合Springcache</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="一、前言"><a href="#一、前言" class="headerlink" title="一、前言"></a>一、前言</h1><p>1、SpringCache是Spring提供的一个缓存框架，在Spring3.1版本开始支持将缓存添加到现有的spring应用程序中，在4.1开始，缓存已支持JSR-107注释和更多自定义的选项。</p>
+<p>2、Spring Cache利用了AOP，实现了基于注解的缓存功能，并且进行了合理的抽象，业务代码不用关心底层是使用了什么缓存框架，只需要简单地加一个注解，就能实现缓存功能了，做到了对代码侵入性做小。</p>
+<p>3、由于市面上的缓存工具实在太多，SpringCache框架还提供了<strong>CacheManager接口</strong>，可以实现降低对各种缓存框架的耦合。它不是具体的缓存实现，它只提供一整套的接口和代码规范、配置、注解等，用于整合各种缓存方案，比如Caffeine、Guava Cache、Ehcache。</p>
+<h1 id="二、SpringCache深入"><a href="#二、SpringCache深入" class="headerlink" title="二、SpringCache深入"></a>二、SpringCache深入</h1><h2 id="一、SpringCache大致原理"><a href="#一、SpringCache大致原理" class="headerlink" title="一、SpringCache大致原理"></a>一、SpringCache大致原理</h2><p><img src="https://raw.githubusercontent.com/cai-qichang/cqc-photo/master/img/20210506202738558.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<p>在SpringCache官网中，有一个缓存抽象的概念，其核心就是将缓存应用于Java方法中，从而减少基于缓存中可用信息的执行次数。换句话来说。就是每次调用目标方法前，SpringCache都会先检查该方法是否正对给定参数执行，如果已经执行过，就直接返回缓存的结果。（通俗的讲，就是查看缓存里面是否有对应的数据，如果有就返回缓存的数据），而无需执行实际方法、如果该方法上位执行。则执行该方法（缓存中没有对应的数据就执行方法获取对应数据，并进行缓存），并缓存结果并返回给用户。这样就不用多次去执行数据库操作，减少cpu和io的消耗。 </p>
+<h2 id="二、SpringCache为我们提供了两个接口："><a href="#二、SpringCache为我们提供了两个接口：" class="headerlink" title="二、SpringCache为我们提供了两个接口："></a>二、SpringCache为我们提供了两个接口：</h2><p>1、<strong>org.springframework.cache.Cache：</strong></p>
+<p>​    Cache接口为缓存的组件规范定义，包含缓存的各种操作集合</p>
+<p>2、<strong>org.springframework.cache.CacheManager：</strong></p>
+<p>CacheManager接口下Spring提供了各种xxxCache的实现；如RedisCache、EhCacheCache、ConcurrentMapCache等；</p>
+<h2 id="三、SpringCache概念"><a href="#三、SpringCache概念" class="headerlink" title="三、SpringCache概念"></a>三、SpringCache概念</h2><p>1、<strong>Cache接口:</strong>  缓存接口，定义缓存操作。实现有 如RedisCache、EhCacheCache、ConcurrentMapCache等</p>
+<p>2、<strong>cacheResolver</strong>： 指定获取解析器</p>
+<p>3、<strong>CacheManager</strong>： 缓存管理器，管理各种缓存（Cache）组件；如：RedisCacheManager，使用redis作为缓存。指定缓存管理器</p>
+<p>4、<code>@Cacheable</code>：在方法执行前查看是否有缓存对应的数据，如果有直接返回数据，如果没有调用方法获取数据返回，并缓存起来。</p>
+<p>5、<code>@CacheEvict</code>：  将一条或多条数据从缓存中删除。</p>
+<p>6、<code>@CachePut</code>： 将方法的返回值放到缓存中</p>
+<p>7、<code>@EnableCaching</code>： 开启缓存注解功能</p>
+<p>8、<code>@Caching</code>： 组合多个缓存注解；</p>
+<p>9、<code>@CacheConfig</code>： 统一配置@Cacheable中的value值</p>
+<h2 id="四、SpringCache注解中公共的属性"><a href="#四、SpringCache注解中公共的属性" class="headerlink" title="四、SpringCache注解中公共的属性"></a>四、SpringCache注解中公共的属性</h2><p>1、<strong>cacheNames</strong>：每个注解中都有自己的缓存名字。该名字的缓存与方法相关联，每次调用时，都会检查缓存以查看是否有对应<strong>cacheNames</strong>名字的数据，避免重复调用方法。名字可以可以有多个，在这种情况下，在执行方法之前，如果至少命中一个缓存，则返回相关联的值。（ Springcache提供两个参数来指定缓存名：value、cacheNames，二者选其一即可，每一个需要缓存的数据都需要指定要放到哪个名字的缓存，缓存的分区，按照业务类型分 ）</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Cacheable(cacheNames = &quot;tets&quot;)</span><br><br><br><span class="hljs-comment">// ex</span><br><span class="hljs-meta">@Cacheable(&#123;&quot;books&quot;, &quot;isbns&quot;&#125;)</span><br><span class="hljs-keyword">public</span> Book <span class="hljs-title function_">findBook</span><span class="hljs-params">(ISBN isbn)</span> &#123;...&#125;<br></code></pre></td></tr></table></figure>
+
+<p><strong>2</strong>、<strong>KeyGenerator：key生成器</strong></p>
+<p>缓存的本质是key-value存储模式，每一次方法的调用都需要生成相应的Key, 才能操作缓存。</p>
+<p>通常情况下，@Cacheable有一个属性key可以直接定义缓存key，开发者可以使用SpEL语言定义key值。若没有指定属性key，缓存抽象提供了 KeyGenerator来生成key ，具体源码如下，</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">SimpleKeyGenerator</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">KeyGenerator</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-title function_">SimpleKeyGenerator</span><span class="hljs-params">()</span> &#123;<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> Object <span class="hljs-title function_">generate</span><span class="hljs-params">(Object target, Method method, Object... params)</span> &#123;<br>        <span class="hljs-keyword">return</span> generateKey(params);<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> Object <span class="hljs-title function_">generateKey</span><span class="hljs-params">(Object... params)</span> &#123;<br>        <span class="hljs-keyword">if</span> (params.length == <span class="hljs-number">0</span>) &#123;<br>            <span class="hljs-keyword">return</span> SimpleKey.EMPTY;<br>        &#125; <span class="hljs-keyword">else</span> &#123;<br>            <span class="hljs-keyword">if</span> (params.length == <span class="hljs-number">1</span>) &#123;<br>                <span class="hljs-type">Object</span> <span class="hljs-variable">param</span> <span class="hljs-operator">=</span> params[<span class="hljs-number">0</span>];<br>                <span class="hljs-keyword">if</span> (param != <span class="hljs-literal">null</span> &amp;&amp; !param.getClass().isArray()) &#123;<br>                    <span class="hljs-keyword">return</span> param;<br>                &#125;<br>            &#125;<br><br>            <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">SimpleKey</span>(params);<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>由此可看出</p>
+<ul>
+<li>如果没有参数，则直接返回<strong>SimpleKey.EMPTY</strong>；</li>
+<li>如果只有一个参数，则直接返回该参数；</li>
+<li>若有多个参数，则返回包含多个参数的<strong>SimpleKey</strong>对象。</li>
+</ul>
+<p>当然Spring Cache也考虑到需要自定义Key生成方式，需要我们实现org.springframework.cache.interceptor.KeyGenerator 接口</p>
+<p>默认的 key 生成器要求参数具有有效的 hashCode() 和 equals() 方法实现。</p>
+<p><strong>3、key：缓存的key，如果是redis，则相当于redis的key</strong></p>
+<p>可以为空，如果需要可以使用spel表达式进行表写。如果为空，则缺省默认使用key表达式生成器进行生成。默认的 key 生成器要求参数具有有效的 hashCode() 和 equals() 方法实现。key的生成器。key&#x2F;keyGenerator二选一使用</p>
+<p><strong>4、condition：缓存的条件，对入参进行判断</strong></p>
+<p>可以为空，如果需要指定，需要使用SPEL表达式，返回true&#x2F;false，只有返回true的时候才会对数据源进行缓存&#x2F;清除缓存。在方法调用之前或之后都能进行判断。</p>
+<p>condition&#x3D;false时，不读取缓存，直接执行方法体，并返回结果，同时返回结果也不放入缓存。</p>
+<p>condition&#x3D;true时，读取缓存，有缓存则直接返回。无则执行方法体，同时返回结果放入缓存（如果配置了result，且要求不为空，则不会缓存结果）。</p>
+<p>注意：</p>
+<p>condition 属性使用的SpEL语言只有#root和获取参数类的SpEL表达式,不能使用返回结果的#result 。所以 <code>condition = &quot;#result != null&quot;</code> 会导致<strong>所有对象都不进入缓存</strong>,每次操作都要经过数据库。</p>
+<h2 id="五、Spel表达式"><a href="#五、Spel表达式" class="headerlink" title="五、Spel表达式"></a>五、Spel表达式</h2><p><strong>一、spel语法</strong></p>
+<p>具体语法可以参考此篇博客：<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/e0b50053b5d3">SpEL表达式总结 - 简书</a></p>
+<p><img src="https://raw.githubusercontent.com/cai-qichang/cqc-photo/master/img/744cd3d022e745f790e944d332663e2e.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p><strong>二、SpringCache也提供了root对象，具体功能使用如下。</strong></p>
+<p><img src="https://raw.githubusercontent.com/cai-qichang/cqc-photo/master/img/0e1eea64d7c340b58a7eb7f4c7b97012.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p><strong>三、使用spel表达式栗子</strong></p>
+<p>1、使用参数作为key：使用方法参数时我们可以直接使用“#参数名”或者“#p参数index”。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Cacheable(value=&quot;users&quot;, key=&quot;#id&quot;)</span><br>     <span class="hljs-keyword">public</span> User <span class="hljs-title function_">find</span><span class="hljs-params">(Integer id)</span> &#123;<br>         returnnull;<br>     &#125;<br>     <span class="hljs-meta">@Cacheable(value=&quot;users&quot;, key=&quot;#p0&quot;)</span><br>     <span class="hljs-keyword">public</span> User <span class="hljs-title function_">find</span><span class="hljs-params">(Integer id)</span> &#123;<br>         returnnull;<br>     &#125;<br>     <span class="hljs-meta">@Cacheable(value=&quot;users&quot;, key=&quot;#user.id&quot;)</span><br>     <span class="hljs-keyword">public</span> User <span class="hljs-title function_">find</span><span class="hljs-params">(User user)</span> &#123;<br>         returnnull;<br>     &#125;<br>     <span class="hljs-meta">@Cacheable(value=&quot;users&quot;, key=&quot;#p0.id&quot;)</span><br>     <span class="hljs-keyword">public</span> User <span class="hljs-title function_">find</span><span class="hljs-params">(User user)</span> &#123;<br>         returnnull;<br>     &#125;<br><br></code></pre></td></tr></table></figure>
+
+<p>2、当我们要使用root对象的属性作为key时我们也可以将“#root”省略，因为Spring默认使用的就是root对象的属性。如：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Cacheable(value=&#123;&quot;users&quot;, &quot;xxx&quot;&#125;, key=&quot;caches[1].name&quot;)</span><br>     <span class="hljs-keyword">public</span> User <span class="hljs-title function_">find</span><span class="hljs-params">(User user)</span> &#123;<br>         returnnull;<br>     &#125;<br></code></pre></td></tr></table></figure>
+
+<p>如果要调用类里面的方法：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Cacheable(value=&#123;&quot;TeacherAnalysis_public_chart&quot;&#125;, key=&quot;#root.target.getDictTableName() + &#x27;_&#x27; + #root.target.getFieldName()&quot;)</span><br>     <span class="hljs-keyword">public</span> List&lt;Map&lt;String, Object&gt;&gt; <span class="hljs-title function_">getChartList</span><span class="hljs-params">(Map&lt;String, Object&gt; paramMap)</span> &#123;<br>     &#125;<br>     <span class="hljs-keyword">public</span> String <span class="hljs-title function_">getDictTableName</span><span class="hljs-params">()</span>&#123;<br>         <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;&quot;</span>;<br>     &#125;<br>     <span class="hljs-keyword">public</span> String <span class="hljs-title function_">getFieldName</span><span class="hljs-params">()</span>&#123;<br>         <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;&quot;</span>;<br>     &#125;<br><br></code></pre></td></tr></table></figure>
+
+<p>3、最好使用所有参数作为key，当然，也分情况。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Cacheable(cacheNames = &quot;c2&quot;,key = &quot;#id&quot;)</span><br>    <span class="hljs-keyword">public</span> User <span class="hljs-title function_">getUserById</span><span class="hljs-params">(Long id,String username)</span>&#123;<br>        <span class="hljs-type">User</span> <span class="hljs-variable">user</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">User</span>();<br>        user.setId(id);<br>        <span class="hljs-keyword">return</span> user;<br>    &#125;<br>    <span class="hljs-meta">@Test</span><br>    <span class="hljs-keyword">void</span> <span class="hljs-title function_">testGetUserById</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-type">User</span> <span class="hljs-variable">u1</span> <span class="hljs-operator">=</span> userService.getUserById(<span class="hljs-number">98L</span>, <span class="hljs-string">&quot;dong&quot;</span>);<br>        <span class="hljs-type">User</span> <span class="hljs-variable">u2</span> <span class="hljs-operator">=</span> userService.getUserById(<span class="hljs-number">98L</span>, <span class="hljs-string">&quot;lisi&quot;</span>);<br>    &#125;<br><span class="hljs-comment">/**</span><br><span class="hljs-comment">以参数id作为key会出现逻辑错误，当调用第一次getUserById方法时，存入key为id，值为dong，当调用第二次getUserById方法时，因为已经存入缓存id，所以不会进入第二次getUserById方法，所以lisi不能进入缓存</span><br><span class="hljs-comment">**/</span><br><br></code></pre></td></tr></table></figure>
+
+<p>4、自定义key生成器</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Component</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">MyKeyGenerate</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">KeyGenerator</span> &#123;<br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> Object <span class="hljs-title function_">generate</span><span class="hljs-params">(Object target, Method method, Object... params)</span> &#123;<br>        <span class="hljs-type">String</span> <span class="hljs-variable">s</span> <span class="hljs-operator">=</span> target.toString()+<span class="hljs-string">&quot;:&quot;</span>+method.getName()+<span class="hljs-string">&quot;:&quot;</span>+ Arrays.toString(params);<br>        <span class="hljs-keyword">return</span> s;<br>    &#125;<br>&#125;<br><br><span class="hljs-comment">//将myKeyGenerate注入</span><br><span class="hljs-meta">@Cacheable(cacheNames = &quot;test&quot;,keyGenerator = &quot;myKeyGenerate&quot;)</span><br>    <span class="hljs-keyword">public</span> User <span class="hljs-title function_">getUserById</span><span class="hljs-params">(Long id,String username)</span>&#123;<br>        <span class="hljs-type">User</span> <span class="hljs-variable">user</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">User</span>();<br>        user.setId(id);<br>        user.setUsername(username);<br>        <span class="hljs-keyword">return</span> user;<br>    &#125;<br><br></code></pre></td></tr></table></figure>
+
+<h2 id="五、各个注解详解"><a href="#五、各个注解详解" class="headerlink" title="五、各个注解详解"></a>五、各个注解详解</h2><p>在四当中，已经把各个注解的公共属性抽了出来，这里只做一些注解的特有属性，当然，可能某些属性也是公有的。</p>
+<p><strong>一、@Cacheable：</strong>在方法执行前查看是否有缓存对应的数据，如果有直接返回数据，如果没有调用方法获取数据返回，并缓存起来。</p>
+<p><strong>1、unless：条件符合则不缓存，是对出参进行判断</strong></p>
+<p>unless属性可以使用#result表达式。效果: 缓存如果有符合要求的缓存数据则直接返回，没有则去数据库查数据，查到了就返回并且存在缓存一份，没查到就不存缓存。</p>
+<p>condition 不指定相当于 true，unless 不指定相当于 false</p>
+<p>　　　　当 condition &#x3D; false，一定不会缓存；</p>
+<p>　　　　当 condition &#x3D; true，且 unless &#x3D; true，不缓存；</p>
+<p>　　　　当 condition &#x3D; true，且 unless &#x3D; false，缓存；</p>
+<p><strong>2、sync：是否使用异步，默认是false.</strong></p>
+<p>​    在一个多线程的环境中，某些操作可能被相同的参数并发地调用，同一个 value 值可能被多次计算（或多次访问 db），这样就达不到缓存的目的。针对这些可能高并发的操作，我们可以使用 sync 参数来告诉底层的缓存提供者将缓存的入口锁住，这样就只能有一个线程计算操作的结果值，而其它线程需要等待。当值为true，相当于同步可以有效的避免缓存穿透的问题。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Cacheable(value=&quot;user_cache&quot;,key=&quot;#userId&quot;, unless=&quot;#result == null&quot;)</span><br><span class="hljs-keyword">public</span> User <span class="hljs-title function_">getUserById</span><span class="hljs-params">(Long userId)</span> &#123;<br> <span class="hljs-type">User</span> <span class="hljs-variable">user</span> <span class="hljs-operator">=</span> userMapper.getUserById(userId);<br> <span class="hljs-keyword">return</span> user;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<p><strong>二、@CachePut：缓存更新</strong></p>
+<p>与@Cacheable不同的是使用@CachePut标注的方法在执行前不会去检查缓存中是否存在之前执行过的结果，而是每次都会执行该方法，并将执行结果以键值对的形式存入指定的缓存中。</p>
+<p>他所具有的属性与@Cacheable相同就不多描述。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@CachePut(value = &quot;user_cache&quot;, key=&quot;#user.id&quot;, unless = &quot;#result != null&quot;)</span><br><span class="hljs-keyword">public</span> User <span class="hljs-title function_">updateUser</span><span class="hljs-params">(User user)</span> &#123;<br> userMapper.updateUser(user);<br> <span class="hljs-keyword">return</span> user;<br>&#125;<br><span class="hljs-comment">/**</span><br><span class="hljs-comment">当调用updateUser方法时，每次方法都会被执行，但是因为unless属性每次都是true，所以并没有将结果缓存。当去掉unless属性，则结果会被缓存。</span><br><span class="hljs-comment">**/</span><br></code></pre></td></tr></table></figure>
+
+<p><strong>三、@CacheEvict：清空缓存</strong></p>
+<p>注解的方法在调用时会从缓存中移除已存储的数据。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@CacheEvict(value = &quot;user_cache&quot;, key = &quot;#id&quot;)</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">deleteUserById</span><span class="hljs-params">(Long id)</span> &#123;<br> userMapper.deleteUserById(id);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><strong>1、allEntries：是否清空左右缓存。默认为false</strong></p>
+<p>当指定了allEntries为true时，Spring Cache将忽略指定的key</p>
+<p><strong>2、beforeInvocation：是否在方法执行前就清空，默认为 false</strong></p>
+<p>清除操作默认是在对应方法成功执行之后触发的，即方法如果因为抛出异常而未能成功返回时也不会触发清除操作。使用beforeInvocation可以改变触发清除操作的时间，当我们指定该属性值为true时，Spring会在调用该方法之前清除缓存中的指定元素。</p>
+<p><strong>四、@Caching：可以让我们在一个方法或者类上同时指定多个Spring Cache相关的注解</strong></p>
+<p><strong>1、</strong>其拥有三个属性：cacheable、put和evict，分别用于指定@Cacheable、@CachePut和@CacheEvict。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Caching(</span><br><span class="hljs-meta">        cacheable = &#123;@Cacheable(value = &quot;stu&quot;,key = &quot;#userName&quot;)&#125;,</span><br><span class="hljs-meta">        put = &#123;@CachePut(value = &quot;stu&quot;, key = &quot;#result.id&quot;),</span><br><span class="hljs-meta">                @CachePut(value = &quot;stu&quot;, key = &quot;#result.age&quot;)</span><br><span class="hljs-meta">        &#125;</span><br><span class="hljs-meta">)</span><br><span class="hljs-keyword">public</span> Student <span class="hljs-title function_">getStuByStr</span><span class="hljs-params">(String userName)</span> &#123;<br>    <span class="hljs-type">StudentExample</span> <span class="hljs-variable">studentExample</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">StudentExample</span>();<br>    studentExample.createCriteria().andUserNameEqualTo(userName);<br>    List&lt;Student&gt; students = studentMapper.selectByExample(studentExample);<br>    <span class="hljs-keyword">return</span> Optional.ofNullable(students).orElse(<span class="hljs-literal">null</span>).get(<span class="hljs-number">0</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><strong>五、@CacheConfig 抽取缓存的公共配置</strong> </p>
+<p>我们每个缓存注解中 都指定 了value &#x3D; “stu” &#x2F; cacheNames&#x3D;”stu” ，可以抽离出来，在整个类上添加</p>
+<p>@CacheConfig(cacheNames &#x3D; “stu”)，之后每个方法中都默认使用 cacheNames &#x3D; “stu”</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@CacheConfig(cacheNames = &quot;stu&quot;)</span><br><span class="hljs-meta">@Service</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">StudentServiceImpl</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">StudentService</span> &#123;<br> <br>    <span class="hljs-meta">@Resource</span><br>    <span class="hljs-keyword">private</span> StudentMapper studentMapper;<br> <br>    <span class="hljs-meta">@CachePut(key = &quot;#result.id&quot;)</span><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> Student <span class="hljs-title function_">updateStu</span><span class="hljs-params">(Student student)</span>&#123;<br>        System.out.println(student);<br>        studentMapper.updateByPrimaryKey(student);<br>        <span class="hljs-keyword">return</span> student;<br>    &#125;<br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * Cacheable</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> id</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@return</span></span><br><span class="hljs-comment">     *</span><br><span class="hljs-comment">     * key = &quot;#root.methodName+&#x27;[&#x27;+#id+&#x27;]&#x27;&quot;</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-meta">@Cacheable(key = &quot;#id&quot;)</span><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> Student <span class="hljs-title function_">getStu</span><span class="hljs-params">(Integer id)</span> &#123;<br>        <span class="hljs-type">Student</span> <span class="hljs-variable">student</span> <span class="hljs-operator">=</span> studentMapper.selectByPrimaryKey(id);<br>        System.out.println(student);<br>        <span class="hljs-keyword">return</span> student;<br>    &#125;<br> <br>    <span class="hljs-meta">@CacheEvict(allEntries = true, beforeInvocation = true)</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">delSut</span><span class="hljs-params">(Integer id)</span> &#123;<br>        System.out.println(id);<br>        studentMapper.deleteByPrimaryKey(id);<br>    &#125;<br> <br>    <span class="hljs-meta">@Caching(</span><br><span class="hljs-meta">            cacheable = &#123;@Cacheable(key = &quot;#userName&quot;)&#125;,</span><br><span class="hljs-meta">            put = &#123;@CachePut(key = &quot;#result.id&quot;),</span><br><span class="hljs-meta">                    @CachePut(key = &quot;#result.age&quot;)</span><br><span class="hljs-meta">            &#125;</span><br><span class="hljs-meta">    )</span><br>    <span class="hljs-keyword">public</span> Student <span class="hljs-title function_">getStuByStr</span><span class="hljs-params">(String userName)</span> &#123;<br>        <span class="hljs-type">StudentExample</span> <span class="hljs-variable">studentExample</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">StudentExample</span>();<br>        studentExample.createCriteria().andUserNameEqualTo(userName);<br>        List&lt;Student&gt; students = studentMapper.selectByExample(studentExample);<br>        <span class="hljs-keyword">return</span> Optional.ofNullable(students).orElse(<span class="hljs-literal">null</span>).get(<span class="hljs-number">0</span>);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h1 id="三、SpringCache使用步骤："><a href="#三、SpringCache使用步骤：" class="headerlink" title="三、SpringCache使用步骤："></a>三、SpringCache使用步骤：</h1><p><strong>一、Springboot整合redis与cache</strong> ：</p>
+<p>1、对于使用Springboot进行整合redis与cache，我们只需要引入</p>
+<h2 id="pom-xml"><a href="#pom-xml" class="headerlink" title="pom.xml"></a>pom.xml</h2><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependencies</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework.boot<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-boot-starter-web<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>        <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br><br>        <span class="hljs-comment">&lt;!--redisson--&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.redisson<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>redisson-spring-boot-starter<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>3.23.4<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br>        <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br><br>        <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework.boot<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-boot-starter-cache<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>        <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br><br>        <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.projectlombok<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>lombok<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">optional</span>&gt;</span>true<span class="hljs-tag">&lt;/<span class="hljs-name">optional</span>&gt;</span><br>        <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework.boot<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-boot-starter-test<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">scope</span>&gt;</span>test<span class="hljs-tag">&lt;/<span class="hljs-name">scope</span>&gt;</span><br>        <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">dependencies</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<h2 id="application-properties"><a href="#application-properties" class="headerlink" title="application.properties"></a>application.properties</h2><figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs properties"><br><br><span class="hljs-attr">server.port</span>=<span class="hljs-string">9001</span><br><br><br><span class="hljs-attr">spring.redis.host</span>=<span class="hljs-string">192.168.55.101</span><br><span class="hljs-attr">spring.redis.port</span>=<span class="hljs-string">6379</span><br><span class="hljs-attr">spring.redis.password</span>=<span class="hljs-string">xxxx</span><br><span class="hljs-attr">spring.cache.type</span>=<span class="hljs-string">redis</span><br></code></pre></td></tr></table></figure>
+
+
+
+<h2 id="RedissonConfig"><a href="#RedissonConfig" class="headerlink" title="RedissonConfig"></a>RedissonConfig</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.cactus.springcache.config;<br><br><span class="hljs-keyword">import</span> org.redisson.Redisson;<br><span class="hljs-keyword">import</span> org.redisson.api.RedissonClient;<br><span class="hljs-keyword">import</span> org.redisson.config.Config;<br><span class="hljs-keyword">import</span> org.springframework.beans.factory.annotation.Value;<br><span class="hljs-keyword">import</span> org.springframework.context.annotation.Bean;<br><span class="hljs-keyword">import</span> org.springframework.context.annotation.Configuration;<br><br><span class="hljs-keyword">import</span> java.io.IOException;<br><br><span class="hljs-meta">@Configuration</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">RedissonConfig</span> &#123;<br><br>    <span class="hljs-meta">@Value(&quot;$&#123;spring.redis.host:127.0.0.1&#125;&quot;)</span><br>    <span class="hljs-keyword">private</span> String redisIp;<br>    <span class="hljs-meta">@Value(&quot;$&#123;spring.redis.port:6379&#125;&quot;)</span><br>    <span class="hljs-keyword">private</span> String redisPort;<br>    <span class="hljs-meta">@Value(&quot;$&#123;spring.redis.password:password&#125;&quot;)</span><br>    <span class="hljs-keyword">private</span> String redisPassword;<br>    <span class="hljs-meta">@Bean</span><br>    <span class="hljs-keyword">public</span> RedissonClient <span class="hljs-title function_">redissonClient</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> IOException &#123;<br>        <span class="hljs-comment">// 默认连接地址 127.0.0.1:6379</span><br><span class="hljs-comment">//        RedissonClient redisson = Redisson.create();</span><br><br>        <span class="hljs-type">Config</span> <span class="hljs-variable">config</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Config</span>();<br>        config.useSingleServer().setAddress(<span class="hljs-string">&quot;redis://&quot;</span> + redisIp + <span class="hljs-string">&quot;:&quot;</span> + redisPort);<br>        config.useSingleServer().setDatabase(<span class="hljs-number">1</span>);<br>        config.useSingleServer().setPassword(redisPassword);<br>        <span class="hljs-keyword">return</span> Redisson.create(config);<br>    &#125;<br>&#125;<br><br><br></code></pre></td></tr></table></figure>
+
+<h2 id="CacheConfig"><a href="#CacheConfig" class="headerlink" title="CacheConfig"></a>CacheConfig</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.cactus.springcache.config;<br><br><span class="hljs-keyword">import</span> org.springframework.boot.autoconfigure.cache.CacheProperties;<br><span class="hljs-keyword">import</span> org.springframework.cache.annotation.CachingConfigurerSupport;<br><span class="hljs-keyword">import</span> org.springframework.cache.annotation.EnableCaching;<br><span class="hljs-keyword">import</span> org.springframework.context.annotation.Bean;<br><span class="hljs-keyword">import</span> org.springframework.context.annotation.Configuration;<br><span class="hljs-keyword">import</span> org.springframework.data.redis.cache.RedisCacheConfiguration;<br><span class="hljs-keyword">import</span> org.springframework.data.redis.serializer.GenericJackson2JsonRedisSerializer;<br><span class="hljs-keyword">import</span> org.springframework.data.redis.serializer.RedisSerializationContext;<br><span class="hljs-keyword">import</span> org.springframework.data.redis.serializer.StringRedisSerializer;<br><br><span class="hljs-keyword">import</span> java.time.Duration;<br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * redis cache 配置</span><br><span class="hljs-comment"> * 继承缓存配置</span><br><span class="hljs-comment"> */</span><br><span class="hljs-meta">@Configuration</span><br><span class="hljs-meta">@EnableCaching</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">CacheConfig</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">CachingConfigurerSupport</span> &#123;<br><br>    <span class="hljs-meta">@Bean</span><br>    <span class="hljs-keyword">public</span> RedisCacheConfiguration <span class="hljs-title function_">redisCacheConfiguration</span><span class="hljs-params">(CacheProperties cacheProperties)</span> &#123;<br>        <span class="hljs-type">RedisCacheConfiguration</span> <span class="hljs-variable">config</span> <span class="hljs-operator">=</span> RedisCacheConfiguration.defaultCacheConfig();<br><br>        <span class="hljs-comment">//过期时间 可有可无 如果不写就是永久保存 看需求 这里是缓存一个小时</span><br>        <span class="hljs-comment">//建议是永久保存</span><br>        config = config.entryTtl(Duration.ofHours(<span class="hljs-number">1</span>));<br>        <span class="hljs-comment">//序列化</span><br>        config = config.serializeKeysWith(RedisSerializationContext.SerializationPair.fromSerializer(<span class="hljs-keyword">new</span> <span class="hljs-title class_">StringRedisSerializer</span>()));<br>        <span class="hljs-comment">//反序列化</span><br>        config = config.serializeValuesWith(RedisSerializationContext.SerializationPair.fromSerializer(<span class="hljs-keyword">new</span> <span class="hljs-title class_">GenericJackson2JsonRedisSerializer</span>()));<br><br>        CacheProperties.<span class="hljs-type">Redis</span> <span class="hljs-variable">redisProperties</span> <span class="hljs-operator">=</span> cacheProperties.getRedis();<br>        <span class="hljs-comment">//将配置文件中所有的配置都生效</span><br>        <span class="hljs-keyword">if</span> (redisProperties.getTimeToLive() != <span class="hljs-literal">null</span>) &#123;<br>            config = config.entryTtl(redisProperties.getTimeToLive());<br>        &#125;<br>        <span class="hljs-keyword">if</span> (redisProperties.getKeyPrefix() != <span class="hljs-literal">null</span>) &#123;<br>            config = config.prefixCacheNameWith(redisProperties.getKeyPrefix());;<br>        &#125;<br>        <span class="hljs-keyword">if</span> (!redisProperties.isCacheNullValues()) &#123;<br>            config = config.disableCachingNullValues();<br>        &#125;<br>        <span class="hljs-keyword">if</span> (!redisProperties.isUseKeyPrefix()) &#123;<br>            config = config.disableKeyPrefix();<br>        &#125;<br>        <span class="hljs-keyword">return</span> config;<br><br>    &#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<h2 id="BaseResult"><a href="#BaseResult" class="headerlink" title="BaseResult"></a>BaseResult</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.cactus.springcache.common;<br><br><span class="hljs-keyword">import</span> lombok.Data;<br><br><span class="hljs-meta">@Data</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">BaseResult</span> &#123;<br>    <span class="hljs-keyword">private</span> <span class="hljs-type">int</span> code;<br>    <span class="hljs-keyword">private</span> String msg;<br>    <span class="hljs-keyword">private</span> Object data;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> BaseResult <span class="hljs-title function_">success</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-type">BaseResult</span> <span class="hljs-variable">result</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">BaseResult</span>();<br>        result.code = <span class="hljs-number">0</span>;<br>        result.msg= <span class="hljs-string">&quot;success&quot;</span>;<br>        <span class="hljs-keyword">return</span> result;<br>    &#125;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> BaseResult <span class="hljs-title function_">success</span><span class="hljs-params">(String msg)</span> &#123;<br>        <span class="hljs-type">BaseResult</span> <span class="hljs-variable">result</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">BaseResult</span>();<br>        result.code = <span class="hljs-number">0</span>;<br>        result.msg= msg;<br>        <span class="hljs-keyword">return</span> result;<br>    &#125;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> BaseResult <span class="hljs-title function_">success</span><span class="hljs-params">(Object data)</span> &#123;<br>        <span class="hljs-type">BaseResult</span> <span class="hljs-variable">result</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">BaseResult</span>();<br>        result.code = <span class="hljs-number">0</span>;<br>        result.msg= <span class="hljs-string">&quot;success&quot;</span>;<br>        result.data = data;<br>        <span class="hljs-keyword">return</span> result;<br>    &#125;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> BaseResult <span class="hljs-title function_">success</span><span class="hljs-params">(String msg,Object data)</span> &#123;<br>        <span class="hljs-type">BaseResult</span> <span class="hljs-variable">result</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">BaseResult</span>();<br>        result.code = <span class="hljs-number">0</span>;<br>        result.msg= msg;<br>        result.data = data;<br>        <span class="hljs-keyword">return</span> result;<br>    &#125;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> BaseResult <span class="hljs-title function_">success</span><span class="hljs-params">(<span class="hljs-type">int</span> code,String msg,Object data)</span> &#123;<br>        <span class="hljs-type">BaseResult</span> <span class="hljs-variable">result</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">BaseResult</span>();<br>        result.code = code;<br>        result.msg= msg;<br>        result.data = data;<br>        <span class="hljs-keyword">return</span> result;<br>    &#125;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> BaseResult <span class="hljs-title function_">error</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-type">BaseResult</span> <span class="hljs-variable">result</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">BaseResult</span>();<br>        result.code = -<span class="hljs-number">1</span>;<br>        result.msg= <span class="hljs-string">&quot;error&quot;</span>;<br>        <span class="hljs-keyword">return</span> result;<br>    &#125;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> BaseResult <span class="hljs-title function_">error</span><span class="hljs-params">(String msg)</span> &#123;<br>        <span class="hljs-type">BaseResult</span> <span class="hljs-variable">result</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">BaseResult</span>();<br>        result.code = -<span class="hljs-number">1</span>;<br>        result.msg= msg;<br>        <span class="hljs-keyword">return</span> result;<br>    &#125;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> BaseResult <span class="hljs-title function_">error</span><span class="hljs-params">(Object data)</span> &#123;<br>        <span class="hljs-type">BaseResult</span> <span class="hljs-variable">result</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">BaseResult</span>();<br>        result.code = -<span class="hljs-number">1</span>;<br>        result.msg= <span class="hljs-string">&quot;error&quot;</span>;<br>        result.data = data;<br>        <span class="hljs-keyword">return</span> result;<br>    &#125;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> BaseResult <span class="hljs-title function_">error</span><span class="hljs-params">(String msg,Object data)</span> &#123;<br>        <span class="hljs-type">BaseResult</span> <span class="hljs-variable">result</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">BaseResult</span>();<br>        result.code = -<span class="hljs-number">1</span>;<br>        result.msg= msg;<br>        result.data = data;<br>        <span class="hljs-keyword">return</span> result;<br>    &#125;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> BaseResult <span class="hljs-title function_">error</span><span class="hljs-params">(<span class="hljs-type">int</span> code,String msg,Object data)</span> &#123;<br>        <span class="hljs-type">BaseResult</span> <span class="hljs-variable">result</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">BaseResult</span>();<br>        result.code = code;<br>        result.msg= msg;<br>        result.data = data;<br>        <span class="hljs-keyword">return</span> result;<br>    &#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<h2 id="User"><a href="#User" class="headerlink" title="User"></a>User</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.cactus.springcache.entity;<br><br><span class="hljs-keyword">import</span> lombok.Data;<br><br><span class="hljs-meta">@Data</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">User</span> &#123;<br>    <span class="hljs-keyword">private</span> String username;<br>    <span class="hljs-keyword">private</span> String id;<br>    <span class="hljs-keyword">private</span> Integer age;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<h2 id="TestController"><a href="#TestController" class="headerlink" title="TestController"></a>TestController</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.cactus.springcache.controller;<br><br><span class="hljs-keyword">import</span> com.cactus.springcache.common.BaseResult;<br><span class="hljs-keyword">import</span> com.cactus.springcache.entity.User;<br><span class="hljs-keyword">import</span> org.springframework.cache.annotation.CacheEvict;<br><span class="hljs-keyword">import</span> org.springframework.cache.annotation.Cacheable;<br><span class="hljs-keyword">import</span> org.springframework.web.bind.annotation.PathVariable;<br><span class="hljs-keyword">import</span> org.springframework.web.bind.annotation.RequestMapping;<br><span class="hljs-keyword">import</span> org.springframework.web.bind.annotation.RestController;<br><br><span class="hljs-keyword">import</span> java.util.ArrayList;<br><span class="hljs-keyword">import</span> java.util.List;<br><span class="hljs-keyword">import</span> java.util.UUID;<br><br><span class="hljs-meta">@RestController</span><br><span class="hljs-meta">@RequestMapping(&quot;/test&quot;)</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">TestController</span> &#123;<br><br><br>    <span class="hljs-meta">@RequestMapping(&quot;/user&quot;)</span><br>    <span class="hljs-meta">@Cacheable(value = &quot;cache_user&quot;,key = &quot;&#x27;userTestCache&#x27;&quot;)</span><br>    <span class="hljs-keyword">public</span> BaseResult <span class="hljs-title function_">testCache</span><span class="hljs-params">()</span> &#123;<br>        List&lt;User&gt; list = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayList</span>&lt;&gt;();<br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">5</span>; i++) &#123;<br>            <span class="hljs-type">User</span> <span class="hljs-variable">user</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">User</span>();<br>            user.setUsername(<span class="hljs-string">&quot;张三&quot;</span> + i +<span class="hljs-number">1</span>);<br>            user.setId(UUID.randomUUID().toString());<br>            user.setAge(<span class="hljs-number">18</span> +i);<br>            list.add(user);<br>        &#125;<br>        <span class="hljs-keyword">return</span> BaseResult.success(list);<br>    &#125;<br><br>    <span class="hljs-meta">@RequestMapping(&quot;/user/&#123;id&#125;&quot;)</span><br>    <span class="hljs-meta">@Cacheable(value = &quot;cache_user&quot;, key = &quot;#id&quot;)</span><br>    <span class="hljs-keyword">public</span> BaseResult <span class="hljs-title function_">testCache2</span><span class="hljs-params">(<span class="hljs-meta">@PathVariable(&quot;id&quot;)</span> String id)</span> &#123;<br>        <span class="hljs-type">User</span> <span class="hljs-variable">user</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">User</span>();<br>        user.setUsername(<span class="hljs-string">&quot;张三&quot;</span>);<br>        user.setId(id);<br>        user.setAge(<span class="hljs-number">18</span>);<br>        <span class="hljs-keyword">return</span> BaseResult.success(user);<br>    &#125;<br>    <span class="hljs-meta">@CacheEvict(allEntries = true,cacheNames = &quot;cache_user&quot;)</span><br>    <span class="hljs-meta">@RequestMapping(&quot;/clean&quot;)</span><br>    <span class="hljs-keyword">public</span> BaseResult <span class="hljs-title function_">clear</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-keyword">return</span> BaseResult.success();<br>    &#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<h1 id="四、测试"><a href="#四、测试" class="headerlink" title="四、测试"></a>四、测试</h1><figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs tex">GET http://localhost:9001/test/user<br></code></pre></td></tr></table></figure>
+
+<p>写入缓存</p>
+<p><img src="https://raw.githubusercontent.com/cai-qichang/cqc-photo/master/img/image-20230911104624380.png" srcset="/img/loading.gif" lazyload alt="image-20230911104624380"></p>
+<figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs tex">GET http://localhost:9001/test/user/1<br></code></pre></td></tr></table></figure>
+
+<p>单个写入</p>
+<p><img src="https://raw.githubusercontent.com/cai-qichang/cqc-photo/master/img/image-20230911104718533.png" srcset="/img/loading.gif" lazyload alt="image-20230911104718533"></p>
+<figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs tex">GET http://localhost:9001/test/clean<br></code></pre></td></tr></table></figure>
+
+<p>全部清除</p>
+<p><img src="https://raw.githubusercontent.com/cai-qichang/cqc-photo/master/img/image-20230911104810552.png" srcset="/img/loading.gif" lazyload alt="image-20230911104810552"></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E6%95%B4%E5%90%88%E7%B3%BB%E5%88%97/" class="category-chain-item">整合系列</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Springcache/" class="print-no-link">#Springcache</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Springboot整合Springcache</div>
+      <div>https://cai-qichang.github.io/2023/09/11/Springboot整合Springcache/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>caiqichang</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2023年9月11日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              BY-蔡奇倡
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2023/09/14/Springboot%E6%95%B4%E5%90%88SpringSecurity-jwt/" title="Springboot整合SpringSecurity-jwt">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Springboot整合SpringSecurity-jwt</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2023/09/10/Springboot%E6%95%B4%E5%90%88redisson/" title="Springboot整合redisson">
+                        <span class="hidden-mobile">Springboot整合redisson</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+    <!-- 备案信息 ICP for China -->
+    <div class="beian">
+  <span>
+    <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
+      粤ICP备2021019144号
+    </a>
+  </span>
+  
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
